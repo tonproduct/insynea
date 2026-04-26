@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batameta — Visão Geral do Produto</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.75;
+    }
+
+    .cover {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 72px 64px 64px;
+    }
+
+    .cover-tag {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .cover h1 {
+      font-size: 40px;
+      font-weight: normal;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .cover p {
+      font-size: 16px;
+      color: #aaa;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    .cover-rodape {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #333;
+      display: flex;
+      gap: 40px;
+    }
+
+    .cover-rodape-item {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .cover-rodape-item strong {
+      display: block;
+      color: #ccc;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 72px 32px 120px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 56px 0;
+    }
+
+    h2 {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 32px;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: normal;
+      line-height: 1.35;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+
+    h4 {
+      font-size: 17px;
+      font-weight: normal;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    .bloco { margin-bottom: 52px; }
+
+    .bloco-num {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+
+    .dado {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      background: #fafafa;
+      border: 1px solid #ebebeb;
+      padding: 14px 18px;
+      border-radius: 4px;
+      color: #555;
+      margin: 16px 0;
+      line-height: 1.6;
+    }
+
+    .dado strong { color: #1a1a1a; }
+
+    .destaque {
+      border-left: 3px solid #1a1a1a;
+      padding: 16px 20px;
+      background: #fafafa;
+      margin: 24px 0;
+      font-size: 16px;
+      color: #1a1a1a;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* PERSONAS */
+    .persona {
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .persona-header {
+      background: #fafafa;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 20px 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .persona-nome {
+      font-size: 18px;
+      font-weight: normal;
+      letter-spacing: -0.2px;
+    }
+
+    .persona-tag {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #999;
+      letter-spacing: 0.5px;
+    }
+
+    .persona-body {
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .persona-col-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #bbb;
+      margin-bottom: 10px;
+    }
+
+    .persona-body p {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    .persona-body ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .persona-body ul li {
+      font-size: 14px;
+      color: #444;
+      padding: 5px 0;
+      border-bottom: 1px solid #f5f5f5;
+      display: flex;
+      gap: 8px;
+    }
+
+    .persona-body ul li:last-child { border-bottom: none; }
+
+    .persona-body ul li::before {
+      content: '—';
+      color: #ccc;
+      flex-shrink: 0;
+    }
+
+    /* JTBD */
+    .jtbd-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .jtbd-item {
+      padding: 20px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .jtbd-item:last-child { border-bottom: none; }
+
+    .jtbd-job {
+      font-size: 15px;
+      color: #1a1a1a;
+      line-height: 1.55;
+    }
+
+    .jtbd-job em {
+      display: block;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #bbb;
+      margin-bottom: 6px;
+    }
+
+    .jtbd-contexto {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    /* JORNADA */
+    .jornada-etapa {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .jornada-etapa:last-child { border-bottom: none; }
+
+    .jornada-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 40px;
+      flex-shrink: 0;
+    }
+
+    .jornada-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .jornada-linha {
+      width: 1px;
+      flex: 1;
+      background: #e8e8e8;
+      margin: 6px 0;
+      min-height: 20px;
+    }
+
+    .jornada-right { flex: 1; }
+
+    .jornada-right h4 {
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 6px;
+    }
+
+    .jornada-right p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .jornada-right p:last-child { margin-bottom: 0; }
+
+    .jornada-dor {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #c0392b;
+      background: #fef9f9;
+      border: 1px solid #f5c6c6;
+      padding: 8px 12px;
+      border-radius: 3px;
+      margin-top: 8px;
+    }
+
+    .jornada-dor::before {
+      content: 'Ponto de dor  ';
+      font-weight: 700;
+    }
+
+    /* DORES */
+    .dores-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .dor-item {
+      padding: 20px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+    }
+
+    .dor-item:last-child { border-bottom: none; }
+
+    .dor-categoria {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-top: 3px;
+    }
+
+    .dor-texto {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* SITEMAP */
+    .sitemap-grupo {
+      margin-bottom: 36px;
+    }
+
+    .sitemap-grupo-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #bbb;
+      margin-bottom: 12px;
+    }
+
+    .sitemap-telas {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .sitemap-tela {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sitemap-tela:last-child { border-bottom: none; }
+
+    .sitemap-rota {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #555;
+      background: #fafafa;
+      padding: 12px 16px;
+      border-right: 1px solid #f0f0f0;
+    }
+
+    .sitemap-desc {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      color: #333;
+      padding: 12px 16px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #bbb;
+      padding: 40px 32px;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .nav-home {
+      background: #1a1a1a;
+      padding: 14px 64px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .nav-home a {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #666;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-home a:hover { color: #999; }
+  </style>
+</head>
+<body>
+
+<div class="nav-home">
+  <a href="../index.html">← Batameta</a>
+</div>
+
+<div class="cover">
+  <div class="cover-tag">Batameta · Documentação de Produto</div>
+  <h1>Visão Geral do Produto</h1>
+  <p>O que é o Batameta, para quem é feito, o que os usuários precisam fazer, como eles chegam lá — e onde o produto ainda precisa evoluir.</p>
+  <div class="cover-rodape">
+    <div class="cover-rodape-item"><strong>Versão</strong>Abril 2026</div>
+    <div class="cover-rodape-item"><strong>Contém</strong>Produto · Personas · JTBD · Jornadas · Sitemap</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- O QUE É -->
+  <h2>O que é o Batameta</h2>
+
+  <div class="bloco">
+    <h3>Uma ferramenta que diz ao motorista de app quanto ele precisa faturar por dia para não trabalhar no prejuízo.</h3>
+    <p>A maioria dos motoristas soma o faturamento bruto do dia e acha que está ganhando bem — sem descontar combustível, IPVA, seguro, manutenção, financiamento e desgaste do veículo. O Batameta faz esse cálculo automaticamente e entrega uma meta diária real, personalizada para o carro e os custos de cada motorista.</p>
+
+    <div class="destaque">
+      O produto não resolve um problema de produto. Resolve um problema de percepção — o motorista que usa o Batameta passa a enxergar o que realmente está ganhando.
+    </div>
+
+    <div class="dado"><strong>Modelo:</strong> SaaS por assinatura — R$ 29,90/mês · Trial de 7 dias sem cobrança · +500 motoristas ativos · +10 mil metas calculadas</div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-num">Componentes do produto</div>
+
+    <h4>Dashboard Web/App</h4>
+    <p>O motorista configura suas despesas fixas, define quanto quer ganhar por mês e recebe uma meta diária ajustada automaticamente. Inclui registro de sessões de trabalho, relatório mensal e histórico de corridas.</p>
+
+    <h4 style="margin-top:24px;">Copiloto Android</h4>
+    <p>Overlay que fica por cima do app de corrida e avalia cada oferta recebida em tempo real — pintando com um semáforo (verde/amarelo/vermelho) baseado no R$/km real do veículo do motorista. A decisão de aceitar ou recusar uma corrida passa a ser feita em menos de 1 segundo, sem cálculo mental.</p>
+  </div>
+
+  <hr>
+
+  <!-- PERSONAS -->
+  <h2>Personas</h2>
+
+  <div class="persona">
+    <div class="persona-header">
+      <span class="persona-nome">O motorista que não sabe se está no lucro</span>
+      <span class="persona-tag">Persona principal</span>
+    </div>
+    <div class="persona-body">
+      <div>
+        <div class="persona-col-label">Perfil</div>
+        <p>Está entre 6 meses e 2 anos no aplicativo. Fatura razoavelmente bem nos dias bons, mas no final do mês a conta não fecha como esperava. Sente que algo está errado mas não consegue colocar o dedo.</p>
+        <p>Usa Samsung ou Motorola entry-level. Acessa tudo pelo celular — nunca pelo computador. Está sempre com o telefone na mão entre corridas.</p>
+      </div>
+      <div>
+        <div class="persona-col-label">O que ele pensa</div>
+        <ul>
+          <li>Hoje faturei R$ 280, foi um bom dia?</li>
+          <li>Quanto sobra de verdade depois de tudo?</li>
+          <li>Vale a pena continuar nisso?</li>
+          <li>Por que no fim do mês sempre falta dinheiro?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-header">
+      <span class="persona-nome">O motorista com carro financiado</span>
+      <span class="persona-tag">Persona secundária</span>
+    </div>
+    <div class="persona-body">
+      <div>
+        <div class="persona-col-label">Perfil</div>
+        <p>Comprou o carro especificamente para trabalhar no app. Tem parcela fixa todo mês e sabe que precisa cobrir antes de pensar em lucro. Mais metódico — quer números, não estimativas.</p>
+        <p>Já tentou fazer planilha no Excel, mas desistiu depois de uma semana porque era trabalhoso demais manter atualizado.</p>
+      </div>
+      <div>
+        <div class="persona-col-label">O que ele pensa</div>
+        <ul>
+          <li>Preciso faturar pelo menos quanto para cobrir a parcela?</li>
+          <li>Quantas horas preciso trabalhar por dia?</li>
+          <li>Mês que vem tem revisão — como isso afeta minha meta?</li>
+          <li>Estou usando o carro mais do que devia?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-header">
+      <span class="persona-nome">O motorista que quer trabalhar menos e ganhar o mesmo</span>
+      <span class="persona-tag">Persona de expansão</span>
+    </div>
+    <div class="persona-body">
+      <div>
+        <div class="persona-col-label">Perfil</div>
+        <p>Já está há mais de 2 anos no app. Conhece os horários de pico, sabe quais regiões pagam melhor. Quer otimizar — parar de aceitar corridas ruins e focar nas que realmente valem a pena.</p>
+        <p>Usa 2 ou mais plataformas ao mesmo tempo. Toma decisões rápidas e confia na própria experiência — mas quer dados para confirmar o que já sente.</p>
+      </div>
+      <div>
+        <div class="persona-col-label">O que ele pensa</div>
+        <ul>
+          <li>Essa corrida de R$ 8 vale a pena ou vou gastar mais em gasolina?</li>
+          <li>Já bati minha meta hoje, posso parar?</li>
+          <li>Qual plataforma me paga melhor por km?</li>
+          <li>Prefiro trabalhar 6 horas bem do que 10 horas mal.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- JTBD -->
+  <h2>Jobs to be Done</h2>
+
+  <div class="jtbd-grid">
+
+    <div class="jtbd-item">
+      <div class="jtbd-job">
+        <em>Job funcional</em>
+        Saber se o dia foi lucrativo de verdade, descontando todos os custos reais do veículo.
+      </div>
+      <div class="jtbd-contexto">
+        Quando termino o turno, quero saber se fiz dinheiro ou só rodei — sem precisar fazer cálculo mental ou esperar o fim do mês para descobrir.
+      </div>
+    </div>
+
+    <div class="jtbd-item">
+      <div class="jtbd-job">
+        <em>Job funcional</em>
+        Saber exatamente quando posso parar de trabalhar no dia.
+      </div>
+      <div class="jtbd-contexto">
+        Quero ter um número claro para perseguir — e quando bater, poder ir para casa sem culpa de que devia ter ficado mais.
+      </div>
+    </div>
+
+    <div class="jtbd-item">
+      <div class="jtbd-job">
+        <em>Job funcional</em>
+        Decidir em segundos se uma corrida vale a pena aceitar.
+      </div>
+      <div class="jtbd-contexto">
+        Hoje aceito ou recuso no feeling. Quero uma referência objetiva — principalmente para corridas longas ou com destino desfavorável.
+      </div>
+    </div>
+
+    <div class="jtbd-item">
+      <div class="jtbd-job">
+        <em>Job emocional</em>
+        Ter certeza de que o trabalho no app realmente compensa financeiramente.
+      </div>
+      <div class="jtbd-contexto">
+        Tenho dúvidas às vezes. Quero poder olhar para os números e saber com segurança se estou no caminho certo ou se preciso mudar alguma coisa.
+      </div>
+    </div>
+
+    <div class="jtbd-item">
+      <div class="jtbd-job">
+        <em>Job emocional</em>
+        Sentir que tenho controle da minha renda, mesmo sem ser CLT.
+      </div>
+      <div class="jtbd-contexto">
+        Ser autônomo significa que ninguém me garante nada. Quero uma ferramenta que me dê previsibilidade — saber o que preciso fazer para atingir o que preciso ganhar.
+      </div>
+    </div>
+
+    <div class="jtbd-item">
+      <div class="jtbd-job">
+        <em>Job social</em>
+        Conseguir mostrar para família ou parceiro que o trabalho no app é sério e sustentável.
+      </div>
+      <div class="jtbd-contexto">
+        Ouço muito "mas você realmente ganha bem nisso?". Quero ter dados para responder — não só um valor bruto, mas o lucro real.
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <!-- JORNADAS -->
+  <h2>Jornadas do usuário</h2>
+
+  <div class="bloco">
+    <div class="bloco-num">Jornada 01 — Descoberta e primeiro acesso</div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Encontra o produto</h4>
+        <p>Anúncio no Instagram ou indicação de outro motorista. A headline "você pode estar trabalhando no prejuízo" chama atenção porque é exatamente a dúvida que ele já carrega.</p>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Acessa a landing page</h4>
+        <p>Lê a proposta. "Menos de 2 minutos" baixa a resistência. Clica em começar.</p>
+        <div class="jornada-dor">Se a página demorar para carregar no 4G, ele fecha.</div>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Preenche o diagnóstico</h4>
+        <p>Quantos dias por semana trabalha, quantas horas por dia, quanto quer ganhar por mês. Simples — ele continua.</p>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Preenche dados do veículo e despesas</h4>
+        <p>Aqui o fluxo pesa. Quatro campos por despesa, sem sugestões. Ele está no celular, entre corridas, com pouco tempo.</p>
+        <div class="jornada-dor">84% das pessoas saem aqui — antes de ver qualquer valor calculado.</div>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Vê a meta calculada</h4>
+        <p>"R$ 720/dia — abaixo disso você trabalha no prejuízo." O número é impactante. Ele entende o produto agora.</p>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div></div>
+      <div class="jornada-right">
+        <h4>Assina e entra no dashboard</h4>
+        <p>Trial de 7 dias, cartão necessário mas sem cobrança imediata. Entra logado diretamente após o pagamento.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-num">Jornada 02 — Uso no dia a dia</div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Abre o app antes de sair para trabalhar</h4>
+        <p>Confere a meta do dia. Sabe o número que precisa bater.</p>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Inicia uma sessão de trabalho</h4>
+        <p>Registra o início do turno no app.</p>
+        <div class="jornada-dor">Se o registro for trabalhoso, ele esquece de fazer e perde o histórico.</div>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Trabalha e acompanha o progresso</h4>
+        <p>Confere de tempos em tempos quanto falta para bater a meta.</p>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div></div>
+      <div class="jornada-right">
+        <h4>Encerra a sessão</h4>
+        <p>Fecha o turno, vê o resumo do dia. Faturamento x meta x lucro estimado.</p>
+        <div class="jornada-dor">Se o dado de faturamento for manual, ele tende a pular esse passo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-num">Jornada 03 — Retenção e cancelamento</div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Fim do trial — decisão de assinar</h4>
+        <p>Se usou o produto durante os 7 dias e viu valor, assina. 87.5% de quem chega aqui converte.</p>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div><div class="jornada-linha"></div></div>
+      <div class="jornada-right">
+        <h4>Primeiro mês como assinante</h4>
+        <p>Se o onboarding foi completo e a meta está correta, o produto entrega valor todo dia. Se foi incompleto, a meta está errada — e o produto deixa de entregar o valor esperado.</p>
+        <div class="jornada-dor">LTV atual de R$ 31 indica que a maioria cancela em menos de 2 meses.</div>
+      </div>
+    </div>
+
+    <div class="jornada-etapa">
+      <div class="jornada-left"><div class="jornada-dot"></div></div>
+      <div class="jornada-right">
+        <h4>Cancelamento</h4>
+        <p>Na maioria dos casos, provavelmente não percebeu diferença no dia a dia — porque nunca configurou o produto corretamente. Cancela sem saber o que estava perdendo.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SITEMAP -->
+  <h2>Sitemap</h2>
+
+  <style>
+    .flow {
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .flow-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flow-node {
+      border: 1.5px solid #1a1a1a;
+      border-radius: 4px;
+      padding: 10px 16px;
+      text-align: center;
+      white-space: nowrap;
+      position: relative;
+      background: #fff;
+    }
+
+    .flow-node.entry {
+      background: #1a1a1a;
+      color: #fff;
+      border-color: #1a1a1a;
+    }
+
+    .flow-node.onboarding { border-color: #555; }
+
+    .flow-node.app { background: #f5f5f5; }
+
+    .flow-node-rota {
+      font-size: 12px;
+      font-weight: 700;
+      color: inherit;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .flow-node.entry .flow-node-rota { color: #fff; }
+
+    .flow-node-label {
+      font-size: 11px;
+      color: #999;
+      display: block;
+    }
+
+    .flow-node.entry .flow-node-label { color: #aaa; }
+
+    /* setas horizontais */
+    .flow-arrow-h {
+      display: flex;
+      align-items: center;
+      padding-top: 22px;
+      flex-shrink: 0;
+    }
+
+    .flow-arrow-h::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1.5px;
+      background: #ccc;
+    }
+
+    .flow-arrow-h::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid #ccc;
+    }
+
+    /* setas verticais */
+    .flow-arrow-v {
+      width: 1.5px;
+      height: 28px;
+      background: #ccc;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .flow-arrow-v::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #ccc;
+    }
+
+    /* seta diagonal / fork */
+    .flow-fork {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flow-label-group {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #bbb;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .flow-section {
+      margin-bottom: 48px;
+    }
+
+    .flow-branch {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .flow-branch-line {
+      width: 1.5px;
+      background: #ccc;
+      flex-shrink: 0;
+    }
+
+    .flow-h-connector {
+      height: 1.5px;
+      background: #ccc;
+      flex-shrink: 0;
+      margin-top: 22px;
+    }
+
+    .flow-siblings {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .flow-nota {
+      font-size: 12px;
+      color: #999;
+      margin-top: 24px;
+      padding: 12px 16px;
+      border: 1px solid #ebebeb;
+      border-radius: 4px;
+      background: #fafafa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
+
+  <div class="flow">
+
+    <!-- LINHA 1: entrada -->
+    <div class="flow-section">
+      <div class="flow-label-group">Entrada</div>
+      <div style="display:flex; align-items:flex-start; gap:0;">
+
+        <!-- / -->
+        <div class="flow-col">
+          <div class="flow-node entry">
+            <span class="flow-node-rota">/</span>
+            <span class="flow-node-label">Landing page</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow-h"></div>
+
+        <!-- /register -->
+        <div class="flow-col">
+          <div class="flow-node">
+            <span class="flow-node-rota">/register</span>
+            <span class="flow-node-label">Cadastro</span>
+          </div>
+          <div class="flow-arrow-v"></div>
+          <!-- /onboarding -->
+          <div class="flow-node onboarding">
+            <span class="flow-node-rota">/onboarding</span>
+            <span class="flow-node-label">Diagnóstico · Veículo · Despesas · Meta</span>
+          </div>
+          <div class="flow-arrow-v"></div>
+          <!-- /checkout -->
+          <div class="flow-node onboarding">
+            <span class="flow-node-rota">/checkout/finalize</span>
+            <span class="flow-node-label">Pagamento · Ativação do trial</span>
+          </div>
+          <div class="flow-arrow-v"></div>
+          <!-- /home -->
+          <div class="flow-node" style="background:#f9f9f9; font-weight:700;">
+            <span class="flow-node-rota">/home</span>
+            <span class="flow-node-label">Dashboard principal</span>
+          </div>
+        </div>
+
+        <!-- espaço + login path -->
+        <div style="display:flex; flex-direction:column; margin-left: 48px;">
+          <div style="height:22px;"></div>
+          <div style="display:flex; align-items:center; gap:0;">
+            <div style="width:32px; height:1.5px; background:#ccc;"></div>
+            <div style="width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid #ccc;"></div>
+          </div>
+          <div style="height: 12px;"></div>
+          <div class="flow-node">
+            <span class="flow-node-rota">/login</span>
+            <span class="flow-node-label">Login (usuário existente)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0; margin-top:12px;">
+            <div style="width:32px; height:1.5px; background:#ccc;"></div>
+            <div style="width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid #ccc;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="flow-nota"><strong>Telas a confirmar:</strong> configurações de conta, perfil do motorista, relatório mensal, gestão de despesas pós-onboarding. Não aparecem nos dados do Clarity.</div>
+
+</div>
+
+<footer>Batameta · Visão Geral do Produto · Abril 2026</footer>
+</body>
+</html>

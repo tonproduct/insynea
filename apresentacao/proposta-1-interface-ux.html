@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batameta — Análise de Interface & UX</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.75;
+    }
+
+    .cover {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 72px 64px 64px;
+    }
+
+    .cover-tag {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .cover h1 {
+      font-size: 40px;
+      font-weight: normal;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .cover p {
+      font-size: 16px;
+      color: #aaa;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .cover-rodape {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #333;
+      display: flex;
+      gap: 40px;
+    }
+
+    .cover-rodape-item {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .cover-rodape-item strong {
+      display: block;
+      color: #ccc;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 72px 32px 120px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 56px 0;
+    }
+
+    h2 {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 32px;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: normal;
+      line-height: 1.35;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    .bloco { margin-bottom: 52px; }
+
+    .bloco-num {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+
+    .dado {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      background: #fafafa;
+      border: 1px solid #ebebeb;
+      padding: 14px 18px;
+      border-radius: 4px;
+      color: #555;
+      margin: 16px 0;
+      line-height: 1.6;
+    }
+
+    .dado strong { color: #1a1a1a; }
+
+    .codigo {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      background: #f4f4f4;
+      border: 1px solid #e0e0e0;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin: 16px 0;
+      color: #c0392b;
+      word-break: break-all;
+    }
+
+    .correcao {
+      border-left: 3px solid #1a1a1a;
+      padding: 14px 20px;
+      margin: 16px 0;
+      font-size: 15px;
+      color: #1a1a1a;
+      background: #fafafa;
+    }
+
+    .correcao strong {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #999;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .severidade {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .sev-critico { color: #c0392b; }
+    .sev-alto { color: #d35400; }
+    .sev-medio { color: #7f8c8d; }
+
+    .pontos-fortes {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .ponto {
+      padding: 20px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+    }
+
+    .ponto:last-child { border-bottom: none; }
+
+    .ponto-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+      padding-top: 2px;
+    }
+
+    .ponto-desc {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .mapa {
+      margin-top: 8px;
+    }
+
+    .mapa-linha {
+      display: grid;
+      grid-template-columns: 160px 1fr 90px;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f0f0;
+      align-items: start;
+    }
+
+    .mapa-linha:first-child {
+      padding-top: 0;
+    }
+
+    .mapa-linha:last-child { border-bottom: none; }
+
+    .mapa-etapa {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .mapa-desc {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.55;
+    }
+
+    .mapa-status {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .st-ok { color: #27ae60; }
+    .st-crit { color: #c0392b; }
+    .st-warn { color: #d35400; }
+
+    footer {
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #bbb;
+      padding: 40px 32px;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .nav-home {
+      background: #1a1a1a;
+      padding: 14px 64px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .nav-home a {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #666;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-home a:hover { color: #999; }
+  </style>
+</head>
+<body>
+
+<div class="nav-home">
+  <a href="../index.html">← Batameta</a>
+</div>
+
+<div class="cover">
+  <div class="cover-tag">Proposta 1 de 3 · Batameta</div>
+  <h1>Análise de Interface<br>& UX</h1>
+  <p>O que está funcionando no onboarding, o que está quebrando e como corrigir — baseado na análise do fluxo e nos dados de comportamento do Clarity.</p>
+  <div class="cover-rodape">
+    <div class="cover-rodape-item"><strong>Fluxo analisado</strong>Descoberta → Meta → Veículo → Despesas → Checkout</div>
+    <div class="cover-rodape-item"><strong>Dados</strong>Análise manual + Clarity 30 dias</div>
+    <div class="cover-rodape-item"><strong>Data</strong>Abril 2026</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <h2>O que está funcionando</h2>
+
+  <div class="pontos-fortes">
+    <div class="ponto">
+      <span class="ponto-label">Copywriting de dor</span>
+      <p class="ponto-desc"><em>"Você pode estar trabalhando no prejuízo sem perceber"</em> — acerta diretamente a maior ansiedade do motorista. É a primeira tela e já faz o trabalho pesado de convencer o usuário a continuar.</p>
+    </div>
+    <div class="ponto">
+      <span class="ponto-label">Promessa de tempo</span>
+      <p class="ponto-desc">"Menos de 2 minutos" reduz a resistência antes do primeiro clique. O usuário aceita um compromisso pequeno — e isso aumenta a chance de ele terminar.</p>
+    </div>
+    <div class="ponto">
+      <span class="ponto-label">Revelação progressiva</span>
+      <p class="ponto-desc">Mostrar a meta líquida primeiro e os custos do veículo depois é uma escolha inteligente. Quem já preencheu dados dificilmente abandona.</p>
+    </div>
+    <div class="ponto">
+      <span class="ponto-label">Barra de progresso</span>
+      <p class="ponto-desc">Sempre visível, remove a incerteza de "quanto falta?". Um dos menores detalhes com maior impacto em retenção de fluxo.</p>
+    </div>
+    <div class="ponto">
+      <span class="ponto-label">Tela de meta</span>
+      <p class="ponto-desc">O valor em tipografia grande + <em>"Abaixo disso você trabalha no prejuízo"</em> em vermelho cria o contraste emocional certo para o CTA de conversão.</p>
+    </div>
+    <div class="ponto">
+      <span class="ponto-label">Checkout honesto</span>
+      <p class="ponto-desc">O trial é explicado com clareza. O badge <em>"Sem cartão agora. Cancele quando quiser."</em> está no lugar certo — exatamente no momento de maior resistência.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>O que está quebrando</h2>
+
+  <div class="bloco">
+    <div class="severidade sev-critico">● Crítico</div>
+    <h3>Mensagem de erro técnica exposta ao usuário</h3>
+    <p>Ao tentar avançar sem selecionar o tipo de posse do veículo, o sistema exibe um erro de backend diretamente na tela:</p>
+    <div class="codigo">"Invalid option: expected one of "OWNED"|"FINANCED"|"RENTED""</div>
+    <p>Para um motorista de app sem contexto técnico, essa mensagem sinaliza que algo deu errado no aplicativo — e é o tipo de experiência que leva o usuário a fechar e não voltar.</p>
+    <div class="correcao">
+      <strong>Correção</strong>
+      Substituir pela mensagem <em>"Selecione uma opção para continuar"</em>. Uma linha de código.
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="severidade sev-alto">● Alto</div>
+    <h3>Campo marcado como opcional que bloqueia o avanço</h3>
+    <p>O campo "Seu carro é" exibe o label <em>(OPCIONAL)</em> mas impede avançar quando vazio. O sistema diz uma coisa e faz outra — uma das falhas de UX mais frustrantes que existem. O usuário tenta pular, não consegue, e não entende por quê.</p>
+    <div class="correcao">
+      <strong>Correção</strong>
+      Se é obrigatório, remover o <em>(OPCIONAL)</em>. Se é realmente opcional, aceitar campo vazio.
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="severidade sev-alto">● Alto</div>
+    <h3>Máscara monetária invertida</h3>
+    <p>Digitar <em>3000</em> resulta em R$ 30,00. O usuário precisa digitar <em>300000</em> para obter R$ 3.000,00. Usuários menos atentos estão salvando valores financeiros errados sem perceber — e a meta calculada pelo produto fica incorreta. O core value fica comprometido na base.</p>
+    <div class="dado"><strong>Por que isso importa:</strong> se a meta diária está errada, o produto não entrega o que prometeu — e o churn em 1 mês faz sentido.</div>
+    <div class="correcao">
+      <strong>Correção</strong>
+      Máscara da direita para a esquerda — o padrão de todo banco digital e caixa eletrônico no Brasil.
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="severidade sev-medio">● Médio</div>
+    <h3>Checkboxes de dias da semana na borda da tela</h3>
+    <p>As checkboxes estão posicionadas no extremo direito da linha. Em celulares Samsung e Motorola entry-level — que dominam 70% desta base — o usuário precisa esticar o polegar até a borda para marcar cada dia. É um detalhe que irrita mais do que parece.</p>
+    <div class="correcao">
+      <strong>Correção</strong>
+      Chips que ocupam a linha inteira como área clicável. Qualquer toque na linha seleciona o dia.
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="severidade sev-medio">● Médio</div>
+    <h3>Formulário de despesas pesado demais</h3>
+    <p>A tela de despesas abre com 4+ campos obrigatórios expandidos no meio do onboarding. O usuário ainda está entendendo o produto — e já enfrenta uma planilha de custos. É o ponto de maior abandono provável no fluxo.</p>
+    <div class="correcao">
+      <strong>Correção</strong>
+      Chips com despesas comuns pré-preenchidas: <em>"Combustível · R$ 800 · Mensal"</em>, <em>"Seguro · R$ 150 · Mensal"</em>. Formulário completo só se o usuário quiser personalizar.
+    </div>
+  </div>
+
+  <div class="bloco">
+    <div class="severidade sev-medio">● Médio</div>
+    <h3>Sem feedback de continuidade entre etapas</h3>
+    <p>Ao avançar entre telas, nenhum resumo do que foi preenchido é mostrado. O usuário não sabe se seus dados foram salvos — e essa insegurança silenciosa contribui para o abandono.</p>
+    <div class="correcao">
+      <strong>Correção</strong>
+      Uma linha de contexto no topo das etapas seguintes: <em>"Meta líquida: R$ 750/dia · Seg a Sáb"</em>. Mostra que os dados foram absorvidos.
+    </div>
+  </div>
+
+
+  <hr>
+
+  <h2>Resumo por etapa do fluxo</h2>
+
+  <div class="mapa">
+    <div class="mapa-linha">
+      <span class="mapa-etapa">Topo do funil</span>
+      <span class="mapa-desc">Copywriting forte, hook emocional, promessa de tempo</span>
+      <span class="mapa-status st-ok">Forte</span>
+    </div>
+    <div class="mapa-linha">
+      <span class="mapa-etapa">Engajamento inicial</span>
+      <span class="mapa-desc">Revelação progressiva, barra de progresso</span>
+      <span class="mapa-status st-ok">Forte</span>
+    </div>
+    <div class="mapa-linha">
+      <span class="mapa-etapa">Formulários</span>
+      <span class="mapa-desc">Máscara invertida, campo bloqueante, despesas pesadas</span>
+      <span class="mapa-status st-crit">Crítico</span>
+    </div>
+    <div class="mapa-linha">
+      <span class="mapa-etapa">Validação</span>
+      <span class="mapa-desc">Erro de backend exposto ao usuário final</span>
+      <span class="mapa-status st-crit">Crítico</span>
+    </div>
+    <div class="mapa-linha">
+      <span class="mapa-etapa">Mobile</span>
+      <span class="mapa-desc">Checkboxes inacessíveis, crashes nativos</span>
+      <span class="mapa-status st-warn">Atenção</span>
+    </div>
+    <div class="mapa-linha">
+      <span class="mapa-etapa">Continuidade</span>
+      <span class="mapa-desc">Sem feedback de dados salvos entre etapas</span>
+      <span class="mapa-status st-warn">Atenção</span>
+    </div>
+    <div class="mapa-linha">
+      <span class="mapa-etapa">Checkout</span>
+      <span class="mapa-desc">Trial honesto, reassurance bem posicionado</span>
+      <span class="mapa-status st-ok">Forte</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>Batameta · Análise de Interface & UX · Abril 2026</footer>
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batameta — Diagnóstico de Conversão</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.75;
+    }
+
+    .cover {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 72px 64px 64px;
+    }
+
+    .cover-tag {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .cover h1 {
+      font-size: 40px;
+      font-weight: normal;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .cover p {
+      font-size: 16px;
+      color: #aaa;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .cover-rodape {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #333;
+      display: flex;
+      gap: 40px;
+    }
+
+    .cover-rodape-item {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .cover-rodape-item strong {
+      display: block;
+      color: #ccc;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 72px 32px 120px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 56px 0;
+    }
+
+    h2 {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 32px;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: normal;
+      line-height: 1.35;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    .bloco { margin-bottom: 52px; }
+
+    .bloco-num {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+
+    /* KPIs */
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #e8e8e8;
+      border: 1px solid #e8e8e8;
+      margin-bottom: 16px;
+    }
+
+    .kpi {
+      background: #fff;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .kpi-valor {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .kpi-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .kpi-sub {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #bbb;
+      display: block;
+    }
+
+    .v-crit { color: #c0392b; }
+    .v-ok { color: #27ae60; }
+    .v-neutral { color: #1a1a1a; }
+    .v-warn { color: #d35400; }
+
+    /* Funil */
+    .funil { margin: 28px 0; }
+
+    .funil-linha {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 4px;
+    }
+
+    .funil-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      color: #555;
+      width: 110px;
+      flex-shrink: 0;
+    }
+
+    .funil-barra-wrap {
+      flex: 1;
+      height: 10px;
+      background: #f0f0f0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .funil-barra {
+      height: 100%;
+      background: #1a1a1a;
+    }
+
+    .funil-num {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+      width: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .funil-queda {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #c0392b;
+      margin: 2px 0 8px 128px;
+    }
+
+    /* Comportamento */
+    .comportamento { margin: 20px 0; }
+
+    .comp-linha {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .comp-linha:last-child { border-bottom: none; }
+
+    .comp-label {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      color: #333;
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    .comp-barra-wrap {
+      flex: 1;
+      height: 8px;
+      background: #f0f0f0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .comp-barra { height: 100%; }
+
+    .comp-pct {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      width: 48px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* Cadeia */
+    .cadeia { margin: 8px 0; }
+
+    .cadeia-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .cadeia-esq {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 16px;
+      flex-shrink: 0;
+    }
+
+    .cadeia-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .cadeia-dot.crit { background: #c0392b; }
+    .cadeia-dot.ok { background: #27ae60; }
+    .cadeia-dot.warn { background: #d35400; }
+
+    .cadeia-linha {
+      width: 1px;
+      flex: 1;
+      background: #e8e8e8;
+      min-height: 28px;
+      margin: 4px 0;
+    }
+
+    .cadeia-dir {
+      flex: 1;
+      padding-bottom: 28px;
+    }
+
+    .cadeia-dir h4 {
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 4px;
+    }
+
+    .cadeia-dir p {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 6px;
+    }
+
+    .cadeia-tag {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #999;
+    }
+
+    .cadeia-tag.crit { color: #c0392b; }
+    .cadeia-tag.ok { color: #27ae60; }
+    .cadeia-tag.warn { color: #d35400; }
+
+    /* Tabela de prioridades */
+    .tabela {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+    }
+
+    .tabela th {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      text-align: left;
+      padding: 0 0 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .tabela td {
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+      vertical-align: top;
+    }
+
+    .tabela tr:last-child td { border-bottom: none; }
+
+    .tabela td:first-child {
+      font-weight: 700;
+      color: #1a1a1a;
+      width: 28px;
+      padding-right: 16px;
+    }
+
+    .tabela td:last-child {
+      font-size: 12px;
+      color: #999;
+      padding-left: 16px;
+      width: 100px;
+      text-align: right;
+    }
+
+    .dado {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      background: #fafafa;
+      border: 1px solid #ebebeb;
+      padding: 14px 18px;
+      border-radius: 4px;
+      color: #555;
+      margin: 16px 0;
+      line-height: 1.6;
+    }
+
+    .dado strong { color: #1a1a1a; }
+
+    .veredicto {
+      border-left: 3px solid #1a1a1a;
+      padding: 20px 24px;
+      background: #fafafa;
+      margin: 0;
+    }
+
+    .veredicto p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #1a1a1a;
+    }
+
+    footer {
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #bbb;
+      padding: 40px 32px;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .nav-home {
+      background: #1a1a1a;
+      padding: 14px 64px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .nav-home a {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #666;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-home a:hover { color: #999; }
+  </style>
+</head>
+<body>
+
+<div class="nav-home">
+  <a href="../index.html">← Batameta</a>
+</div>
+
+<div class="cover">
+  <div class="cover-tag">Proposta 2 de 3 · Batameta</div>
+  <h1>Diagnóstico de Conversão</h1>
+  <p>Por que o produto não está convertendo? É interface, regra de negócio ou os dois? Cruzamento de todos os dados disponíveis.</p>
+  <div class="cover-rodape">
+    <div class="cover-rodape-item"><strong>Fontes</strong>Dashboard interno + Clarity 30d + Análise UX</div>
+    <div class="cover-rodape-item"><strong>Período</strong>Desde o início até Abril 2026</div>
+    <div class="cover-rodape-item"><strong>Data</strong>Abril 2026</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <h2>Saúde do negócio hoje</h2>
+
+  <div class="kpis">
+    <div class="kpi">
+      <span class="kpi-label">MRR</span>
+      <span class="kpi-valor v-neutral">R$ 209</span>
+      <span class="kpi-sub">receita recorrente/mês</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Pagantes</span>
+      <span class="kpi-valor v-neutral">8</span>
+      <span class="kpi-sub">+ 3 em trial</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Churn</span>
+      <span class="kpi-valor v-crit">83.3%</span>
+      <span class="kpi-sub">5 cancelamentos</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Trial → Pago</span>
+      <span class="kpi-valor v-ok">87.5%</span>
+      <span class="kpi-sub">7 conversões no mês</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">LTV</span>
+      <span class="kpi-valor v-crit">R$ 31</span>
+      <span class="kpi-sub">~1 mês de assinatura</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Activation</span>
+      <span class="kpi-valor v-warn">40.9%</span>
+      <span class="kpi-sub">completam ativação</span>
+    </div>
+  </div>
+
+  <div class="dado">O Trial→Pago de 87.5% prova que a proposta de valor está validada. Quem chega ao trial, paga. O problema é o caminho até lá — e o que acontece depois.</div>
+
+  <hr>
+
+  <h2>O funil completo</h2>
+
+  <div class="funil">
+    <div class="funil-linha">
+      <span class="funil-label">Entraram</span>
+      <div class="funil-barra-wrap"><div class="funil-barra" style="width:100%"></div></div>
+      <span class="funil-num">601</span>
+    </div>
+    <div class="funil-queda">↓ 84% abandonam antes do checkout</div>
+    <div class="funil-linha">
+      <span class="funil-label">Checkout</span>
+      <div class="funil-barra-wrap"><div class="funil-barra" style="width:16.5%"></div></div>
+      <span class="funil-num">99</span>
+    </div>
+    <div class="funil-queda">↓ 31% abandonam aqui</div>
+    <div class="funil-linha">
+      <span class="funil-label">Assinaram</span>
+      <div class="funil-barra-wrap"><div class="funil-barra" style="width:11.3%"></div></div>
+      <span class="funil-num">68</span>
+    </div>
+  </div>
+
+  <div class="dado"><strong>Conversão total: 11.3%</strong> — de cada 100 pessoas que entram no onboarding, menos de 12 chegam a assinar.</div>
+
+  <hr>
+
+  <h2>Comportamento dos 541 usuários cadastrados</h2>
+
+  <div class="comportamento">
+    <div class="comp-linha">
+      <span class="comp-label" style="color:#c0392b;font-weight:600;">Nunca fizeram login</span>
+      <div class="comp-barra-wrap"><div class="comp-barra" style="width:88%;background:#c0392b;"></div></div>
+      <span class="comp-pct" style="color:#c0392b;">88%</span>
+    </div>
+    <div class="comp-linha">
+      <span class="comp-label">Dormentes +30 dias</span>
+      <div class="comp-barra-wrap"><div class="comp-barra" style="width:5%;background:#999;"></div></div>
+      <span class="comp-pct" style="color:#999;">5%</span>
+    </div>
+    <div class="comp-linha">
+      <span class="comp-label">Ativos últimos 7 dias</span>
+      <div class="comp-barra-wrap"><div class="comp-barra" style="width:2%;background:#27ae60;"></div></div>
+      <span class="comp-pct" style="color:#27ae60;">2%</span>
+    </div>
+    <div class="comp-linha">
+      <span class="comp-label" style="color:#27ae60;">Com meta configurada</span>
+      <div class="comp-barra-wrap"><div class="comp-barra" style="width:10%;background:#27ae60;"></div></div>
+      <span class="comp-pct" style="color:#27ae60;">10%</span>
+    </div>
+  </div>
+
+  <div class="dado"><strong>90% da base nunca recebeu o core value do produto</strong> — a meta diária real, que é exatamente o que o Batameta promete entregar.</div>
+
+  <hr>
+
+  <h2>Os 3 dados que explicam a falha</h2>
+
+  <div class="bloco">
+    <div class="bloco-num">Dado 01</div>
+    <h3>88% nunca fizeram login — mas a causa não é abandono pós-cadastro</h3>
+    <p>O fluxo do Batameta é <strong>onboarding → cartão → já entra logado</strong>. Não existe tela de login para novos usuários — a conta só é criada ao final. Isso significa que os 478 que nunca logaram são pessoas que <strong>entraram no onboarding mas saíram antes de terminar</strong>. O gargalo não está no pós-cadastro. Está dentro do próprio fluxo.</p>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-num">Dado 02</div>
+    <h3>Apenas 10% chegaram a configurar a meta</h3>
+    <p>56 de 541 usuários completaram o que o produto promete entregar. 90% da base nunca viu o número que justifica a assinatura. Não é problema de proposta de valor — é problema de entrega. O produto não está chegando até o usuário.</p>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-num">Dado 03</div>
+    <h3>Trial→Pago de 87.5% com LTV de R$ 31 — um paradoxo</h3>
+    <p>As pessoas que chegam ao trial convertem bem. Mas ficam em média 1 mês. O produto convence na promessa e não retém na prática. A hipótese mais forte: o usuário paga sem ter configurado a ferramenta corretamente — com dados errados pela máscara invertida ou despesas incompletas. A meta está errada, o produto não entrega o valor, e o usuário cancela sem entender exatamente por quê.</p>
+  </div>
+
+  <hr>
+
+  <h2>A cadeia causal</h2>
+
+  <div class="cadeia">
+    <div class="cadeia-item">
+      <div class="cadeia-esq"><div class="cadeia-dot"></div><div class="cadeia-linha"></div></div>
+      <div class="cadeia-dir">
+        <h4>601 pessoas entram no onboarding</h4>
+        <p>A captação funciona.</p>
+      </div>
+    </div>
+    <div class="cadeia-item">
+      <div class="cadeia-esq"><div class="cadeia-dot crit"></div><div class="cadeia-linha"></div></div>
+      <div class="cadeia-dir">
+        <h4>O onboarding pede tudo antes de entregar qualquer valor</h4>
+        <p>Veículo, despesas, dados financeiros — tudo antes de mostrar a meta. Sem motivo para continuar.</p>
+        <span class="cadeia-tag crit">→ maioria sai aqui</span>
+      </div>
+    </div>
+    <div class="cadeia-item">
+      <div class="cadeia-esq"><div class="cadeia-dot crit"></div><div class="cadeia-linha"></div></div>
+      <div class="cadeia-dir">
+        <h4>Bugs bloqueiam quem tenta continuar</h4>
+        <p>Máscara errada, campo bloqueante, erro técnico exposto. Cada um é uma porta de saída.</p>
+        <span class="cadeia-tag crit">→ 57% dos cliques não respondem</span>
+      </div>
+    </div>
+    <div class="cadeia-item">
+      <div class="cadeia-esq"><div class="cadeia-dot ok"></div><div class="cadeia-linha"></div></div>
+      <div class="cadeia-dir">
+        <h4>Quem persiste chega ao trial e converte</h4>
+        <p>O copywriting é forte. 87.5% de quem chega, paga.</p>
+        <span class="cadeia-tag ok">→ 87.5% trial→pago</span>
+      </div>
+    </div>
+    <div class="cadeia-item">
+      <div class="cadeia-esq"><div class="cadeia-dot warn"></div><div class="cadeia-linha"></div></div>
+      <div class="cadeia-dir">
+        <h4>Mas o produto não foi configurado corretamente</h4>
+        <p>Dados errados, despesas incompletas. A meta calculada não é confiável.</p>
+        <span class="cadeia-tag warn">→ só 10% com meta configurada</span>
+      </div>
+    </div>
+    <div class="cadeia-item">
+      <div class="cadeia-esq"><div class="cadeia-dot crit"></div></div>
+      <div class="cadeia-dir" style="padding-bottom:0;">
+        <h4>Cancelamento em ~1 mês</h4>
+        <p>O produto não entregou o que prometeu. O usuário cancela.</p>
+        <span class="cadeia-tag crit">→ churn 83.3% · LTV R$ 31</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>É interface, regra de negócio ou os dois?</h2>
+
+  <div class="veredicto">
+    <p>Primariamente interface — com consequências diretas de negócio. Os bugs e a sequência errada do onboarding impedem o usuário de experienciar o que o produto já sabe fazer. Não é necessário mudar a proposta de valor, o modelo de assinatura ou o preço. É necessário garantir que as pessoas cheguem a usar o que já existe.</p>
+  </div>
+
+  <hr>
+
+  <h2>Prioridades</h2>
+
+  <table class="tabela">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Ação</th>
+        <th style="text-align:right;">Camada</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mapear onde exatamente os usuários abandonam o onboarding (funil no Clarity)</td>
+        <td>Dados</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Corrigir máscara monetária — dados financeiros estão sendo salvos errados</td>
+        <td>Tech</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Corrigir erro técnico exposto e campo bloqueante</td>
+        <td>Tech</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Testar inversão do onboarding — meta estimada antes dos dados</td>
+        <td>Produto</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Conversar com 5 dos 56 usuários que configuraram a meta</td>
+        <td>Pesquisa</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<footer>Batameta · Diagnóstico de Conversão · Abril 2026</footer>
+</body>
+</html>

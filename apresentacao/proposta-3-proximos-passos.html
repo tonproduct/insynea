@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batameta — Próximos Passos</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.75;
+    }
+
+    .cover {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 72px 64px 64px;
+    }
+
+    .cover-tag {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .cover h1 {
+      font-size: 40px;
+      font-weight: normal;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .cover p {
+      font-size: 16px;
+      color: #aaa;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .cover-rodape {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #333;
+      display: flex;
+      gap: 40px;
+    }
+
+    .cover-rodape-item {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .cover-rodape-item strong {
+      display: block;
+      color: #ccc;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 72px 32px 120px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 56px 0;
+    }
+
+    h2 {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 32px;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: normal;
+      line-height: 1.35;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    .bloco { margin-bottom: 52px; }
+
+    .bloco-num {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+
+    .dado {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      background: #fafafa;
+      border: 1px solid #ebebeb;
+      padding: 14px 18px;
+      border-radius: 4px;
+      color: #555;
+      margin: 16px 0;
+      line-height: 1.6;
+    }
+
+    .dado strong { color: #1a1a1a; }
+
+    .destaque {
+      border-left: 3px solid #1a1a1a;
+      padding: 16px 20px;
+      background: #fafafa;
+      margin: 24px 0;
+      font-size: 16px;
+      color: #1a1a1a;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .destaque strong { font-style: normal; }
+
+    /* Comparativo fluxo */
+    .fluxo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 28px 0;
+    }
+
+    .fluxo-col h4 {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e8e8e8;
+    }
+
+    .fluxo-col h4.ruim { color: #c0392b; border-color: #c0392b; }
+    .fluxo-col h4.bom { color: #27ae60; border-color: #27ae60; }
+
+    .fluxo-passo {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .fluxo-n {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #ccc;
+      padding-top: 2px;
+      min-width: 16px;
+    }
+
+    .fluxo-texto {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .fluxo-texto strong {
+      display: block;
+      font-size: 14px;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+
+    .fluxo-texto .aviso {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #c0392b;
+      font-style: normal;
+    }
+
+    .fluxo-texto .destaque-passo {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #27ae60;
+    }
+
+    /* Passos */
+    .passo {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .passo:last-child { border-bottom: none; }
+
+    .passo-n {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+      min-width: 24px;
+      padding-top: 3px;
+    }
+
+    .passo-body h4 {
+      font-size: 18px;
+      font-weight: normal;
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .passo-body p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .passo-body p:last-child { margin-bottom: 0; }
+
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 2px;
+    }
+
+    .tag-facil { background: #f0fdf4; color: #166534; }
+    .tag-medio { background: #fff7ed; color: #9a3412; }
+    .tag-dados { background: #eff6ff; color: #1e40af; }
+    .tag-produto { background: #faf5ff; color: #6b21a8; }
+    .tag-tech { background: #f0fdf4; color: #166534; }
+
+    .fechamento {
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 2px solid #1a1a1a;
+    }
+
+    .fechamento p {
+      font-size: 18px;
+      line-height: 1.75;
+      color: #1a1a1a;
+    }
+
+    footer {
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #bbb;
+      padding: 40px 32px;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .nav-home {
+      background: #1a1a1a;
+      padding: 14px 64px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .nav-home a {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #666;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-home a:hover { color: #999; }
+  </style>
+</head>
+<body>
+
+<div class="nav-home">
+  <a href="../index.html">← Batameta</a>
+</div>
+
+<div class="cover">
+  <div class="cover-tag">Proposta 3 de 3 · Batameta</div>
+  <h1>O Que Explorar<br>& Próximos Passos</h1>
+  <p>Baseado no diagnóstico completo — as hipóteses prioritárias e as ações concretas para destravar a conversão.</p>
+  <div class="cover-rodape">
+    <div class="cover-rodape-item"><strong>Baseado em</strong>Dashboard interno + Clarity + Análise UX</div>
+    <div class="cover-rodape-item"><strong>Foco</strong>Onboarding → Ativação → Retenção</div>
+    <div class="cover-rodape-item"><strong>Data</strong>Abril 2026</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <h2>O diagnóstico central</h2>
+
+  <div class="bloco">
+    <h3>Os 88% que "nunca logaram" não abandonaram o produto. Eles nunca conseguiram criar a conta.</h3>
+    <p>O fluxo do Batameta é <strong>onboarding → cartão → já entra logado</strong>. A conta só é criada ao final. Isso significa que os 478 usuários que nunca logaram são pessoas que entraram no funil mas saíram antes de completar o onboarding. O problema não está no pós-cadastro — está dentro do próprio fluxo.</p>
+    <div class="destaque">
+      84% das pessoas que entram no onboarding saem antes de chegar ao cartão. Cada pessoa que sai é uma conta que nunca foi criada.
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>A hipótese principal</h2>
+
+  <div class="bloco">
+    <div class="bloco-num">Hipótese</div>
+    <h3>O onboarding está na ordem errada</h3>
+    <p>Hoje o produto pede tudo antes de entregar qualquer coisa. O usuário precisa preencher dados do veículo e uma planilha de despesas antes de ver a meta calculada — que é exatamente o motivo pelo qual ele está ali. Ele não tem razão para continuar porque ainda não viu o valor.</p>
+    <p>A aposta é inverter: mostrar uma meta estimada logo no começo, com valores padrão do mercado, e deixar o usuário refinar com os dados reais. O número muda na frente dele enquanto ele preenche. O formulário de despesas deixa de ser um obstáculo e vira uma ferramenta de ajuste.</p>
+
+    <div class="fluxo-grid">
+      <div class="fluxo-col">
+        <h4 class="ruim">Fluxo atual</h4>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">1</span>
+          <div class="fluxo-texto"><strong>Hook emocional</strong></div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">2</span>
+          <div class="fluxo-texto"><strong>Diagnóstico básico</strong>dias, horas, meta de renda</div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">3</span>
+          <div class="fluxo-texto"><strong>Dados do veículo</strong><span class="aviso">bug: campo bloqueia + erro exposto</span></div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">4</span>
+          <div class="fluxo-texto"><strong>Formulário de despesas</strong><span class="aviso">4+ campos — maior abandono</span></div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">5</span>
+          <div class="fluxo-texto"><strong>Meta calculada</strong>usuário finalmente vê o valor</div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">6</span>
+          <div class="fluxo-texto"><strong>Checkout</strong></div>
+        </div>
+      </div>
+
+      <div class="fluxo-col">
+        <h4 class="bom">Fluxo proposto</h4>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">1</span>
+          <div class="fluxo-texto"><strong>Hook emocional</strong></div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">2</span>
+          <div class="fluxo-texto"><strong>Meta estimada já</strong><span class="destaque-passo">"sua meta é R$ 620/dia" — com padrão do mercado</span></div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">3</span>
+          <div class="fluxo-texto"><strong>Refinamento em tempo real</strong>cada dado atualiza o número</div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">4</span>
+          <div class="fluxo-texto"><strong>Despesas como ajuste</strong><span class="destaque-passo">chips pré-preenchidos, form opcional</span></div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">5</span>
+          <div class="fluxo-texto"><strong>Meta personalizada confirmada</strong>usuário entende o valor</div>
+        </div>
+        <div class="fluxo-passo">
+          <span class="fluxo-n">6</span>
+          <div class="fluxo-texto"><strong>Checkout</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>O que mais explorar</h2>
+
+  <div class="bloco">
+    <div class="bloco-num">Exploração 01</div>
+    <h3>Onde exatamente as pessoas saem do onboarding?</h3>
+    <p>Sabemos que 84% saem antes do checkout — mas não sabemos em qual tela. É na seleção do veículo? No formulário de despesas? No momento de ver a meta? Sem isso, qualquer correção é um chute.</p>
+    <div class="dado"><strong>O que falta:</strong> o painel de Funis do Clarity está vazio. Nenhuma etapa do onboarding foi mapeada como evento ainda.</div>
+  </div>
+
+  <div class="bloco">
+    <div class="bloco-num">Exploração 02</div>
+    <h3>O que os 56 que configuraram a meta fizeram diferente?</h3>
+    <p>De 541 usuários, 56 completaram o onboarding e chegaram à meta. Essas pessoas têm algo em comum — um caminho de aquisição, um dispositivo, um comportamento dentro do fluxo. Uma conversa de 10 minutos com 5 delas provavelmente revela esse padrão.</p>
+  </div>
+
+  <hr>
+
+  <h2>Próximos passos</h2>
+
+  <div class="passo">
+    <div class="passo-n">01</div>
+    <div class="passo-body">
+      <h4>Configurar funil por etapa no Clarity</h4>
+      <p>Mapear cada tela do onboarding como evento. Transforma "84% abandonam" em "X% abandonam na tela de veículo". A partir daí, cada correção tem impacto mensurável.</p>
+      <div class="tags">
+        <span class="tag tag-facil">Fácil</span>
+        <span class="tag tag-dados">Dados</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">02</div>
+    <div class="passo-body">
+      <h4>Assistir 10 gravações do onboarding no Clarity</h4>
+      <p>Filtrar sessões com toques inativos dentro do onboarding. Em 1 hora é possível ver onde os usuários travam e o que tentam fazer antes de sair — sem nenhum novo desenvolvimento.</p>
+      <div class="tags">
+        <span class="tag tag-facil">Fácil</span>
+        <span class="tag tag-dados">Dados</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">03</div>
+    <div class="passo-body">
+      <h4>Corrigir as 3 travas técnicas do onboarding</h4>
+      <p>Máscara monetária invertida, campo opcional que bloqueia e erro técnico exposto ao usuário. Correções pontuais de código — nenhuma exige redesign. São as de maior retorno por menor esforço disponíveis agora.</p>
+      <div class="tags">
+        <span class="tag tag-facil">Fácil</span>
+        <span class="tag tag-tech">Tech</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">04</div>
+    <div class="passo-body">
+      <h4>Testar a inversão do onboarding</h4>
+      <p>Mostrar a meta estimada na tela 2, antes de pedir qualquer dado do veículo. O usuário que já viu "sua meta é R$ 620/dia" tem muito mais motivo para continuar do que o que ainda não viu nada.</p>
+      <div class="tags">
+        <span class="tag tag-medio">Médio</span>
+        <span class="tag tag-produto">Produto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="passo">
+    <div class="passo-n">05</div>
+    <div class="passo-body">
+      <h4>Conversar com 5 usuários que configuraram a meta</h4>
+      <p>São 56 pessoas. Uma conversa rápida por WhatsApp — "o que te fez continuar?", "teve alguma dificuldade?" — provavelmente revela um padrão. É o dado mais valioso que ainda não existe.</p>
+      <div class="tags">
+        <span class="tag tag-facil">Fácil</span>
+        <span class="tag tag-dados">Dados</span>
+        <span class="tag tag-produto">Produto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="fechamento">
+    <p>O produto já tem validação — 87.5% de quem chega ao trial converte para pago. O que precisa mudar não é o que o Batameta faz. É garantir que as pessoas cheguem a experienciar o que já existe.</p>
+  </div>
+
+</div>
+
+<footer>Batameta · O Que Explorar & Próximos Passos · Abril 2026</footer>
+</body>
+</html>
