@@ -220,16 +220,70 @@ body {
 .total-meta-label { font-size: 10px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
 .total-sep { width: 1px; height: 36px; background: var(--line); }
 
-/* ── PAYMENT NOTE ────────────────────── */
-.payment-note {
-  background: var(--blue-bg);
-  border: 1px solid var(--blue-t);
-  border-radius: 10px;
-  padding: 14px 18px;
-  font-size: 12px; color: var(--ink2); line-height: 1.55;
+/* ── PAYMENT TIMELINE ────────────────── */
+.payment-timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
   margin-bottom: 48px;
+  position: relative;
 }
-.payment-note strong { color: var(--blue); font-weight: 700; }
+
+.pt-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* connecting line between steps */
+.pt-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: var(--line);
+  z-index: 0;
+}
+
+.pt-dot-wrap {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+}
+
+.pt-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  border: 2px solid transparent;
+}
+
+.pt-step.kickoff .pt-dot  { background: var(--blue-bg);   color: var(--blue);   border-color: var(--blue); }
+.pt-step.phase-2 .pt-dot  { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
+.pt-step.phase-3 .pt-dot  { background: var(--amber-bg);  color: var(--amber);  border-color: var(--amber); }
+.pt-step.phase-4 .pt-dot  { background: var(--green-bg);  color: var(--green);  border-color: var(--green); }
+
+.pt-body { text-align: center; padding: 0 8px; }
+.pt-trigger {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted); margin-bottom: 4px;
+}
+.pt-label { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.pt-value {
+  font-size: 15px; font-weight: 800;
+}
+.pt-step.kickoff .pt-value  { color: var(--blue); }
+.pt-step.phase-2 .pt-value  { color: var(--purple); }
+.pt-step.phase-3 .pt-value  { color: var(--amber); }
+.pt-step.phase-4 .pt-value  { color: var(--green); }
+.pt-note {
+  font-size: 10px; color: var(--muted); margin-top: 3px; line-height: 1.4;
+}
 
 /* ── SCOPE TABLE ─────────────────────── */
 .scope-table {
@@ -495,8 +549,48 @@ body {
     </div>
   </div>
 
-  <div class="payment-note">
-    <strong>Forma de pagamento:</strong> o valor da Fase 1 (R$ 600) é pago no kickoff — serve como garantia para início do trabalho. A partir daí, cada fase só é cobrada <strong>após a entrega anterior ser aprovada</strong>: Fase 2 paga após receber a Fase 2, Fase 3 após receber a Fase 3, e assim por diante. Entregas em Figma com 1 rodada de revisão incluída por fase.
+  <div class="payment-timeline">
+
+    <div class="pt-step kickoff">
+      <div class="pt-dot-wrap"><div class="pt-dot">01</div></div>
+      <div class="pt-body">
+        <div class="pt-trigger">Kickoff</div>
+        <div class="pt-label">Descoberta</div>
+        <div class="pt-value">R$ 600</div>
+        <div class="pt-note">Pago no início —<br>garantia do projeto</div>
+      </div>
+    </div>
+
+    <div class="pt-step phase-2">
+      <div class="pt-dot-wrap"><div class="pt-dot">02</div></div>
+      <div class="pt-body">
+        <div class="pt-trigger">Após entrega 1</div>
+        <div class="pt-label">Primeira Entrega</div>
+        <div class="pt-value">R$ 900</div>
+        <div class="pt-note">Pago após aprovação<br>das 5 telas</div>
+      </div>
+    </div>
+
+    <div class="pt-step phase-3">
+      <div class="pt-dot-wrap"><div class="pt-dot">03</div></div>
+      <div class="pt-body">
+        <div class="pt-trigger">Após entrega 2</div>
+        <div class="pt-label">Segunda Entrega</div>
+        <div class="pt-value">R$ 900</div>
+        <div class="pt-note">Pago após aprovação<br>das 4 telas</div>
+      </div>
+    </div>
+
+    <div class="pt-step phase-4">
+      <div class="pt-dot-wrap"><div class="pt-dot">04</div></div>
+      <div class="pt-body">
+        <div class="pt-trigger">Após entrega 3</div>
+        <div class="pt-label">Terceira Entrega</div>
+        <div class="pt-value">R$ 600</div>
+        <div class="pt-note">Pago após aprovação<br>das 4 telas</div>
+      </div>
+    </div>
+
   </div>
 
   <!-- TABELA DE TELAS -->
