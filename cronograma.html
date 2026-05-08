@@ -184,13 +184,11 @@ body {
   display: flex; align-items: center; gap: 5px;
   padding: 5px 10px; border-radius: 6px;
   font-size: 11px; font-weight: 600;
+  background: var(--s2); color: var(--label); border: 1px solid var(--line);
 }
 .deliverable-tag .d-icon { font-size: 12px; }
-
-.phase-1 .deliverable-tag { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-t); }
-.phase-2 .deliverable-tag { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-t); }
-.phase-3 .deliverable-tag { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-t); }
-.phase-4 .deliverable-tag { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-t); }
+.deliverable-tag.tag-aluno  { background: var(--blue-bg);  color: var(--blue);  border-color: var(--blue-t); }
+.deliverable-tag.tag-prof   { background: var(--green-bg); color: var(--green); border-color: var(--green-t); }
 
 /* Mobile badge */
 .mobile-badge {
@@ -400,10 +398,10 @@ body {
       <div class="phase-divider"></div>
       <div class="phase-deliverables">
         <div class="deliverable-tag"><span class="d-icon">◻</span> Login / Sign Up</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Busca de Professores</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Perfil do Professor</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Dashboard do Aluno — estrutura base</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Dashboard do Professor — estrutura base</div>
+        <div class="deliverable-tag tag-aluno"><span class="d-icon">◻</span> Busca de Professores</div>
+        <div class="deliverable-tag tag-aluno"><span class="d-icon">◻</span> Perfil do Professor</div>
+        <div class="deliverable-tag tag-aluno"><span class="d-icon">◻</span> Dashboard do Aluno — estrutura base</div>
+        <div class="deliverable-tag tag-prof"><span class="d-icon">◻</span> Dashboard do Professor — estrutura base</div>
       </div>
     </div>
 
@@ -432,9 +430,9 @@ body {
       <div class="phase-divider"></div>
       <div class="phase-deliverables">
         <div class="deliverable-tag"><span class="d-icon">◻</span> Home / Landing Page</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Onboarding do Aluno</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Agendamento (data, pagamento, confirmação)</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Ambiente da Disciplina</div>
+        <div class="deliverable-tag tag-aluno"><span class="d-icon">◻</span> Onboarding do Aluno</div>
+        <div class="deliverable-tag tag-aluno"><span class="d-icon">◻</span> Agendamento (data, pagamento, confirmação)</div>
+        <div class="deliverable-tag tag-aluno"><span class="d-icon">◻</span> Ambiente da Disciplina</div>
       </div>
     </div>
 
@@ -462,10 +460,10 @@ body {
       </div>
       <div class="phase-divider"></div>
       <div class="phase-deliverables">
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Onboarding — Criar Perfil de Professor</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Gerenciar Agenda</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Gerenciar Disciplinas</div>
-        <div class="deliverable-tag"><span class="d-icon">◻</span> Gestão da Aula</div>
+        <div class="deliverable-tag tag-prof"><span class="d-icon">◻</span> Onboarding — Criar Perfil de Professor</div>
+        <div class="deliverable-tag tag-prof"><span class="d-icon">◻</span> Gerenciar Agenda</div>
+        <div class="deliverable-tag tag-prof"><span class="d-icon">◻</span> Gerenciar Disciplinas</div>
+        <div class="deliverable-tag tag-prof"><span class="d-icon">◻</span> Gestão da Aula</div>
       </div>
     </div>
 
