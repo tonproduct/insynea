@@ -254,7 +254,7 @@ body {
   padding: 10px 20px;
 }
 .scope-screen { font-weight: 600; color: var(--ink2); }
-.scope-flow { font-size: 11px; color: var(--muted); }
+.scope-flow { font-size: 11px; font-weight: 600; }
 .scope-badge {
   font-size: 9.5px; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.4px; padding: 2px 7px; border-radius: 4px;
@@ -265,6 +265,32 @@ body {
 .sb-amber  { background: var(--amber-bg); color: var(--amber); }
 .sb-green  { background: var(--green-bg); color: var(--green); }
 .sb-gray   { background: var(--s2); color: var(--muted); border: 1px solid var(--line); }
+
+/* row tints by flow */
+.row-public  { background: var(--s); }
+.row-public  .scope-flow { color: var(--muted); }
+.row-aluno   { background: #EEF3FF; border-left: 3px solid var(--blue) !important; }
+.row-aluno   .scope-flow { color: var(--blue); }
+.row-aluno   .scope-screen { color: #1a3a8f; }
+.row-prof    { background: #ECFDF5; border-left: 3px solid var(--green) !important; }
+.row-prof    .scope-flow { color: var(--green); }
+.row-prof    .scope-screen { color: #065f46; }
+
+/* legend */
+.table-legend {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 10px;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; color: var(--label);
+}
+.legend-swatch {
+  width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+}
+.ls-public { background: var(--s2); border: 1px solid var(--line2); }
+.ls-aluno  { background: var(--blue); }
+.ls-prof   { background: var(--green); }
 </style>
 </head>
 <body>
@@ -474,6 +500,21 @@ body {
   <!-- TABELA DE TELAS -->
   <div class="section-label">Detalhamento de Telas</div>
 
+  <div class="table-legend">
+    <div class="legend-item">
+      <div class="legend-swatch ls-public"></div>
+      Área Pública
+    </div>
+    <div class="legend-item">
+      <div class="legend-swatch ls-aluno"></div>
+      Fluxo do Aluno
+    </div>
+    <div class="legend-item">
+      <div class="legend-swatch ls-prof"></div>
+      Fluxo do Professor
+    </div>
+  </div>
+
   <div class="scope-table">
     <div class="scope-row header">
       <div>Tela</div>
@@ -481,69 +522,69 @@ body {
       <div>Fase</div>
     </div>
 
-    <div class="scope-row">
+    <div class="scope-row row-public">
       <div class="scope-screen">Login / Sign Up</div>
       <div class="scope-flow">Área Pública</div>
       <div><span class="scope-badge sb-purple">Fase 2</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-aluno">
       <div class="scope-screen">Busca de Professores</div>
       <div class="scope-flow">Aluno</div>
       <div><span class="scope-badge sb-purple">Fase 2</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-aluno">
       <div class="scope-screen">Perfil do Professor</div>
       <div class="scope-flow">Aluno</div>
       <div><span class="scope-badge sb-purple">Fase 2</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-aluno">
       <div class="scope-screen">Dashboard do Aluno — estrutura base</div>
       <div class="scope-flow">Aluno</div>
       <div><span class="scope-badge sb-purple">Fase 2</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-prof">
       <div class="scope-screen">Dashboard do Professor — estrutura base</div>
       <div class="scope-flow">Professor</div>
       <div><span class="scope-badge sb-purple">Fase 2</span></div>
     </div>
 
-    <div class="scope-row">
+    <div class="scope-row row-public">
       <div class="scope-screen">Home / Landing Page</div>
       <div class="scope-flow">Área Pública</div>
       <div><span class="scope-badge sb-amber">Fase 3</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-aluno">
       <div class="scope-screen">Onboarding do Aluno</div>
       <div class="scope-flow">Aluno</div>
       <div><span class="scope-badge sb-amber">Fase 3</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-aluno">
       <div class="scope-screen">Agendamento (data / pagamento / confirmação)</div>
       <div class="scope-flow">Aluno</div>
       <div><span class="scope-badge sb-amber">Fase 3</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-aluno">
       <div class="scope-screen">Ambiente da Disciplina</div>
       <div class="scope-flow">Aluno</div>
       <div><span class="scope-badge sb-amber">Fase 3</span></div>
     </div>
 
-    <div class="scope-row">
+    <div class="scope-row row-prof">
       <div class="scope-screen">Onboarding — Criar Perfil de Professor</div>
       <div class="scope-flow">Professor</div>
       <div><span class="scope-badge sb-green">Fase 4</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-prof">
       <div class="scope-screen">Gerenciar Agenda</div>
       <div class="scope-flow">Professor</div>
       <div><span class="scope-badge sb-green">Fase 4</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-prof">
       <div class="scope-screen">Gerenciar Disciplinas</div>
       <div class="scope-flow">Professor</div>
       <div><span class="scope-badge sb-green">Fase 4</span></div>
     </div>
-    <div class="scope-row">
+    <div class="scope-row row-prof">
       <div class="scope-screen">Gestão da Aula</div>
       <div class="scope-flow">Professor</div>
       <div><span class="scope-badge sb-green">Fase 4</span></div>
