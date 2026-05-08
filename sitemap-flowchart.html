@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Flows — Plataforma Educacional</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f4f5f7;
+      color: #1a1a2e;
+      min-height: 100vh;
+      padding: 56px 32px 80px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .page-header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+    }
+    .page-header p {
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── SINGLE CENTERED WRAPPER ── */
+    .wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── SHARED AREA ── */
+    .shared {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* ── BOXES ── */
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.4;
+      width: 240px;
+    }
+
+    .box-terminal {
+      background: #fff;
+      border: 1px solid #d0d0e0;
+      color: #888;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 7px 22px;
+      width: auto;
+      min-width: 120px;
+    }
+
+    .box-public {
+      background: #fff;
+      border: 1px solid #c8d4e8;
+      color: #3a5080;
+    }
+
+    .box-decision {
+      background: #fffbf0;
+      border: 1px solid #e0c060;
+      color: #7a5500;
+      font-size: 12px;
+      width: 160px;
+      border-radius: 8px;
+      padding: 10px 16px;
+    }
+
+    .box-s       { background: #f0f5ff; border: 1px solid #b0c8f0; color: #1e3a70; }
+    .box-s-main  { background: #e8f0ff; border: 2px solid #4a86e0; color: #1a3060; font-weight: 600; }
+    .box-s-sys   { background: #f5f0ff; border: 1px dashed #9880d0; color: #5a3a90; font-size: 12px; }
+
+    .box-t       { background: #f0faf4; border: 1px solid #90d0a8; color: #1a4830; }
+    .box-t-main  { background: #e4f7ec; border: 2px solid #3ab87a; color: #124828; font-weight: 600; }
+    .box-t-sys   { background: #eef8f2; border: 1px dashed #60c088; color: #1e5030; font-size: 12px; }
+
+    /* ── TAGS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 7px;
+    }
+    .tag {
+      background: rgba(0,0,0,0.06);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    /* ── ARROWS (vertical) ── */
+    .arr {
+      width: 1px;
+      height: 28px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .arr::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+    }
+
+    .arr-pub { background: #c0c0d8; }
+    .arr-pub::after { border-top: 6px solid #a0a0c0; }
+
+    .arr-s { background: #90b8f0; }
+    .arr-s::after { border-top: 6px solid #6090d8; }
+
+    .arr-t { background: #70c898; }
+    .arr-t::after { border-top: 6px solid #40a870; }
+
+    /* ── FORK ── */
+    .fork {
+      width: 100%;
+      display: flex;
+      position: relative;
+      align-items: flex-start;
+    }
+
+    /* horizontal line connecting both branches — rendered as a div for reliability */
+    .fork-hline {
+      position: absolute;
+      top: 0;
+      left: 25%;
+      right: 25%;
+      height: 1px;
+      background: #c0c0d8;
+    }
+
+    .fork-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .fork-down {
+      width: 1px;
+      height: 28px;
+      background: #c0c0d8;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .fork-down::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 6px solid #a0a0c0;
+    }
+
+    /* ── TWO COLUMNS ── */
+    .cols {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 24px;
+      align-items: start;
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── COLUMN LABEL ── */
+    .col-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .col-label-s { background: #e8f0ff; color: #2a5cc8; border: 1px solid #b0c8f0; }
+    .col-label-t { background: #e4f7ec; color: #1a7848; border: 1px solid #90d0a8; }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 64px;
+      width: 100%;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #888;
+    }
+    .legend-sw {
+      width: 24px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Plataforma Educacional — User Flows</h1>
+  <p>MVP · Sitemap &amp; Fluxos de Usuário</p>
+</div>
+
+<div class="wrapper">
+
+  <!-- ═══ ÁREA PÚBLICA ═══ -->
+  <div class="shared">
+    <div class="box box-terminal">Início</div>
+    <div class="arr arr-pub"></div>
+
+    <div class="box box-public">Home
+      <div class="tags">
+        <span class="tag">landing page</span>
+        <span class="tag">valor da plataforma</span>
+      </div>
+    </div>
+    <div class="arr arr-pub"></div>
+
+    <div class="box box-public">Login / Cadastro
+      <div class="tags">
+        <span class="tag">e-mail</span>
+        <span class="tag">Google</span>
+      </div>
+    </div>
+    <div class="arr arr-pub"></div>
+  </div>
+
+  <!-- ═══ FORK (escolha de perfil) ═══ -->
+  <div class="fork">
+    <div class="fork-hline"></div>
+
+    <div class="fork-side">
+      <div class="fork-down"></div>
+      <div class="box box-decision">Sou Aluno</div>
+    </div>
+
+    <div class="fork-side">
+      <div class="fork-down"></div>
+      <div class="box box-decision">Sou Professor</div>
+    </div>
+  </div>
+
+  <!-- ═══ DOIS FLUXOS EM PARALELO ═══ -->
+  <div class="cols">
+
+    <!-- ─── FLUXO DO ALUNO ─── -->
+    <div class="col">
+      <div class="arr arr-s"></div>
+      <div class="col-label col-label-s">Fluxo do Aluno</div>
+
+      <div class="box box-s-sys">Onboarding do Aluno
+        <div class="tags">
+          <span class="tag">matéria</span>
+          <span class="tag">nível</span>
+          <span class="tag">objetivo</span>
+        </div>
+      </div>
+      <div class="arr arr-s"></div>
+
+      <div class="box box-s-main">Student Dashboard
+        <div class="tags">
+          <span class="tag">próximas aulas</span>
+          <span class="tag">disciplinas ativas</span>
+          <span class="tag">atividade recente</span>
+        </div>
+      </div>
+      <div class="arr arr-s"></div>
+
+      <div class="box box-s">Busca de Professores
+        <div class="tags">
+          <span class="tag">matéria</span>
+          <span class="tag">preço</span>
+          <span class="tag">disponibilidade</span>
+          <span class="tag">avaliação</span>
+        </div>
+      </div>
+      <div class="arr arr-s"></div>
+
+      <div class="box box-s">Perfil do Professor
+        <div class="tags">
+          <span class="tag">bio</span>
+          <span class="tag">matérias</span>
+          <span class="tag">avaliações</span>
+          <span class="tag">preço/h</span>
+        </div>
+      </div>
+      <div class="arr arr-s"></div>
+
+      <div class="box box-s">Fluxo de Agendamento
+        <div class="tags">
+          <span class="tag">data / hora</span>
+          <span class="tag">pagamento</span>
+          <span class="tag">confirmação</span>
+        </div>
+      </div>
+      <div class="arr arr-s"></div>
+
+      <div class="box box-s-sys">Aula confirmada no Dashboard</div>
+      <div class="arr arr-s"></div>
+
+      <div class="box box-s">Ambiente da Disciplina
+        <div class="tags">
+          <span class="tag">próximas aulas</span>
+          <span class="tag">gravações</span>
+          <span class="tag">materiais</span>
+          <span class="tag">anotações</span>
+        </div>
+      </div>
+      <div class="arr arr-s"></div>
+
+      <div class="box box-terminal">Continuar aprendizado</div>
+    </div>
+
+    <!-- ─── FLUXO DO PROFESSOR ─── -->
+    <div class="col">
+      <div class="arr arr-t"></div>
+      <div class="col-label col-label-t">Fluxo do Professor</div>
+
+      <div class="box box-t-sys">Onboarding — Criar Perfil
+        <div class="tags">
+          <span class="tag">bio</span>
+          <span class="tag">matérias</span>
+          <span class="tag">preços</span>
+          <span class="tag">disponibilidade</span>
+        </div>
+      </div>
+      <div class="arr arr-t"></div>
+
+      <div class="box box-t-main">Teacher Dashboard
+        <div class="tags">
+          <span class="tag">agenda do dia</span>
+          <span class="tag">alunos ativos</span>
+          <span class="tag">ganhos</span>
+        </div>
+      </div>
+      <div class="arr arr-t"></div>
+
+      <div class="box box-t">Gerenciar Agenda
+        <div class="tags">
+          <span class="tag">solicitações</span>
+          <span class="tag">confirmar</span>
+          <span class="tag">recusar</span>
+        </div>
+      </div>
+      <div class="arr arr-t"></div>
+
+      <div class="box box-t">Gerenciar Disciplinas
+        <div class="tags">
+          <span class="tag">materiais</span>
+          <span class="tag">gravações</span>
+          <span class="tag">alunos inscritos</span>
+        </div>
+      </div>
+      <div class="arr arr-t"></div>
+
+      <div class="box box-t-sys">Aluno agenda aula</div>
+      <div class="arr arr-t"></div>
+
+      <div class="box box-t">Gestão da Aula
+        <div class="tags">
+          <span class="tag">sala virtual</span>
+          <span class="tag">materiais</span>
+          <span class="tag">anotações</span>
+        </div>
+      </div>
+      <div class="arr arr-t"></div>
+
+      <div class="box box-terminal">Ciclo contínuo com alunos</div>
+    </div>
+
+  </div>
+
+  <!-- ═══ LEGEND ═══ -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-sw" style="background:#fff;border:1px solid #c8d4e8;"></div>
+      Área pública
+    </div>
+    <div class="legend-item">
+      <div class="legend-sw" style="background:#e8f0ff;border:2px solid #4a86e0;"></div>
+      Dashboard Aluno
+    </div>
+    <div class="legend-item">
+      <div class="legend-sw" style="background:#e4f7ec;border:2px solid #3ab87a;"></div>
+      Dashboard Professor
+    </div>
+    <div class="legend-item">
+      <div class="legend-sw" style="background:#f0f5ff;border:1px solid #b0c8f0;"></div>
+      Tela do Aluno
+    </div>
+    <div class="legend-item">
+      <div class="legend-sw" style="background:#f0faf4;border:1px solid #90d0a8;"></div>
+      Tela do Professor
+    </div>
+    <div class="legend-item">
+      <div class="legend-sw" style="background:#f5f0ff;border:1px dashed #9880d0;"></div>
+      Estado do sistema
+    </div>
+    <div class="legend-item">
+      <div class="legend-sw" style="background:#fffbf0;border:1px solid #e0c060;"></div>
+      Decisão / Fork
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+</body>
+</html>

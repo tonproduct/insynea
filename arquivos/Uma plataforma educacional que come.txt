@@ -1,0 +1,139 @@
+Uma plataforma educacional que começa no Brasil com foco em reforço escolar e evolução acadêmica, estruturada como um ecossistema de aprendizagem contínua, onde o aluno não apenas faz aulas, mas segue uma jornada com acompanhamento, prática e evolução real ao longo do tempo.
+
+A plataforma conecta alunos e professores, mas vai além do modelo tradicional ao integrar organização pedagógica, histórico, revisão de conteúdo e suporte inteligente ao professor.
+
+estruturar o aprendizado do aluno
+
+aumentar retenção de conteúdo
+
+melhorar desempenho acadêmico
+
+dar ferramentas reais para o professor ensinar melhor
+
+transformar aulas isoladas em um processo contínuo
+
+PROBLEMAS QUE RESOLVE
+
+alunos perdidos sem direção
+
+aulas isoladas sem continuidade
+
+dificuldade de encontrar bons professores
+
+falta de acompanhamento real
+
+baixa retenção de conteúdo
+
+professores desorganizados (sem sistema)
+
+evasão por falta de engajamento
+
+Anna Aletto
+9:23 AM
+FLUXO DO ALUNO
+Entrada
+
+Home
+
+↓
+
+Login / Cadastro
+
+↓
+
+Escolher:
+
+Student
+
+↓
+
+Student Dashboard
+
+↓
+
+Buscar professores
+
+↓
+
+Aplicar filtros
+
+↓
+
+Abrir perfil do professor
+
+↓
+
+Agendar aula
+
+↓
+
+Pagamento/Confirmação
+
+↓
+
+Aula agendada aparece no dashboard
+
+↓
+
+Entrar no ambiente da disciplina
+
+↓
+
+Ver:
+
+próximas aulas
+gravações
+materiais
+anotações
+
+↓
+
+Continuar aprendizado
+
+
+Entrada
+
+Home
+
+↓
+
+Login / Cadastro
+
+↓
+
+Escolher:
+
+Teacher
+
+↓
+
+Criar perfil
+
+↓
+
+Adicionar:
+
+bio
+matérias
+preços
+disponibilidade
+
+↓
+
+Teacher Dashboard
+
+↓
+
+Receber alunos
+
+↓
+
+Organizar:
+
+disciplinas
+materiais
+agenda
+
+↓
+
+Gerenciar aulas
