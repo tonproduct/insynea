@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insynea — Cronograma de Design</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #FFFFFF;
+  --s:        #F9FAFB;
+  --s2:       #F3F4F6;
+  --line:     #E5E7EB;
+  --line2:    #D1D5DB;
+  --ink:      #111827;
+  --ink2:     #374151;
+  --label:    #6B7280;
+  --muted:    #9CA3AF;
+
+  --blue:     #0051FF;
+  --blue-bg:  #EEF3FF;
+  --blue-t:   rgba(0,81,255,0.15);
+
+  --purple:   #7C3AED;
+  --purple-bg:#F5F3FF;
+  --purple-t: rgba(124,58,237,0.15);
+
+  --amber:    #D97706;
+  --amber-bg: #FFFBEB;
+  --amber-t:  rgba(217,119,6,0.15);
+
+  --green:    #059669;
+  --green-bg: #ECFDF5;
+  --green-t:  rgba(5,150,105,0.15);
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--s);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 0 0 80px;
+}
+
+/* ── NAV ─────────────────────────── */
+.nav {
+  padding: 16px 48px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.nav-back {
+  font-size: 12px; color: var(--muted); text-decoration: none;
+  display: flex; align-items: center; gap: 4px;
+  transition: color 0.1s;
+}
+.nav-back:hover { color: var(--label); }
+.nav-sep { font-size: 12px; color: var(--line2); }
+.nav-current { font-size: 12px; font-weight: 600; color: var(--ink2); }
+
+/* ── HERO ─────────────────────────── */
+.hero {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 48px 48px 40px;
+}
+.hero-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.6px; color: var(--muted); margin-bottom: 12px;
+}
+.hero-title {
+  font-size: 28px; font-weight: 800; color: var(--ink);
+  letter-spacing: -0.5px; margin-bottom: 8px;
+}
+.hero-sub {
+  font-size: 15px; color: var(--label); line-height: 1.5;
+  max-width: 560px;
+}
+
+.hero-meta {
+  display: flex; align-items: center; gap: 24px;
+  margin-top: 28px; padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.meta-item {}
+.meta-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 3px; }
+.meta-value { font-size: 14px; font-weight: 700; color: var(--ink); }
+.meta-sep { width: 1px; height: 32px; background: var(--line); }
+
+/* ── PAGE ─────────────────────────── */
+.page { padding: 40px 48px 0; }
+
+/* ── SECTION LABEL ───────────────────── */
+.section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.4px; color: var(--muted); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+/* ── PHASE CARDS ─────────────────────── */
+.phases { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
+
+.phase-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.phase-header {
+  display: flex; align-items: center; gap: 0;
+  padding: 0;
+}
+
+.phase-accent {
+  width: 4px; align-self: stretch; flex-shrink: 0;
+  border-radius: 0;
+}
+.phase-1 .phase-accent { background: var(--blue); }
+.phase-2 .phase-accent { background: var(--purple); }
+.phase-3 .phase-accent { background: var(--amber); }
+.phase-4 .phase-accent { background: var(--green); }
+
+.phase-top {
+  flex: 1;
+  display: flex; align-items: center;
+  padding: 20px 20px 20px 20px;
+  gap: 16px;
+}
+
+.phase-num-badge {
+  width: 36px; height: 36px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; flex-shrink: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.phase-1 .phase-num-badge { background: var(--blue-bg); color: var(--blue); }
+.phase-2 .phase-num-badge { background: var(--purple-bg); color: var(--purple); }
+.phase-3 .phase-num-badge { background: var(--amber-bg); color: var(--amber); }
+.phase-4 .phase-num-badge { background: var(--green-bg); color: var(--green); }
+
+.phase-info { flex: 1; }
+.phase-name { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.phase-week { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+.phase-right { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+
+.phase-screens {
+  text-align: center;
+}
+.phase-screens-num { font-size: 18px; font-weight: 800; color: var(--ink); }
+.phase-screens-label { font-size: 10px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 1px; }
+
+.phase-value-box {
+  padding: 8px 14px; border-radius: 10px;
+  text-align: right;
+}
+.phase-1 .phase-value-box { background: var(--blue-bg); }
+.phase-2 .phase-value-box { background: var(--purple-bg); }
+.phase-3 .phase-value-box { background: var(--amber-bg); }
+.phase-4 .phase-value-box { background: var(--green-bg); }
+
+.phase-value-num { font-size: 16px; font-weight: 800; }
+.phase-1 .phase-value-num { color: var(--blue); }
+.phase-2 .phase-value-num { color: var(--purple); }
+.phase-3 .phase-value-num { color: var(--amber); }
+.phase-4 .phase-value-num { color: var(--green); }
+.phase-value-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-top: 1px; }
+
+/* ── DELIVERABLES LIST ───────────────── */
+.phase-divider { height: 1px; background: var(--line); margin: 0 20px; }
+
+.phase-deliverables {
+  padding: 12px 20px 16px;
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+.deliverable-tag {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 10px; border-radius: 6px;
+  font-size: 11px; font-weight: 500; color: var(--ink2);
+  background: var(--s2); border: 1px solid var(--line);
+}
+.deliverable-tag .d-icon { font-size: 12px; }
+
+/* Mobile badge */
+.mobile-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 7px; border-radius: 4px;
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--s2); color: var(--muted);
+  border: 1px solid var(--line);
+  margin-left: 4px;
+}
+
+/* ── TOTAL BAR ───────────────────────── */
+.total-bar {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 12px;
+}
+.total-left {}
+.total-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.total-sub { font-size: 12px; color: var(--label); }
+.total-right { display: flex; align-items: center; gap: 24px; }
+.total-meta { text-align: right; }
+.total-meta-num { font-size: 22px; font-weight: 800; color: var(--ink); }
+.total-meta-label { font-size: 10px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
+.total-sep { width: 1px; height: 36px; background: var(--line); }
+
+/* ── PAYMENT NOTE ────────────────────── */
+.payment-note {
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-t);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 12px; color: var(--ink2); line-height: 1.55;
+  margin-bottom: 48px;
+}
+.payment-note strong { color: var(--blue); font-weight: 700; }
+
+/* ── SCOPE TABLE ─────────────────────── */
+.scope-table {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 48px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.scope-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  font-size: 12px;
+}
+.scope-row:last-child { border-bottom: none; }
+.scope-row.header {
+  background: var(--s2);
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted);
+  padding: 10px 20px;
+}
+.scope-screen { font-weight: 600; color: var(--ink2); }
+.scope-flow { font-size: 11px; color: var(--muted); }
+.scope-badge {
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.4px; padding: 2px 7px; border-radius: 4px;
+  display: inline-block;
+}
+.sb-blue   { background: var(--blue-bg); color: var(--blue); }
+.sb-purple { background: var(--purple-bg); color: var(--purple); }
+.sb-amber  { background: var(--amber-bg); color: var(--amber); }
+.sb-green  { background: var(--green-bg); color: var(--green); }
+.sb-gray   { background: var(--s2); color: var(--muted); border: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">← Início</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-current">Cronograma</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Insynea · Plataforma Educacional</div>
+  <div class="hero-title">Cronograma de Design</div>
+  <div class="hero-sub">Escopo de telas, fases de entrega e valores do projeto — mobile-first, dois fluxos de usuário.</div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <div class="meta-label">Duração</div>
+      <div class="meta-value">4 semanas</div>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <div class="meta-label">Telas</div>
+      <div class="meta-value">16 telas</div>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <div class="meta-label">Fluxos</div>
+      <div class="meta-value">Aluno + Professor</div>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <div class="meta-label">Plataforma</div>
+      <div class="meta-value">Mobile (iOS / Android)</div>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <div class="meta-label">Valor total</div>
+      <div class="meta-value">R$ 3.000</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- FASES -->
+  <div class="section-label">Fases e Entregas</div>
+  <div class="phases">
+
+    <!-- FASE 1 — DESCOBERTA -->
+    <div class="phase-card phase-1">
+      <div class="phase-header">
+        <div class="phase-accent"></div>
+        <div class="phase-top">
+          <div class="phase-num-badge">01</div>
+          <div class="phase-info">
+            <div class="phase-name">Descoberta</div>
+            <div class="phase-week">Semana 1 &nbsp;·&nbsp; Pesquisa e base estratégica</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-screens">
+              <div class="phase-screens-num">–</div>
+              <div class="phase-screens-label">telas</div>
+            </div>
+            <div class="phase-value-box">
+              <div class="phase-value-num">R$ 500</div>
+              <div class="phase-value-label">Valor da fase</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phase-divider"></div>
+      <div class="phase-deliverables">
+        <div class="deliverable-tag"><span class="d-icon">◉</span> Personas (Aluno e Professor)</div>
+        <div class="deliverable-tag"><span class="d-icon">◉</span> Jobs to Be Done</div>
+        <div class="deliverable-tag"><span class="d-icon">◉</span> Mapa de empatia</div>
+        <div class="deliverable-tag"><span class="d-icon">◉</span> Análise de concorrentes</div>
+        <div class="deliverable-tag"><span class="d-icon">◉</span> Sitemap validado</div>
+      </div>
+    </div>
+
+    <!-- FASE 2 — ÁREA PÚBLICA -->
+    <div class="phase-card phase-2">
+      <div class="phase-header">
+        <div class="phase-accent"></div>
+        <div class="phase-top">
+          <div class="phase-num-badge">02</div>
+          <div class="phase-info">
+            <div class="phase-name">Área Pública <span class="mobile-badge">📱 Mobile</span></div>
+            <div class="phase-week">Semana 2 &nbsp;·&nbsp; Fundação visual + acesso à plataforma</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-screens">
+              <div class="phase-screens-num">4</div>
+              <div class="phase-screens-label">telas</div>
+            </div>
+            <div class="phase-value-box">
+              <div class="phase-value-num">R$ 600</div>
+              <div class="phase-value-label">Valor da fase</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phase-divider"></div>
+      <div class="phase-deliverables">
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Design tokens (tipografia, cores, espaçamento)</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Home / Landing Page</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Login</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Cadastro</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Seleção de perfil (Aluno / Professor)</div>
+      </div>
+    </div>
+
+    <!-- FASE 3 — FLUXO ALUNO -->
+    <div class="phase-card phase-3">
+      <div class="phase-header">
+        <div class="phase-accent"></div>
+        <div class="phase-top">
+          <div class="phase-num-badge">03</div>
+          <div class="phase-info">
+            <div class="phase-name">Fluxo do Aluno <span class="mobile-badge">📱 Mobile</span></div>
+            <div class="phase-week">Semanas 3–3½ &nbsp;·&nbsp; Jornada completa de aprendizado</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-screens">
+              <div class="phase-screens-num">7</div>
+              <div class="phase-screens-label">telas</div>
+            </div>
+            <div class="phase-value-box">
+              <div class="phase-value-num">R$ 1.100</div>
+              <div class="phase-value-label">Valor da fase</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phase-divider"></div>
+      <div class="phase-deliverables">
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Onboarding do Aluno</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Student Dashboard</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Busca de Professores</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Perfil do Professor</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Agendamento (data, pagamento, confirmação)</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Ambiente da Disciplina</div>
+      </div>
+    </div>
+
+    <!-- FASE 4 — FLUXO PROFESSOR -->
+    <div class="phase-card phase-4">
+      <div class="phase-header">
+        <div class="phase-accent"></div>
+        <div class="phase-top">
+          <div class="phase-num-badge">04</div>
+          <div class="phase-info">
+            <div class="phase-name">Fluxo do Professor <span class="mobile-badge">📱 Mobile</span></div>
+            <div class="phase-week">Semanas 3½–4 &nbsp;·&nbsp; Gestão de alunos e aulas</div>
+          </div>
+          <div class="phase-right">
+            <div class="phase-screens">
+              <div class="phase-screens-num">5</div>
+              <div class="phase-screens-label">telas</div>
+            </div>
+            <div class="phase-value-box">
+              <div class="phase-value-num">R$ 800</div>
+              <div class="phase-value-label">Valor da fase</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phase-divider"></div>
+      <div class="phase-deliverables">
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Onboarding — Criar Perfil</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Teacher Dashboard</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Gerenciar Agenda</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Gerenciar Disciplinas</div>
+        <div class="deliverable-tag"><span class="d-icon">◻</span> Gestão da Aula</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOTAL -->
+  <div class="section-label">Resumo Financeiro</div>
+
+  <div class="total-bar">
+    <div class="total-left">
+      <div class="total-title">Total do Projeto</div>
+      <div class="total-sub">4 fases · 16 telas · 4 semanas · mobile-first</div>
+    </div>
+    <div class="total-right">
+      <div class="total-meta">
+        <div class="total-meta-num">16</div>
+        <div class="total-meta-label">Telas</div>
+      </div>
+      <div class="total-sep"></div>
+      <div class="total-meta">
+        <div class="total-meta-num">4</div>
+        <div class="total-meta-label">Entregas</div>
+      </div>
+      <div class="total-sep"></div>
+      <div class="total-meta">
+        <div class="total-meta-num" style="color: var(--blue);">R$ 3.000</div>
+        <div class="total-meta-label">Valor total</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="payment-note">
+    <strong>Forma de pagamento sugerida:</strong> cada fase é paga no início da sua semana de execução — R$ 500 na semana 1, R$ 600 na semana 2, R$ 1.100 na semana 3 e R$ 800 na semana 4. Entregas em Figma ao final de cada fase, com 1 rodada de revisão incluída por entrega.
+  </div>
+
+  <!-- TABELA DE TELAS -->
+  <div class="section-label">Detalhamento de Telas</div>
+
+  <div class="scope-table">
+    <div class="scope-row header">
+      <div>Tela</div>
+      <div>Fluxo</div>
+      <div>Fase</div>
+    </div>
+
+    <div class="scope-row">
+      <div class="scope-screen">Home / Landing Page</div>
+      <div class="scope-flow">Área Pública</div>
+      <div><span class="scope-badge sb-purple">Fase 2</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Login</div>
+      <div class="scope-flow">Área Pública</div>
+      <div><span class="scope-badge sb-purple">Fase 2</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Cadastro</div>
+      <div class="scope-flow">Área Pública</div>
+      <div><span class="scope-badge sb-purple">Fase 2</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Seleção de Perfil</div>
+      <div class="scope-flow">Área Pública</div>
+      <div><span class="scope-badge sb-purple">Fase 2</span></div>
+    </div>
+
+    <div class="scope-row">
+      <div class="scope-screen">Onboarding do Aluno</div>
+      <div class="scope-flow">Aluno</div>
+      <div><span class="scope-badge sb-amber">Fase 3</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Student Dashboard</div>
+      <div class="scope-flow">Aluno</div>
+      <div><span class="scope-badge sb-amber">Fase 3</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Busca de Professores</div>
+      <div class="scope-flow">Aluno</div>
+      <div><span class="scope-badge sb-amber">Fase 3</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Perfil do Professor</div>
+      <div class="scope-flow">Aluno</div>
+      <div><span class="scope-badge sb-amber">Fase 3</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Agendamento (data / pagamento / confirmação)</div>
+      <div class="scope-flow">Aluno</div>
+      <div><span class="scope-badge sb-amber">Fase 3</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Ambiente da Disciplina</div>
+      <div class="scope-flow">Aluno</div>
+      <div><span class="scope-badge sb-amber">Fase 3</span></div>
+    </div>
+
+    <div class="scope-row">
+      <div class="scope-screen">Onboarding — Criar Perfil de Professor</div>
+      <div class="scope-flow">Professor</div>
+      <div><span class="scope-badge sb-green">Fase 4</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Teacher Dashboard</div>
+      <div class="scope-flow">Professor</div>
+      <div><span class="scope-badge sb-green">Fase 4</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Gerenciar Agenda</div>
+      <div class="scope-flow">Professor</div>
+      <div><span class="scope-badge sb-green">Fase 4</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Gerenciar Disciplinas</div>
+      <div class="scope-flow">Professor</div>
+      <div><span class="scope-badge sb-green">Fase 4</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Gestão da Aula</div>
+      <div class="scope-flow">Professor</div>
+      <div><span class="scope-badge sb-green">Fase 4</span></div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-screen">Personas, JTBD, Benchmarking</div>
+      <div class="scope-flow">Descoberta</div>
+      <div><span class="scope-badge sb-blue">Fase 1</span></div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
