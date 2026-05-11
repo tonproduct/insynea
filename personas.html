@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insynea — Personas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #FFFFFF;
+  --s:         #F9FAFB;
+  --s2:        #F3F4F6;
+  --line:      #E5E7EB;
+  --line2:     #D1D5DB;
+  --ink:       #111827;
+  --ink2:      #374151;
+  --label:     #6B7280;
+  --muted:     #9CA3AF;
+
+  --blue:      #0051FF;
+  --blue-bg:   #EEF3FF;
+  --blue-t:    rgba(0,81,255,0.15);
+
+  --purple:    #7C3AED;
+  --purple-bg: #F5F3FF;
+  --purple-t:  rgba(124,58,237,0.15);
+
+  --green:     #059669;
+  --green-bg:  #ECFDF5;
+  --green-t:   rgba(5,150,105,0.15);
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--s);
+  color: var(--ink);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* ── NAV ─────────────────────────── */
+.nav {
+  padding: 16px 48px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 10;
+}
+.nav-back { font-size: 12px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color 0.1s; }
+.nav-back:hover { color: var(--label); }
+.nav-sep { font-size: 12px; color: var(--line2); }
+.nav-current { font-size: 12px; font-weight: 600; color: var(--ink2); }
+
+/* ── HERO ─────────────────────────── */
+.hero {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 48px 48px 40px;
+}
+.hero-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--muted); margin-bottom: 12px; }
+.hero-title { font-size: 28px; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 8px; }
+.hero-sub { font-size: 15px; color: var(--label); line-height: 1.5; max-width: 560px; }
+
+/* ── PAGE ─────────────────────────── */
+.page { padding: 40px 48px 0; }
+
+.section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.4px; color: var(--muted); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+/* ── PERSONA CARD ─────────────────── */
+.personas { display: flex; flex-direction: column; gap: 24px; margin-bottom: 60px; }
+
+.persona-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.persona-header {
+  display: flex; align-items: stretch;
+  border-bottom: 1px solid var(--line);
+}
+
+.persona-accent { width: 4px; flex-shrink: 0; }
+.p1 .persona-accent { background: var(--blue); }
+.p2 .persona-accent { background: var(--purple); }
+.p3 .persona-accent { background: var(--green); }
+
+.persona-intro {
+  flex: 1;
+  display: flex; align-items: center; gap: 20px;
+  padding: 24px 28px;
+}
+
+.persona-avatar {
+  width: 56px; height: 56px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 800; flex-shrink: 0;
+  letter-spacing: -1px;
+}
+.p1 .persona-avatar { background: var(--blue-bg); color: var(--blue); }
+.p2 .persona-avatar { background: var(--purple-bg); color: var(--purple); }
+.p3 .persona-avatar { background: var(--green-bg); color: var(--green); }
+
+.persona-id {}
+.persona-name { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 2px; }
+.persona-role { font-size: 12px; color: var(--label); font-weight: 500; margin-bottom: 8px; }
+.persona-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.persona-tag {
+  font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.p1 .persona-tag { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-t); }
+.p2 .persona-tag { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-t); }
+.p3 .persona-tag { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-t); }
+
+.persona-quote {
+  flex: 1;
+  padding: 24px 28px 24px 0;
+  display: flex; align-items: center;
+}
+.persona-quote blockquote {
+  font-size: 14px; font-style: italic; color: var(--ink2);
+  line-height: 1.6; border-left: 3px solid var(--line2);
+  padding-left: 16px; max-width: 420px;
+}
+.p1 .persona-quote blockquote { border-left-color: var(--blue); }
+.p2 .persona-quote blockquote { border-left-color: var(--purple); }
+.p3 .persona-quote blockquote { border-left-color: var(--green); }
+
+/* ── PERSONA BODY ─────────────────── */
+.persona-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+
+.persona-section {
+  padding: 24px 28px;
+  border-right: 1px solid var(--line);
+}
+.persona-section:last-child { border-right: none; }
+
+.ps-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted); margin-bottom: 14px;
+}
+
+/* Behavior items */
+.behavior-item { margin-bottom: 14px; }
+.behavior-item:last-child { margin-bottom: 0; }
+.beh-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.beh-label { font-size: 12px; font-weight: 600; color: var(--ink2); }
+.beh-val { font-size: 11px; font-weight: 700; color: var(--muted); }
+.beh-bar { height: 5px; background: var(--s2); border-radius: 100px; overflow: hidden; }
+.beh-fill { height: 100%; border-radius: 100px; }
+.p1 .beh-fill { background: var(--blue); }
+.p2 .beh-fill { background: var(--purple); }
+.p3 .beh-fill { background: var(--green); }
+
+/* Text lists */
+.ps-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.ps-list li {
+  font-size: 12px; color: var(--ink2); line-height: 1.5;
+  padding-left: 14px; position: relative;
+}
+.ps-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 7px;
+  width: 5px; height: 5px; border-radius: 50%;
+}
+.p1 .ps-list li::before { background: var(--blue); }
+.p2 .ps-list li::before { background: var(--purple); }
+.p3 .ps-list li::before { background: var(--green); }
+
+.ps-list.pain li::before { background: #EF4444; }
+.ps-list.goal li::before { background: var(--green); }
+
+/* Context chips */
+.context-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: 11px; font-weight: 500; color: var(--ink2);
+  background: var(--s2); border: 1px solid var(--line);
+  padding: 4px 10px; border-radius: 6px;
+}
+
+/* ── JTBD ─────────────────────────── */
+.jtbd-section { margin-bottom: 60px; }
+
+.jtbd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.jtbd-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.jtbd-persona {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+.jtbd-dot { width: 8px; height: 8px; border-radius: 50%; }
+.jtbd-p1 .jtbd-dot { background: var(--blue); }
+.jtbd-p2 .jtbd-dot { background: var(--purple); }
+.jtbd-p3 .jtbd-dot { background: var(--green); }
+.jtbd-p1 .jtbd-persona { color: var(--blue); }
+.jtbd-p2 .jtbd-persona { color: var(--purple); }
+.jtbd-p3 .jtbd-persona { color: var(--green); }
+
+.jtbd-item { margin-bottom: 12px; }
+.jtbd-item:last-child { margin-bottom: 0; }
+.jtbd-when { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px; }
+.jtbd-job { font-size: 12px; color: var(--ink2); line-height: 1.5; }
+.jtbd-job strong { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">← Início</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-current">Personas</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Insynea · Descoberta</div>
+  <div class="hero-title">Personas</div>
+  <div class="hero-sub">Três perfis comportamentais que definem quem a plataforma precisa servir — seus objetivos, medos, hábitos e o que os faz agir.</div>
+</div>
+
+<div class="page">
+
+  <div class="section-label">Perfis</div>
+  <div class="personas">
+
+    <!-- ── PERSONA 1: A PROFESSORA ── -->
+    <div class="persona-card p1">
+      <div class="persona-header">
+        <div class="persona-accent"></div>
+        <div class="persona-intro">
+          <div class="persona-avatar">SM</div>
+          <div class="persona-id">
+            <div class="persona-name">Sofia Mendes, 34</div>
+            <div class="persona-role">Professora particular · Pedagogia + Matemática · São Paulo, SP</div>
+            <div class="persona-tags">
+              <span class="persona-tag">Professora</span>
+              <span class="persona-tag">Autônoma</span>
+              <span class="persona-tag">5 anos de experiência</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-quote">
+          <blockquote>"Eu sei dar uma aula excelente. O que eu não aguento mais é depender de plataforma que some com 30% do meu dinheiro e não me dá nem um aluno de volta."</blockquote>
+        </div>
+      </div>
+      <div class="persona-body">
+
+        <div class="persona-section">
+          <div class="ps-label">Comportamento</div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Confiança digital</span><span class="beh-val">8/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:80%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Sensibilidade ao preço</span><span class="beh-val">9/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:90%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Exigência de suporte</span><span class="beh-val">7/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:70%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Lealdade à plataforma</span><span class="beh-val">3/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:30%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Autonomia sobre agenda</span><span class="beh-val">10/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:100%"></div></div>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="ps-label">Contexto</div>
+            <div class="context-chips">
+              <span class="chip">WhatsApp</span>
+              <span class="chip">Google Meet</span>
+              <span class="chip">Notion</span>
+              <span class="chip">iPhone + MacBook</span>
+              <span class="chip">8–12 aulas/sem</span>
+              <span class="chip">R$80–120/h</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="persona-section">
+          <div class="ps-label">Objetivos</div>
+          <ul class="ps-list goal">
+            <li>Ter uma agenda cheia sem depender de uma só plataforma</li>
+            <li>Receber de forma segura, sem risco de calote</li>
+            <li>Construir reputação profissional com histórico de avaliações reais</li>
+            <li>Ter controle total sobre preço e disponibilidade</li>
+            <li>Escalar para 15+ alunos sem aumentar a carga operacional</li>
+          </ul>
+        </div>
+
+        <div class="persona-section">
+          <div class="ps-label">Frustrações</div>
+          <ul class="ps-list pain">
+            <li>Comissão de 25–33% corrói o ganho em plataformas grandes</li>
+            <li>Plataformas cobram para aparecer, mas não entregam alunos reais</li>
+            <li>Aluno some após combinar horário — sem consequência</li>
+            <li>Usa 4 apps diferentes para gerir uma única aula</li>
+            <li>Não tem portabilidade: se sair da plataforma, perde tudo</li>
+            <li>Suporte inexistente quando há conflito com aluno</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── PERSONA 2: O ALUNO ── -->
+    <div class="persona-card p2">
+      <div class="persona-header">
+        <div class="persona-accent"></div>
+        <div class="persona-intro">
+          <div class="persona-avatar">LC</div>
+          <div class="persona-id">
+            <div class="persona-name">Lucas Carvalho, 23</div>
+            <div class="persona-role">Estudante universitário · Engenharia · Campinas, SP</div>
+            <div class="persona-tags">
+              <span class="persona-tag">Aluno</span>
+              <span class="persona-tag">1ª vez buscando professor</span>
+              <span class="persona-tag">Alta urgência</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-quote">
+          <blockquote>"Eu preciso de alguém que saiba explicar, não só saber o conteúdo. E quero pagar só se a aula realmente acontecer — sem surpresa no cartão depois."</blockquote>
+        </div>
+      </div>
+      <div class="persona-body">
+
+        <div class="persona-section">
+          <div class="ps-label">Comportamento</div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Confiança digital</span><span class="beh-val">6/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:60%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Sensibilidade ao preço</span><span class="beh-val">8/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:80%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Urgência de resultado</span><span class="beh-val">9/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:90%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Pesquisa antes de comprar</span><span class="beh-val">8/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:80%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Recorrência de aulas</span><span class="beh-val">5/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:50%"></div></div>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="ps-label">Contexto</div>
+            <div class="context-chips">
+              <span class="chip">Android</span>
+              <span class="chip">YouTube</span>
+              <span class="chip">Reddit</span>
+              <span class="chip">Pix</span>
+              <span class="chip">R$50–90/h teto</span>
+              <span class="chip">1–2 aulas/sem</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="persona-section">
+          <div class="ps-label">Objetivos</div>
+          <ul class="ps-list goal">
+            <li>Encontrar professor qualificado em menos de 10 minutos</li>
+            <li>Ter segurança de que o professor vai aparecer na aula</li>
+            <li>Pagar só depois que a aula acontecer — sem risco</li>
+            <li>Ler avaliações reais antes de contratar</li>
+            <li>Poder trocar de professor sem perder dinheiro se não encaixar</li>
+          </ul>
+        </div>
+
+        <div class="persona-section">
+          <div class="ps-label">Frustrações</div>
+          <ul class="ps-list pain">
+            <li>Plataformas cobram assinatura mensal antes de mostrar valor</li>
+            <li>Perfis de professores parecem falsos ou desatualizados</li>
+            <li>Professor cancela no último minuto sem reembolso garantido</li>
+            <li>Não sabe se o professor é realmente bom antes de pagar</li>
+            <li>Suporte demora dias para resolver problemas simples</li>
+            <li>Preço escondido — descobre a taxa real só na hora do pagamento</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── PERSONA 3: O PROFESSOR ENTRANTE ── -->
+    <div class="persona-card p3">
+      <div class="persona-header">
+        <div class="persona-accent"></div>
+        <div class="persona-intro">
+          <div class="persona-avatar">RF</div>
+          <div class="persona-id">
+            <div class="persona-name">Rafael Ferreira, 28</div>
+            <div class="persona-role">Professor autônomo iniciante · Inglês + Conversação · Belo Horizonte, MG</div>
+            <div class="persona-tags">
+              <span class="persona-tag">Professor</span>
+              <span class="persona-tag">Iniciante</span>
+              <span class="persona-tag">Sem alunos ainda</span>
+            </div>
+          </div>
+        </div>
+        <div class="persona-quote">
+          <blockquote>"Passei por três plataformas, me cadastrei, coloquei meu perfil, e nada. A plataforma promete aluno mas não entrega. Quero um lugar que trabalhe comigo, não só me usar como número."</blockquote>
+        </div>
+      </div>
+      <div class="persona-body">
+
+        <div class="persona-section">
+          <div class="ps-label">Comportamento</div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Confiança digital</span><span class="beh-val">7/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:70%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Sensibilidade ao preço</span><span class="beh-val">10/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:100%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Necessidade de visibilidade</span><span class="beh-val">10/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:100%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Disposição para aprender a ferramenta</span><span class="beh-val">9/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:90%"></div></div>
+          </div>
+          <div class="behavior-item">
+            <div class="beh-top"><span class="beh-label">Lealdade à plataforma (se funcionar)</span><span class="beh-val">9/10</span></div>
+            <div class="beh-bar"><div class="beh-fill" style="width:90%"></div></div>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="ps-label">Contexto</div>
+            <div class="context-chips">
+              <span class="chip">Android</span>
+              <span class="chip">Zoom</span>
+              <span class="chip">Instagram</span>
+              <span class="chip">Pix</span>
+              <span class="chip">R$50–70/h</span>
+              <span class="chip">0–4 aulas/sem agora</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="persona-section">
+          <div class="ps-label">Objetivos</div>
+          <ul class="ps-list goal">
+            <li>Conseguir os primeiros 5 alunos para validar a carreira</li>
+            <li>Ter um perfil profissional que transmita credibilidade</li>
+            <li>Receber de forma segura desde a primeira aula</li>
+            <li>Entender o que está funcionando — quantas visitas, contatos, aulas</li>
+            <li>Construir reputação com avaliações reais dos primeiros alunos</li>
+          </ul>
+        </div>
+
+        <div class="persona-section">
+          <div class="ps-label">Frustrações</div>
+          <ul class="ps-list pain">
+            <li>Plataformas prometem alunos mas entregam visibilidade zero</li>
+            <li>Algoritmo favorece professores com 100+ avaliações — novo nunca aparece</li>
+            <li>Cobra comissão mas não oferece ferramenta alguma de suporte</li>
+            <li>Sem dados: não sabe quantas pessoas viram seu perfil</li>
+            <li>Processo de cadastro longo, burocrático e sem retorno</li>
+            <li>Medo de calote — não sabe como cobrar de forma profissional</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── JOBS TO BE DONE ── -->
+  <div class="section-label">Jobs to Be Done</div>
+  <div class="jtbd-section">
+    <div class="jtbd-grid">
+
+      <div class="jtbd-card jtbd-p1">
+        <div class="jtbd-persona"><div class="jtbd-dot"></div>Sofia — Professora experiente</div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando um aluno some após combinar horário, quero <strong>um mecanismo que garanta meu pagamento</strong> para não trabalhar no prejuízo.</div>
+        </div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando termino uma aula, quero <strong>receber o valor imediatamente no Pix</strong> sem esperar repasse de plataforma.</div>
+        </div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando alguém busca professor de matemática, quero <strong>aparecer nas primeiras posições</strong> pelo meu histórico — não pelo quanto pago à plataforma.</div>
+        </div>
+      </div>
+
+      <div class="jtbd-card jtbd-p2">
+        <div class="jtbd-persona"><div class="jtbd-dot"></div>Lucas — Aluno em urgência</div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando tenho prova em 3 dias, quero <strong>encontrar e agendar um professor em menos de 5 minutos</strong> sem precisar me cadastrar antes de ver os professores.</div>
+        </div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando vou pagar, quero <strong>ter certeza que o dinheiro só sai se a aula acontecer</strong> — não antes.</div>
+        </div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando a aula acabar, quero <strong>poder avaliar o professor e decidir se contrato de novo</strong> sem pressão.</div>
+        </div>
+      </div>
+
+      <div class="jtbd-card jtbd-p3">
+        <div class="jtbd-persona"><div class="jtbd-dot"></div>Rafael — Professor iniciante</div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando me cadastro numa plataforma nova, quero <strong>ter visibilidade real desde o primeiro dia</strong>, não ficar enterrado por professores com 500 avaliações.</div>
+        </div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando um aluno me contata, quero <strong>um processo de confirmação e pagamento simples</strong> para parecer profissional sem ter sistema próprio.</div>
+        </div>
+        <div class="jtbd-item">
+          <div class="jtbd-when">Quando</div>
+          <div class="jtbd-job">Quando termino o mês, quero <strong>ver quantas aulas dei, quanto recebi e o que meus alunos acharam</strong> para evoluir meu trabalho.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
