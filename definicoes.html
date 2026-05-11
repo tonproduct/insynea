@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insynea — Definições do Produto</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #FFFFFF;
+  --s:         #F9FAFB;
+  --s2:        #F3F4F6;
+  --line:      #E5E7EB;
+  --line2:     #D1D5DB;
+  --ink:       #111827;
+  --ink2:      #374151;
+  --label:     #6B7280;
+  --muted:     #9CA3AF;
+
+  --blue:      #0051FF;
+  --blue-bg:   #EEF3FF;
+  --blue-t:    rgba(0,81,255,0.15);
+
+  --purple:    #7C3AED;
+  --purple-bg: #F5F3FF;
+  --purple-t:  rgba(124,58,237,0.15);
+
+  --amber:     #D97706;
+  --amber-bg:  #FFFBEB;
+  --amber-t:   rgba(217,119,6,0.15);
+
+  --green:     #059669;
+  --green-bg:  #ECFDF5;
+  --green-t:   rgba(5,150,105,0.15);
+
+  --red:       #DC2626;
+  --red-bg:    #FEF2F2;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--s);
+  color: var(--ink);
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+/* ── NAV ─────────────────────────── */
+.nav {
+  padding: 16px 48px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 10;
+}
+.nav-back { font-size: 12px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color 0.1s; }
+.nav-back:hover { color: var(--label); }
+.nav-sep { font-size: 12px; color: var(--line2); }
+.nav-current { font-size: 12px; font-weight: 600; color: var(--ink2); }
+
+/* ── HERO ─────────────────────────── */
+.hero {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 48px 48px 40px;
+}
+.hero-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--muted); margin-bottom: 12px; }
+.hero-title { font-size: 28px; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 8px; }
+.hero-sub { font-size: 15px; color: var(--label); line-height: 1.5; max-width: 560px; }
+
+/* ── PAGE ─────────────────────────── */
+.page { padding: 40px 48px 0; display: flex; flex-direction: column; gap: 48px; }
+
+.section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.4px; color: var(--muted); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+/* ── BLOCK ────────────────────────── */
+.block {}
+
+/* ── CARD BASE ────────────────────── */
+.card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* ── EXPANSION PHASES ─────────────── */
+.phases-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.phase-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.phase-top {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.phase-badge {
+  font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.2px; padding: 3px 8px; border-radius: 100px;
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-bottom: 12px;
+}
+.ph-now   { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-t); }
+.ph-soon  { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-t); }
+.ph-later { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-t); }
+
+.phase-title { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.phase-sub   { font-size: 12px; color: var(--label); line-height: 1.5; }
+
+.phase-subjects { padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 6px; }
+
+.subj-tag {
+  font-size: 11px; font-weight: 500; color: var(--ink2);
+  background: var(--s2); border: 1px solid var(--line);
+  padding: 4px 10px; border-radius: 6px;
+}
+
+/* ── MODELO ───────────────────────── */
+.modelo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.modelo-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.mc-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+.mc-value { font-size: 28px; font-weight: 900; color: var(--ink); letter-spacing: -1px; margin-bottom: 4px; }
+.mc-desc  { font-size: 12px; color: var(--label); line-height: 1.55; }
+.mc-blue   .mc-value { color: var(--blue); }
+.mc-green  .mc-value { color: var(--green); }
+.mc-amber  .mc-value { color: var(--amber); }
+
+.regra-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.regra-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--ink2); line-height: 1.5; }
+.regra-icon { flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+
+/* ── PAYMENT FLOW ─────────────────── */
+.flow-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.flow-step {
+  flex: 1;
+  padding: 24px 20px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.flow-step:last-child { border-right: none; }
+
+.flow-step::after {
+  content: '→';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--muted);
+  z-index: 1;
+  background: var(--bg);
+  padding: 2px;
+}
+.flow-step:last-child::after { display: none; }
+
+.fs-num {
+  width: 24px; height: 24px; border-radius: 6px;
+  font-size: 10px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.fs-1 .fs-num { background: var(--blue-bg);   color: var(--blue); }
+.fs-2 .fs-num { background: var(--amber-bg);  color: var(--amber); }
+.fs-3 .fs-num { background: var(--purple-bg); color: var(--purple); }
+.fs-4 .fs-num { background: var(--green-bg);  color: var(--green); }
+
+.fs-label { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.fs-desc  { font-size: 11px; color: var(--label); line-height: 1.5; }
+
+/* ── PROFESSOR FUNDADOR ───────────── */
+.fundador-card {
+  background: var(--bg);
+  border: 1px solid var(--amber-t);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.fundador-header {
+  background: var(--amber-bg);
+  border-bottom: 1px solid var(--amber-t);
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 14px;
+}
+
+.fundador-badge-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--amber); display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+
+.fundador-title { font-size: 16px; font-weight: 800; color: var(--ink); }
+.fundador-sub   { font-size: 12px; color: var(--amber); font-weight: 600; margin-top: 2px; }
+
+.fundador-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.fundador-section {
+  padding: 22px 24px;
+  border-right: 1px solid var(--line);
+}
+.fundador-section:last-child { border-right: none; }
+
+.fs-section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted); margin-bottom: 12px;
+}
+
+.fs-highlight {
+  font-size: 26px; font-weight: 900; color: var(--amber); letter-spacing: -0.5px; margin-bottom: 4px;
+}
+
+.fs-text { font-size: 12px; color: var(--ink2); line-height: 1.55; }
+
+.fs-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.fs-list li { display: flex; align-items: flex-start; gap: 7px; font-size: 12px; color: var(--ink2); line-height: 1.5; }
+.fs-list li .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); flex-shrink: 0; margin-top: 6px; }
+
+/* ── REGRAS GERAIS ────────────────── */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.rule-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.rule-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.rule-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0;
+}
+.rc-blue   .rule-icon { background: var(--blue-bg); }
+.rc-green  .rule-icon { background: var(--green-bg); }
+.rc-red    .rule-icon { background: var(--red-bg); }
+.rc-purple .rule-icon { background: var(--purple-bg); }
+
+.rule-title { font-size: 13px; font-weight: 700; color: var(--ink); }
+
+.rule-items { display: flex; flex-direction: column; gap: 8px; }
+.rule-item  { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--ink2); line-height: 1.5; }
+.ri-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+.rc-blue   .ri-dot { background: var(--blue); }
+.rc-green  .ri-dot { background: var(--green); }
+.rc-red    .ri-dot { background: var(--red); }
+.rc-purple .ri-dot { background: var(--purple); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">← Início</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-current">Definições do Produto</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Insynea · Descoberta</div>
+  <div class="hero-title">Definições do Produto</div>
+  <div class="hero-sub">Consolidação das decisões da cliente — escopo, modelo de negócio, regras de pagamento e programa de lançamento.</div>
+</div>
+
+<div class="page">
+
+  <!-- FASES DE EXPANSÃO -->
+  <div class="block">
+    <div class="section-label">Fases de Expansão</div>
+    <div class="phases-row">
+
+      <div class="phase-card">
+        <div class="phase-top">
+          <div class="phase-badge ph-now">● Agora — MVP</div>
+          <div class="phase-title">Brasil · Reforço Escolar</div>
+          <div class="phase-sub">Foco na dor mais clara do mercado: aluno com dificuldade em uma matéria específica, sem precisar pagar cursinho inteiro.</div>
+        </div>
+        <div class="phase-subjects">
+          <span class="subj-tag">Matemática</span>
+          <span class="subj-tag">Português</span>
+          <span class="subj-tag">Gramática</span>
+          <span class="subj-tag">Física</span>
+          <span class="subj-tag">Geografia</span>
+          <span class="subj-tag">História</span>
+          <span class="subj-tag">ENEM</span>
+          <span class="subj-tag">Vestibular</span>
+          <span class="subj-tag">Concurso Público</span>
+          <span class="subj-tag">Inglês</span>
+          <span class="subj-tag">Espanhol</span>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-top">
+          <div class="phase-badge ph-soon">→ Em breve</div>
+          <div class="phase-title">Brasil · Idiomas</div>
+          <div class="phase-sub">Expansão para idiomas em geral assim que a plataforma ganhar tração inicial com o reforço escolar.</div>
+        </div>
+        <div class="phase-subjects">
+          <span class="subj-tag">Inglês</span>
+          <span class="subj-tag">Espanhol</span>
+          <span class="subj-tag">Italiano</span>
+          <span class="subj-tag">Francês</span>
+          <span class="subj-tag">Outros idiomas</span>
+        </div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-top">
+          <div class="phase-badge ph-later">◌ Futuro — Global</div>
+          <div class="phase-title">Global · Tudo o que se ensina online</div>
+          <div class="phase-sub">Qualquer habilidade que possa ser ensinada online. Expansão internacional com suporte a múltiplos idiomas e moedas.</div>
+        </div>
+        <div class="phase-subjects">
+          <span class="subj-tag">Pilates</span>
+          <span class="subj-tag">Violão</span>
+          <span class="subj-tag">Desenho</span>
+          <span class="subj-tag">Programação</span>
+          <span class="subj-tag">Culinária</span>
+          <span class="subj-tag">+ tudo online</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODELO DE NEGÓCIO -->
+  <div class="block">
+    <div class="section-label">Modelo de Negócio</div>
+    <div class="modelo-grid">
+
+      <div class="modelo-card mc-amber">
+        <div class="mc-label">Comissão da plataforma</div>
+        <div class="mc-value">25%</div>
+        <div class="mc-desc">Por aula concluída e confirmada pelo aluno. A plataforma retém 25% do valor cobrado pelo professor e repassa o restante automaticamente.</div>
+        <ul class="regra-list">
+          <li><span class="regra-icon">✓</span> Comissão só incide sobre aula que aconteceu</li>
+          <li><span class="regra-icon">✓</span> Nenhuma cobrança sobre aula cancelada ou não realizada</li>
+          <li><span class="regra-icon">✓</span> Sem mensalidade ou taxa de cadastro para o professor</li>
+        </ul>
+      </div>
+
+      <div class="modelo-card mc-blue">
+        <div class="mc-label">Preço mínimo por hora-aula</div>
+        <div class="mc-value">R$ 30</div>
+        <div class="mc-desc">Valor mínimo que o professor pode cobrar por hora-aula. Uma hora-aula equivale a 50 minutos de aula efetiva.</div>
+        <ul class="regra-list">
+          <li><span class="regra-icon">✓</span> Professor define o próprio preço acima do mínimo</li>
+          <li><span class="regra-icon">✓</span> 1 hora-aula = 50 minutos de duração</li>
+          <li><span class="regra-icon">✓</span> Sem pacotes ou descontos progressivos — modelo por aula</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLUXO DE PAGAMENTO -->
+  <div class="block">
+    <div class="section-label">Fluxo de Pagamento</div>
+    <div class="flow-row">
+
+      <div class="flow-step fs-1">
+        <div class="fs-num">01</div>
+        <div class="fs-label">Aluno paga à plataforma</div>
+        <div class="fs-desc">O aluno paga o valor da aula para a plataforma. O dinheiro fica retido na carteira da plataforma — o professor ainda não recebe.</div>
+      </div>
+
+      <div class="flow-step fs-2">
+        <div class="fs-num">02</div>
+        <div class="fs-label">Aula acontece</div>
+        <div class="fs-desc">Professor e aluno realizam a aula conforme agendado. Nenhum valor é movimentado durante a aula.</div>
+      </div>
+
+      <div class="flow-step fs-3">
+        <div class="fs-num">03</div>
+        <div class="fs-label">Aluno confirma</div>
+        <div class="fs-desc">Após a aula, o aluno confirma que ela ocorreu. Sem disputa, sem burocracia — uma confirmação simples.</div>
+      </div>
+
+      <div class="flow-step fs-4">
+        <div class="fs-num">04</div>
+        <div class="fs-label">Professor recebe</div>
+        <div class="fs-desc">Com a confirmação, a plataforma repassa automaticamente 75% do valor ao professor. Os 25% de comissão ficam retidos.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROFESSOR FUNDADOR -->
+  <div class="block">
+    <div class="section-label">Programa Professor Fundador</div>
+    <div class="fundador-card">
+
+      <div class="fundador-header">
+        <div class="fundador-badge-icon">🏅</div>
+        <div>
+          <div class="fundador-title">Professor Fundador</div>
+          <div class="fundador-sub">Programa de lançamento · Primeiros 30 professores da plataforma</div>
+        </div>
+      </div>
+
+      <div class="fundador-body">
+
+        <div class="fundador-section">
+          <div class="fs-section-label">Vagas</div>
+          <div class="fs-highlight">30</div>
+          <div class="fs-text">Professores convidados manualmente para o beta. Selecionados pela cliente com base em qualidade e alinhamento com a proposta da plataforma.</div>
+        </div>
+
+        <div class="fundador-section">
+          <div class="fs-section-label">Benefício</div>
+          <div class="fs-highlight">0% comissão</div>
+          <div class="fs-text">Nas primeiras 20 aulas concluídas, o professor recebe 100% do valor cobrado. Sem nenhuma retenção da plataforma.</div>
+          <ul class="fs-list" style="margin-top:10px">
+            <li><span class="dot"></span>20 aulas com comissão zero</li>
+            <li><span class="dot"></span>Após a 20ª aula, retorna para 25% padrão</li>
+          </ul>
+        </div>
+
+        <div class="fundador-section">
+          <div class="fs-section-label">Em troca</div>
+          <div class="fs-text">O professor fundador contribui com:</div>
+          <ul class="fs-list" style="margin-top:10px">
+            <li><span class="dot"></span>Feedback ativo sobre a plataforma</li>
+            <li><span class="dot"></span>Relato de bugs e fricções no fluxo</li>
+            <li><span class="dot"></span>Validação da experiência real de uso</li>
+          </ul>
+          <div class="fs-text" style="margin-top:12px; padding-top:12px; border-top:1px solid var(--line);">
+            Ao optar por continuar, recebe o <strong>selo "Professor Fundador"</strong> permanentemente no perfil — distinção vitalícia visível para todos os alunos.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- REGRAS GERAIS -->
+  <div class="block">
+    <div class="section-label">Regras Gerais</div>
+    <div class="rules-grid">
+
+      <div class="rule-card rc-blue">
+        <div class="rule-header">
+          <div class="rule-icon">📅</div>
+          <div class="rule-title">Agendamento</div>
+        </div>
+        <div class="rule-items">
+          <div class="rule-item"><span class="ri-dot"></span>Aluno compra aulas individualmente — sem pacotes</div>
+          <div class="rule-item"><span class="ri-dot"></span>Sem desconto por volume — preço único por aula</div>
+          <div class="rule-item"><span class="ri-dot"></span>Professor define horários disponíveis</div>
+          <div class="rule-item"><span class="ri-dot"></span>1 hora-aula = 50 minutos de duração efetiva</div>
+        </div>
+      </div>
+
+      <div class="rule-card rc-green">
+        <div class="rule-header">
+          <div class="rule-icon">💰</div>
+          <div class="rule-title">Repasse ao Professor</div>
+        </div>
+        <div class="rule-items">
+          <div class="rule-item"><span class="ri-dot"></span>Liberado automaticamente após confirmação do aluno</div>
+          <div class="rule-item"><span class="ri-dot"></span>Professor recebe 75% do valor cobrado</div>
+          <div class="rule-item"><span class="ri-dot"></span>Sem necessidade de solicitar o pagamento</div>
+          <div class="rule-item"><span class="ri-dot"></span>Sem disputa ou contestação no fluxo padrão</div>
+        </div>
+      </div>
+
+      <div class="rule-card rc-red">
+        <div class="rule-header">
+          <div class="rule-icon">🚫</div>
+          <div class="rule-title">O que não existe na plataforma</div>
+        </div>
+        <div class="rule-items">
+          <div class="rule-item"><span class="ri-dot"></span>Pacotes de aulas com desconto</div>
+          <div class="rule-item"><span class="ri-dot"></span>Assinatura mensal para o aluno</div>
+          <div class="rule-item"><span class="ri-dot"></span>Pagamento fora da plataforma</div>
+          <div class="rule-item"><span class="ri-dot"></span>Comissão sobre aulas não realizadas</div>
+          <div class="rule-item"><span class="ri-dot"></span>Taxa de cadastro para professor</div>
+        </div>
+      </div>
+
+      <div class="rule-card rc-purple">
+        <div class="rule-header">
+          <div class="rule-icon">🌐</div>
+          <div class="rule-title">Visão de Expansão</div>
+        </div>
+        <div class="rule-items">
+          <div class="rule-item"><span class="ri-dot"></span>Começa no Brasil com reforço escolar</div>
+          <div class="rule-item"><span class="ri-dot"></span>Expande para idiomas (Inglês e Espanhol já no MVP)</div>
+          <div class="rule-item"><span class="ri-dot"></span>Cresce para Italiano, Francês e outros idiomas</div>
+          <div class="rule-item"><span class="ri-dot"></span>Objetivo final: qualquer habilidade ensinável online, global</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
