@@ -10,33 +10,41 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Warm neutral palette — afasta do "default tech" */
-  --bg:      #F4F3EE;
-  --s:       #ECEAE4;
-  --s2:      #E3E0D8;
-  --line:    #D6D3CA;
-  --line2:   #C6C3B8;
-  --ink:     #1A1916;
-  --ink2:    #38352D;
-  --label:   #6A6760;
-  --muted:   #9A9790;
+  /* Neutros — Fundo cream, texto escuro-quente */
+  --bg:        #F5F0E4;
+  --s:         #EDE5D5;
+  --s2:        #D8C8AC;
+  --line:      #C8B898;
+  --line2:     #B4A080;
+  --ink:       #1C1A12;
+  --ink2:      #3A2810;
+  --label:     #685838;
+  --muted:     #988860;
 
-  /* Accent — mantidos, usados com mais presença */
-  --blue:    #0051FF;
-  --blue-b:  #EEF3FF;
-  --blue-t:  rgba(0,81,255,0.10);
+  /* Aluno → Ouro (era azul) */
+  --blue:      #9E7A14;
+  --blue-bg:   #F5E8C0;
+  --blue-t:    rgba(158,122,20,0.15);
 
-  --purple:  #7C3AED;
-  --purple-b:#F5F3FF;
-  --purple-t:rgba(124,58,237,0.10);
+  /* Professor → Verde floresta (era verde tech) */
+  --green:     #3A5E1C;
+  --green-bg:  #D4E8C0;
+  --green-t:   rgba(58,94,28,0.15);
 
-  --amber:   #D97706;
-  --amber-b: #FFFBEB;
-  --amber-t: rgba(217,119,6,0.10);
+  /* Ideação/Misto → Marrom escuro (era roxo) */
+  --purple:    #5C3C14;
+  --purple-bg: #F0D8BC;
+  --purple-t:  rgba(92,60,20,0.15);
 
-  --green:   #059669;
-  --green-b: #ECFDF5;
-  --green-t: rgba(5,150,105,0.10);
+  /* Destaque/Fundador → Ouro vivo */
+  --amber:     #B89018;
+  --amber-bg:  #F5E8A8;
+  --amber-t:   rgba(184,144,24,0.15);
+
+  /* Red — mantido para pain points */
+  --red:       #C42820;
+  --red-bg:    #FDEAE8;
+  --red-t:     rgba(196,40,32,0.15);
 }
 
 body {
@@ -54,7 +62,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--ink);
+  background: #2D4A1E;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -95,7 +103,7 @@ body {
 
 /* ── PAGE HERO ── */
 .page-hero {
-  background: var(--ink);
+  background: #2D4A1E;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   padding: 48px 48px 52px;
 }
