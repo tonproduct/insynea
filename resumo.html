@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insynea — Entendimento do Projeto</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #F4F3EE;
+  --s:         #ECEAE4;
+  --s2:        #E3E0D8;
+  --line:      #D6D3CA;
+  --line2:     #C6C3B8;
+  --ink:       #1A1916;
+  --ink2:      #38352D;
+  --label:     #6A6760;
+  --muted:     #9A9790;
+  --blue:      #0051FF;
+  --blue-bg:   #EEF3FF;
+  --blue-t:    rgba(0,81,255,0.12);
+  --purple:    #7C3AED;
+  --purple-bg: #F5F3FF;
+  --purple-t:  rgba(124,58,237,0.12);
+  --amber:     #D97706;
+  --amber-bg:  #FFFBEB;
+  --amber-t:   rgba(217,119,6,0.12);
+  --green:     #059669;
+  --green-bg:  #ECFDF5;
+  --green-t:   rgba(5,150,105,0.12);
+  --red:       #DC2626;
+  --red-bg:    #FEF2F2;
+  --red-t:     rgba(220,38,38,0.12);
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding-bottom: 80px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV — dark ─────────────────── */
+.nav {
+  padding: 0 48px;
+  height: 52px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: var(--ink);
+  position: sticky; top: 0; z-index: 10;
+}
+.nav-back {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  text-decoration: none; display: flex; align-items: center; gap: 4px;
+  transition: color 0.1s;
+}
+.nav-back:hover { color: rgba(255,255,255,0.7); }
+.nav-sep { font-size: 12px; color: rgba(255,255,255,0.15); }
+.nav-current { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); }
+
+/* ── HERO — dark ────────────────── */
+.hero {
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 48px 52px;
+}
+.hero-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: rgba(255,255,255,0.3); margin-bottom: 14px;
+}
+.hero-title {
+  font-size: 36px; font-weight: 900; color: #FFFFFF;
+  letter-spacing: -1.2px; line-height: 1.05; margin-bottom: 12px;
+}
+.hero-title span { color: rgba(0,81,255,0.9); }
+.hero-sub {
+  font-size: 14px; color: rgba(255,255,255,0.45);
+  line-height: 1.6; max-width: 520px; font-weight: 400;
+}
+
+/* ── PAGE ─────────────────────────── */
+.page { padding: 48px 48px 0; display: flex; flex-direction: column; gap: 48px; max-width: 960px; }
+
+.section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.4px; color: var(--muted); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+/* ── PROBLEMA CENTRAL ─────────────── */
+.problema {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.problema-quote {
+  font-size: 20px; font-weight: 700; color: var(--ink);
+  line-height: 1.5; letter-spacing: -0.3px;
+  border-left: 4px solid var(--blue);
+  padding-left: 20px; margin-bottom: 24px;
+}
+.problema-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.prob-item {
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px; line-height: 1.55; color: var(--ink2);
+}
+.prob-item strong { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.prob-red    { background: var(--red-bg);    border: 1px solid var(--red-t); }
+.prob-red strong { color: var(--red); }
+.prob-green  { background: var(--green-bg);  border: 1px solid var(--green-t); }
+.prob-green strong { color: var(--green); }
+
+/* ── PRODUTO ──────────────────────── */
+.produto-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
+
+.produto-main {
+  background: var(--blue);
+  border-radius: 14px;
+  padding: 28px;
+  color: white;
+}
+.pm-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.6; margin-bottom: 10px; }
+.pm-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; line-height: 1.3; }
+.pm-desc  { font-size: 13px; opacity: 0.85; line-height: 1.6; }
+
+.produto-side { display: flex; flex-direction: column; gap: 12px; }
+
+.produto-pillar {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.pp-icon { font-size: 18px; margin-bottom: 8px; }
+.pp-title { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.pp-desc  { font-size: 11px; color: var(--label); line-height: 1.5; }
+
+/* ── PUBLICO ──────────────────────── */
+.publico-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.pub-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.pub-top {
+  padding: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.pub-avatar {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; margin-bottom: 12px;
+}
+.pc-blue   .pub-avatar { background: var(--blue-bg);   color: var(--blue); }
+.pc-purple .pub-avatar { background: var(--purple-bg); color: var(--purple); }
+.pc-green  .pub-avatar { background: var(--green-bg);  color: var(--green); }
+
+.pub-name { font-size: 14px; font-weight: 800; color: var(--ink); margin-bottom: 2px; }
+.pub-role { font-size: 11px; color: var(--muted); }
+
+.pub-body { padding: 16px 20px; }
+.pub-need { font-size: 12px; color: var(--ink2); line-height: 1.55; font-style: italic; }
+.pub-need::before { content: '"'; }
+.pub-need::after  { content: '"'; }
+
+/* ── MODELO ───────────────────────── */
+.modelo-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+.modelo-item {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.mi-num { font-size: 26px; font-weight: 900; letter-spacing: -1px; margin-bottom: 4px; }
+.mi-label { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.mi-desc  { font-size: 11px; color: var(--label); line-height: 1.5; }
+.mc-blue   .mi-num { color: var(--blue); }
+.mc-green  .mi-num { color: var(--green); }
+.mc-amber  .mi-num { color: var(--amber); }
+.mc-purple .mi-num { color: var(--purple); }
+
+/* ── ESCOPO ───────────────────────── */
+.escopo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.escopo-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.ec-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+}
+.ec-badge {
+  font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1px; padding: 3px 8px; border-radius: 100px;
+}
+.ec-now    .ec-badge { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-t); }
+.ec-soon   .ec-badge { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-t); }
+.ec-future .ec-badge { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-t); }
+
+.ec-title { font-size: 13px; font-weight: 700; color: var(--ink); }
+.ec-body  { padding: 14px 20px; }
+.ec-tags  { display: flex; flex-wrap: wrap; gap: 5px; }
+.ec-tag   { font-size: 11px; font-weight: 500; color: var(--ink2); background: var(--s2); border: 1px solid var(--line); padding: 3px 9px; border-radius: 5px; }
+
+/* ── NÃO EXISTE ───────────────────── */
+.nao-existe {
+  background: var(--red-bg);
+  border: 1px solid var(--red-t);
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.ne-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.ne-title { font-size: 13px; font-weight: 700; color: var(--red); margin-bottom: 10px; }
+.ne-list  { display: flex; flex-wrap: wrap; gap: 8px; }
+.ne-item  {
+  font-size: 11px; font-weight: 600; color: var(--red);
+  background: white; border: 1px solid var(--red-t);
+  padding: 4px 10px; border-radius: 6px;
+  text-decoration: line-through; opacity: 0.8;
+}
+
+/* ── FUNDADOR ─────────────────────── */
+.fundador-banner {
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-t);
+  border-radius: 14px;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+}
+.fb-icon { font-size: 36px; }
+.fb-title { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.fb-sub { font-size: 13px; color: var(--label); line-height: 1.5; }
+.fb-right { text-align: right; flex-shrink: 0; }
+.fb-num { font-size: 32px; font-weight: 900; color: var(--amber); letter-spacing: -1px; }
+.fb-num-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
+.fb-pills { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.fb-pill {
+  font-size: 11px; font-weight: 600; color: var(--amber);
+  background: white; border: 1px solid var(--amber-t);
+  padding: 4px 10px; border-radius: 6px;
+}
+
+/* ── VALIDAÇÃO ────────────────────── */
+.validacao {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.val-text {}
+.val-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.val-sub { font-size: 13px; color: var(--label); line-height: 1.5; max-width: 480px; }
+.val-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.val-btn {
+  padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700;
+  cursor: pointer; border: none; font-family: inherit;
+}
+.val-btn.primary { background: var(--blue); color: white; }
+.val-btn.secondary { background: var(--s2); color: var(--ink2); border: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">← Início</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-current">Entendimento do Projeto</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Insynea · Descoberta — Para validação da cliente</div>
+  <div class="hero-title">O que eu entendi<br>sobre <span>o seu produto</span></div>
+  <div class="hero-sub">Consolidação do briefing inicial. Leia, corrija o que estiver errado e valide o que estiver certo — esse documento guia tudo que vem pela frente.</div>
+</div>
+
+<div class="page">
+
+  <!-- O PROBLEMA -->
+  <div class="block">
+    <div class="section-label">O Problema</div>
+    <div class="problema">
+      <div class="problema-quote">Você é professora, boa no que faz, e está cansada de depender de plataformas que cobram caro, não protegem seu trabalho e ainda assim não entregam alunos de verdade.</div>
+      <div class="problema-row">
+        <div class="prob-item prob-red">
+          <strong>O que existe hoje não funciona</strong>
+          Plataformas como Superprof e Preply cobram comissão alta, não intermediam o pagamento com segurança, e o professor fica vulnerável — sem ferramentas, sem suporte, sem proteção se o aluno sumir.
+        </div>
+        <div class="prob-item prob-green">
+          <strong>O que o mercado precisa</strong>
+          Um lugar simples e seguro onde o aluno encontra o professor certo, paga dentro da plataforma, e o professor recebe assim que a aula acontece — sem surpresa, sem atrito, sem intermediário que some.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- O PRODUTO -->
+  <div class="block">
+    <div class="section-label">O Produto</div>
+    <div class="produto-grid">
+      <div class="produto-main">
+        <div class="pm-label">Proposta de valor</div>
+        <div class="pm-title">Uma plataforma humanizada onde aluno encontra professor, agenda e paga — com segurança para os dois lados.</div>
+        <div class="pm-desc">Não é mais um marketplace genérico. É um espaço pensado por quem é professora, para quem é professor — com pagamento protegido, comissão justa e sem burocracia.</div>
+      </div>
+      <div class="produto-side">
+        <div class="produto-pillar">
+          <div class="pp-icon">🔒</div>
+          <div class="pp-title">Pagamento seguro</div>
+          <div class="pp-desc">O dinheiro fica retido até a aula acontecer. Professor recebe garantido. Aluno não arrisca.</div>
+        </div>
+        <div class="produto-pillar">
+          <div class="pp-icon">🤝</div>
+          <div class="pp-title">Comissão justa</div>
+          <div class="pp-desc">25% só por aula realizada. Sem taxa de cadastro, sem mensalidade, sem letra miúda.</div>
+        </div>
+        <div class="produto-pillar">
+          <div class="pp-icon">🧭</div>
+          <div class="pp-title">Simples de usar</div>
+          <div class="pp-desc">Sem pacotes, sem assinaturas forçadas. O aluno paga por aula. O professor recebe por aula.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUEM ATENDE -->
+  <div class="block">
+    <div class="section-label">Quem a Plataforma Atende</div>
+    <div class="publico-grid">
+
+      <div class="pub-card pc-blue">
+        <div class="pub-top">
+          <div class="pub-avatar">SM</div>
+          <div class="pub-name">A Professora Experiente</div>
+          <div class="pub-role">Autônoma, 5+ anos, cansada das plataformas atuais</div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-need">Quero dar aulas sem pagar caro por isso. Quero receber garantido e construir minha reputação sem depender de ninguém.</div>
+        </div>
+      </div>
+
+      <div class="pub-card pc-purple">
+        <div class="pub-top">
+          <div class="pub-avatar">LC</div>
+          <div class="pub-name">O Aluno com Necessidade Real</div>
+          <div class="pub-role">Estudante, urgência de resultado, sem tempo a perder</div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-need">Só tenho dificuldade em Física. Não quero pagar cursinho inteiro. Quero encontrar um bom professor, agora, e pagar só se a aula acontecer.</div>
+        </div>
+      </div>
+
+      <div class="pub-card pc-green">
+        <div class="pub-top">
+          <div class="pub-avatar">RF</div>
+          <div class="pub-name">O Professor Iniciante</div>
+          <div class="pub-role">Qualificado, sem alunos ainda, quer começar com o pé direito</div>
+        </div>
+        <div class="pub-body">
+          <div class="pub-need">Me cadastrei em três plataformas e nenhuma me gerou um aluno de verdade. Quero um lugar que me dê visibilidade real desde o primeiro dia.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODELO DE NEGÓCIO -->
+  <div class="block">
+    <div class="section-label">Como o Dinheiro Funciona</div>
+    <div class="modelo-row">
+      <div class="modelo-item mc-blue">
+        <div class="mi-num">R$ 30</div>
+        <div class="mi-label">Preço mínimo</div>
+        <div class="mi-desc">Valor mínimo por hora-aula que o professor pode cobrar. 1 hora-aula = 50 minutos.</div>
+      </div>
+      <div class="modelo-item mc-amber">
+        <div class="mi-num">25%</div>
+        <div class="mi-label">Comissão da plataforma</div>
+        <div class="mi-desc">Cobrada só por aula concluída e confirmada. Nenhuma cobrança sem aula realizada.</div>
+      </div>
+      <div class="modelo-item mc-green">
+        <div class="mi-num">75%</div>
+        <div class="mi-label">O professor recebe</div>
+        <div class="mi-desc">Liberado automaticamente após o aluno confirmar que a aula aconteceu.</div>
+      </div>
+      <div class="modelo-item mc-purple">
+        <div class="mi-num">0%</div>
+        <div class="mi-label">Taxa de cadastro</div>
+        <div class="mi-desc">Nenhuma cobrança para o professor se cadastrar ou manter o perfil ativo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESCOPO -->
+  <div class="block">
+    <div class="section-label">Por Onde Começa e Para Onde Vai</div>
+    <div class="escopo-row">
+
+      <div class="escopo-card ec-now">
+        <div class="ec-header">
+          <span class="ec-badge">Agora — MVP</span>
+          <span class="ec-title">Brasil · Reforço Escolar</span>
+        </div>
+        <div class="ec-body">
+          <div class="ec-tags">
+            <span class="ec-tag">Matemática</span>
+            <span class="ec-tag">Português</span>
+            <span class="ec-tag">Física</span>
+            <span class="ec-tag">Geografia</span>
+            <span class="ec-tag">História</span>
+            <span class="ec-tag">Gramática</span>
+            <span class="ec-tag">ENEM</span>
+            <span class="ec-tag">Vestibular</span>
+            <span class="ec-tag">Concurso Público</span>
+            <span class="ec-tag">Inglês</span>
+            <span class="ec-tag">Espanhol</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="escopo-card ec-soon">
+        <div class="ec-header">
+          <span class="ec-badge">Em breve</span>
+          <span class="ec-title">Brasil · Idiomas</span>
+        </div>
+        <div class="ec-body">
+          <div class="ec-tags">
+            <span class="ec-tag">Francês</span>
+            <span class="ec-tag">Italiano</span>
+            <span class="ec-tag">Alemão</span>
+            <span class="ec-tag">Japonês</span>
+            <span class="ec-tag">Todos os idiomas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="escopo-card ec-future">
+        <div class="ec-header">
+          <span class="ec-badge">Futuro — Global</span>
+          <span class="ec-title">Tudo o que se ensina online</span>
+        </div>
+        <div class="ec-body">
+          <div class="ec-tags">
+            <span class="ec-tag">Pilates</span>
+            <span class="ec-tag">Violão</span>
+            <span class="ec-tag">Culinária</span>
+            <span class="ec-tag">Programação</span>
+            <span class="ec-tag">+ qualquer habilidade online</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- O QUE NÃO EXISTE -->
+  <div class="block">
+    <div class="nao-existe">
+      <div class="ne-icon">🚫</div>
+      <div>
+        <div class="ne-title">O que não existe nessa plataforma</div>
+        <div class="ne-list">
+          <span class="ne-item">Pacotes de aulas com desconto</span>
+          <span class="ne-item">Assinatura mensal para o aluno</span>
+          <span class="ne-item">Pagamento fora da plataforma</span>
+          <span class="ne-item">Comissão sobre aula cancelada</span>
+          <span class="ne-item">Taxa de cadastro para professor</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMA FUNDADOR -->
+  <div class="block">
+    <div class="section-label">Programa de Lançamento</div>
+    <div class="fundador-banner">
+      <div class="fb-icon">🏅</div>
+      <div>
+        <div class="fb-title">Professor Fundador</div>
+        <div class="fb-sub">30 professores convidados para testar a plataforma antes do lançamento público. Em troca de feedback ativo, ganham 0% de comissão nas primeiras 20 aulas — e um selo vitalício de Professor Fundador no perfil.</div>
+        <div class="fb-pills">
+          <span class="fb-pill">30 vagas</span>
+          <span class="fb-pill">0% comissão — primeiras 20 aulas</span>
+          <span class="fb-pill">Selo vitalício no perfil</span>
+          <span class="fb-pill">Feedback como contrapartida</span>
+        </div>
+      </div>
+      <div class="fb-right">
+        <div class="fb-num">30</div>
+        <div class="fb-num-label">Vagas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALIDAÇÃO -->
+  <div class="block">
+    <div class="validacao">
+      <div class="val-text">
+        <div class="val-title">Isso representa o que você quer construir?</div>
+        <div class="val-sub">Se algo estiver errado, incompleto ou diferente do que você imaginou — me fala. Esse é o momento de alinhar antes de qualquer tela.</div>
+      </div>
+      <div class="val-actions">
+        <button class="val-btn secondary">Tem algo a ajustar</button>
+        <button class="val-btn primary">Sim, está certo ✓</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

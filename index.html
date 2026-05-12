@@ -3,38 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insynea — Estudos</title>
+<title>Insynea — Processo de Design</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:       #FFFFFF;
-  --s:        #F9FAFB;
-  --s2:       #F3F4F6;
-  --line:     #E5E7EB;
-  --line2:    #D1D5DB;
-  --ink:      #111827;
-  --ink2:     #374151;
-  --muted:    #9CA3AF;
-  --label:    #6B7280;
+  /* Warm neutral palette — afasta do "default tech" */
+  --bg:      #F4F3EE;
+  --s:       #ECEAE4;
+  --s2:      #E3E0D8;
+  --line:    #D6D3CA;
+  --line2:   #C6C3B8;
+  --ink:     #1A1916;
+  --ink2:    #38352D;
+  --label:   #6A6760;
+  --muted:   #9A9790;
 
-  --blue:     #0051FF;
-  --blue-b:   #EEF3FF;
-  --blue-t:   rgba(0,81,255,0.12);
+  /* Accent — mantidos, usados com mais presença */
+  --blue:    #0051FF;
+  --blue-b:  #EEF3FF;
+  --blue-t:  rgba(0,81,255,0.10);
 
-  --purple:   #7C3AED;
-  --purple-b: #F5F3FF;
-  --purple-t: rgba(124,58,237,0.12);
+  --purple:  #7C3AED;
+  --purple-b:#F5F3FF;
+  --purple-t:rgba(124,58,237,0.10);
 
-  --amber:    #D97706;
-  --amber-b:  #FFFBEB;
-  --amber-t:  rgba(217,119,6,0.12);
+  --amber:   #D97706;
+  --amber-b: #FFFBEB;
+  --amber-t: rgba(217,119,6,0.10);
 
-  --green:    #059669;
-  --green-b:  #ECFDF5;
-  --green-t:  rgba(5,150,105,0.12);
+  --green:   #059669;
+  --green-b: #ECFDF5;
+  --green-t: rgba(5,150,105,0.10);
 }
 
 body {
@@ -42,250 +44,276 @@ body {
   background: var(--bg);
   color: var(--ink);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ── HEADER ─────────────────────────── */
+/* ── HEADER — dark, com presença ── */
 .header {
-  padding: 20px 48px;
+  padding: 0 48px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg);
+  background: var(--ink);
   position: sticky;
   top: 0;
   z-index: 10;
 }
+
 .brand { display: flex; align-items: center; gap: 10px; }
+
 .brand-mark {
-  width: 28px; height: 28px; border-radius: 7px;
+  width: 26px; height: 26px; border-radius: 6px;
   background: var(--blue);
   display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
 .brand-mark svg { display: block; }
-.brand-name { font-size: 14px; font-weight: 700; color: var(--ink); }
-.brand-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
-.header-tag {
-  font-size: 11px; font-weight: 600; color: var(--label);
-  background: var(--s2); padding: 5px 12px; border-radius: 100px;
-  border: 1px solid var(--line);
+
+.brand-name {
+  font-size: 14px; font-weight: 700;
+  color: #FFFFFF; letter-spacing: -0.2px;
 }
 
-/* ── SECTION LABEL ───────────────────── */
+.header-divider {
+  width: 1px; height: 16px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 4px;
+}
+
+.header-sub {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  font-weight: 400;
+}
+
+.header-tag {
+  font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 48px 52px;
+}
+
+.ph-eyebrow {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+}
+
+.ph-title {
+  font-size: 40px; font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.ph-title span { color: rgba(255,255,255,0.25); }
+
+.ph-sub {
+  font-size: 14px; color: rgba(255,255,255,0.45);
+  line-height: 1.6; max-width: 480px;
+  font-weight: 400;
+}
+
+/* ── PAGE ── */
+.page { padding: 40px 48px 80px; }
+
+/* ── SECTION LABEL ── */
 .section-label {
   font-size: 10px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1.4px; color: var(--muted); margin-bottom: 20px;
-  display: flex; align-items: center; gap: 10px;
+  letter-spacing: 1.6px; color: var(--muted); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
 }
-.section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--line);
+}
 
-/* ── PAGE ────────────────────────────── */
-.page { padding: 36px 48px 80px; }
-
-/* ── PROCESS GRID ────────────────────── */
+/* ── PROCESS GRID ── */
 .process-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  align-items: stretch;
-  margin-bottom: 48px;
+  gap: 8px;
+  margin-bottom: 52px;
 }
 
-.col-1, .col-2, .col-3, .col-4 {
+/* ── STAGE CARD ── */
+.stage-card {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: box-shadow 0.15s, border-color 0.15s;
 }
 
-.col-1 .stage-card,
-.col-2 .stage-card,
-.col-3 .stage-card,
-.col-4 .stage-card { flex: 1; }
+.stage-card:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border-color: var(--line2);
+}
 
-/* ── STAGE CARD ──────────────────────── */
-.stage-card {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  overflow: hidden;
+/* Stage header — grande número como âncora visual */
+.stage-header {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--line);
   position: relative;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.stage-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-}
-.col-1 .stage-card::before { background: var(--blue); }
-.col-2 .stage-card::before { background: var(--purple); }
-.col-3 .stage-card::before { background: var(--amber); }
-.col-4 .stage-card::before { background: var(--green); }
-
-.stage-header { padding: 20px 20px 16px; }
-
-.stage-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
 .stage-num {
-  font-size: 10px; font-weight: 700;
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 52px; font-weight: 900;
+  line-height: 1; letter-spacing: -3px;
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
 }
+
 .col-1 .stage-num { color: var(--blue); }
 .col-2 .stage-num { color: var(--purple); }
 .col-3 .stage-num { color: var(--amber); }
 .col-4 .stage-num { color: var(--green); }
 
-.stage-pct { font-size: 11px; font-weight: 600; color: var(--muted); }
-
 .stage-name {
-  font-size: 13px; font-weight: 700; color: var(--ink);
-  margin-bottom: 3px;
+  font-size: 15px; font-weight: 800;
+  color: var(--ink); letter-spacing: -0.3px;
+  margin-bottom: 5px;
 }
+
 .stage-sub {
-  font-size: 11px; color: var(--label); line-height: 1.45;
-  margin-bottom: 14px;
+  font-size: 11.5px; color: var(--label);
+  line-height: 1.55; font-weight: 400;
 }
 
-.stage-bar-track {
-  height: 3px;
-  background: var(--s2);
-  border-radius: 100px;
-  overflow: hidden;
+.stage-status {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  padding: 3px 8px; border-radius: 100px;
 }
-.stage-bar-fill { height: 100%; border-radius: 100px; }
-.col-1 .stage-bar-fill { background: var(--blue); }
-.col-2 .stage-bar-fill { background: var(--purple); }
-.col-3 .stage-bar-fill { background: var(--amber); }
-.col-4 .stage-bar-fill { background: var(--green); }
 
-/* ── FILE LIST INSIDE CARD ───────────── */
-.stage-divider { height: 1px; background: var(--line); }
+.status-active {
+  background: var(--blue-b); color: var(--blue);
+  border: 1px solid var(--blue-t);
+}
+.status-next {
+  background: var(--s); color: var(--muted);
+  border: 1px solid var(--line);
+}
 
-.stage-files { padding: 4px 0; }
+/* ── FILE LIST ── */
+.stage-files { flex: 1; }
 
 .stage-file {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px;
   text-decoration: none;
   color: inherit;
-  transition: background 0.1s;
   border-bottom: 1px solid var(--line);
+  transition: background 0.1s;
+  cursor: pointer;
 }
 .stage-file:last-child { border-bottom: none; }
-.stage-file:hover { background: var(--s); }
+.stage-file:hover { background: var(--bg); }
 
 .sf-icon {
-  width: 28px; height: 28px; border-radius: 6px;
+  width: 26px; height: 26px; border-radius: 6px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 13px; flex-shrink: 0;
+  font-size: 12px; flex-shrink: 0;
 }
-.col-1 .sf-icon { background: var(--blue-b); color: var(--blue); }
+.col-1 .sf-icon { background: var(--blue-b);   color: var(--blue); }
 .col-2 .sf-icon { background: var(--purple-b); color: var(--purple); }
-.col-3 .sf-icon { background: var(--amber-b); color: var(--amber); }
-.col-4 .sf-icon { background: var(--green-b); color: var(--green); }
+.col-3 .sf-icon { background: var(--amber-b);  color: var(--amber); }
+.col-4 .sf-icon { background: var(--green-b);  color: var(--green); }
 
 .sf-body { flex: 1; min-width: 0; }
+
 .sf-name {
   font-size: 12px; font-weight: 600; color: var(--ink2);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .sf-fname {
   font-size: 9.5px; color: var(--muted);
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  margin-top: 1px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: 'SF Mono', 'Fira Code', monospace; margin-top: 1px;
 }
+
 .sf-arrow {
-  font-size: 11px; color: var(--muted); flex-shrink: 0;
-  opacity: 0; transition: opacity 0.1s;
+  font-size: 11px; color: var(--line2);
+  opacity: 0; transition: opacity 0.1s, color 0.1s;
 }
-.stage-file:hover .sf-arrow { opacity: 1; }
+.stage-file:hover .sf-arrow { opacity: 1; color: var(--label); }
 
 /* Empty state */
 .stage-empty {
-  padding: 20px 16px;
-  font-size: 11px; color: var(--muted);
-  font-style: italic;
-}
-
-/* ── ARTEFATOS SECTION ───────────────── */
-.artefatos { margin-bottom: 80px; }
-
-.pres-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.file-card {
-  display: flex; align-items: center; gap: 16px;
-  padding: 16px 20px;
-  background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
-  text-decoration: none; color: inherit;
-  transition: border-color 0.12s, background 0.12s, box-shadow 0.12s;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-}
-.file-card:hover {
-  border-color: var(--line2);
-  background: var(--s);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-}
-
-.file-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
-}
-
-.file-body { flex: 1; min-width: 0; }
-.file-name { font-size: 14px; font-weight: 700; color: var(--ink); }
-.file-desc { font-size: 12px; color: var(--label); margin-top: 2px; line-height: 1.45; }
-.file-fname {
-  font-size: 10px; color: var(--muted);
-  font-family: 'SF Mono', 'Fira Code', monospace; margin-top: 4px;
-}
-
-.file-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-
-.file-badge {
-  font-size: 10px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.5px; padding: 3px 8px; border-radius: 100px;
-}
-.badge-blue   { background: var(--blue-b);   color: var(--blue);   border: 1px solid var(--blue-t); }
-.badge-purple { background: var(--purple-b); color: var(--purple); border: 1px solid var(--purple-t); }
-.badge-amber  { background: var(--amber-b);  color: var(--amber);  border: 1px solid var(--amber-t); }
-.badge-green  { background: var(--green-b);  color: var(--green);  border: 1px solid var(--green-t); }
-
-.file-arrow { font-size: 14px; color: var(--muted); transition: color 0.12s; }
-.file-card:hover .file-arrow { color: var(--ink2); }
-
-/* Featured cards */
-.file-card.featured-blue  { border-color: var(--blue-t);   background: var(--blue-b); }
-.file-card.featured-blue:hover  { border-color: var(--blue); }
-.file-card.featured-purple { border-color: var(--purple-t); background: var(--purple-b); }
-.file-card.featured-purple:hover { border-color: var(--purple); }
-.file-card.featured-amber  { border-color: var(--amber-t);  background: var(--amber-b); }
-.file-card.featured-amber:hover  { border-color: var(--amber); }
-.file-card.featured-green  { border-color: var(--green-t);  background: var(--green-b); }
-.file-card.featured-green:hover  { border-color: var(--green); }
-
-/* ── EMPTY ARTEFATOS ─────────────────── */
-.artefatos-empty {
-  padding: 48px 24px;
+  padding: 28px 16px;
   text-align: center;
-  border: 1px dashed var(--line2);
-  border-radius: 12px;
-  color: var(--muted);
-  font-size: 13px;
 }
-.artefatos-empty-icon { font-size: 28px; margin-bottom: 10px; }
-.artefatos-empty strong { display: block; font-size: 14px; font-weight: 600; color: var(--label); margin-bottom: 4px; }
+.stage-empty-icon {
+  font-size: 20px; margin-bottom: 6px; opacity: 0.3;
+}
+.stage-empty-text {
+  font-size: 11px; color: var(--muted); font-style: italic;
+}
+
+/* ── ARTEFATOS ── */
+.artefatos { margin-bottom: 0; }
+
+.artefatos-grid {
+  display: flex; flex-direction: column; gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.artifact-row {
+  display: flex; align-items: center; gap: 20px;
+  padding: 18px 24px;
+  background: #FFFFFF;
+  text-decoration: none; color: inherit;
+  transition: background 0.1s;
+}
+.artifact-row:hover { background: var(--bg); }
+
+.artifact-stage {
+  font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1px; padding: 3px 9px; border-radius: 100px;
+  white-space: nowrap; flex-shrink: 0;
+}
+
+.as-descoberta { background: var(--blue-b);   color: var(--blue);   border: 1px solid var(--blue-t); }
+.as-ideacao    { background: var(--purple-b); color: var(--purple); border: 1px solid var(--purple-t); }
+.as-proto      { background: var(--amber-b);  color: var(--amber);  border: 1px solid var(--amber-t); }
+.as-entrega    { background: var(--green-b);  color: var(--green);  border: 1px solid var(--green-t); }
+
+.artifact-title {
+  font-size: 13px; font-weight: 700; color: var(--ink);
+  min-width: 180px;
+}
+
+.artifact-desc {
+  font-size: 12px; color: var(--label); flex: 1;
+  line-height: 1.4;
+}
+
+.artifact-fname {
+  font-size: 10px; color: var(--muted);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  white-space: nowrap;
+}
+
+.artifact-arrow {
+  font-size: 13px; color: var(--line2);
+  transition: color 0.1s, transform 0.1s;
+  flex-shrink: 0;
+}
+.artifact-row:hover .artifact-arrow { color: var(--ink2); transform: translateX(2px); }
 </style>
 </head>
 <body>
@@ -295,22 +323,26 @@ body {
     <div class="brand-mark">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <rect x="1" y="1" width="5" height="5" rx="1.5" fill="white" opacity="0.9"/>
-        <rect x="8" y="1" width="5" height="5" rx="1.5" fill="white" opacity="0.6"/>
-        <rect x="1" y="8" width="5" height="5" rx="1.5" fill="white" opacity="0.6"/>
+        <rect x="8" y="1" width="5" height="5" rx="1.5" fill="white" opacity="0.5"/>
+        <rect x="1" y="8" width="5" height="5" rx="1.5" fill="white" opacity="0.5"/>
         <rect x="8" y="8" width="5" height="5" rx="1.5" fill="white" opacity="0.9"/>
       </svg>
     </div>
-    <div>
-      <div class="brand-name">Insynea</div>
-      <div class="brand-sub">Estudos de Design · 2026</div>
-    </div>
+    <div class="brand-name">Insynea</div>
+    <div class="header-divider"></div>
+    <div class="header-sub">Luca · Product Designer</div>
   </div>
-  <div class="header-tag">Luca</div>
+  <div class="header-tag">2026</div>
 </header>
+
+<div class="page-hero">
+  <div class="ph-eyebrow">Processo de Design · Plataforma Educacional</div>
+  <div class="ph-title">Do briefing <span>ao</span> protótipo</div>
+  <div class="ph-sub">Documentação do processo de UX e design de produto para uma plataforma de aulas particulares online — dois fluxos de usuário, dois perfis, uma solução.</div>
+</div>
 
 <div class="page">
 
-  <!-- PROCESSO -->
   <div class="section-label">Processo</div>
 
   <div class="process-grid">
@@ -319,36 +351,16 @@ body {
     <div class="col-1">
       <div class="stage-card">
         <div class="stage-header">
-          <div class="stage-top">
-            <span class="stage-num">01</span>
-            <span class="stage-pct">–</span>
-          </div>
+          <div class="stage-status status-active">Em andamento</div>
+          <div class="stage-num">01</div>
           <div class="stage-name">Descoberta</div>
-          <div class="stage-sub">Pesquisa, contexto e entendimento do problema</div>
-          <div class="stage-bar-track"><div class="stage-bar-fill" style="width:0%"></div></div>
+          <div class="stage-sub">Onde o produto começa — quem usa, o que dói e o que o mercado tentou.</div>
         </div>
-        <div class="stage-divider"></div>
         <div class="stage-files">
-          <a class="stage-file" href="definicoes.html" target="_blank">
-            <div class="sf-icon">◈</div>
-            <div class="sf-body">
-              <div class="sf-name">Definições do Produto</div>
-              <div class="sf-fname">definicoes.html</div>
-            </div>
-            <span class="sf-arrow">→</span>
-          </a>
-          <a class="stage-file" href="personas.html" target="_blank">
-            <div class="sf-icon">◉</div>
-            <div class="sf-body">
-              <div class="sf-name">Personas</div>
-              <div class="sf-fname">personas.html</div>
-            </div>
-            <span class="sf-arrow">→</span>
-          </a>
           <a class="stage-file" href="sitemap-flowchart.html" target="_blank">
             <div class="sf-icon">⬡</div>
             <div class="sf-body">
-              <div class="sf-name">Sitemap</div>
+              <div class="sf-name">Sitemap &amp; User Flows</div>
               <div class="sf-fname">sitemap-flowchart.html</div>
             </div>
             <span class="sf-arrow">→</span>
@@ -369,17 +381,36 @@ body {
     <div class="col-2">
       <div class="stage-card">
         <div class="stage-header">
-          <div class="stage-top">
-            <span class="stage-num">02</span>
-            <span class="stage-pct">–</span>
-          </div>
+          <div class="stage-status status-active">Em andamento</div>
+          <div class="stage-num">02</div>
           <div class="stage-name">Ideação</div>
-          <div class="stage-sub">Conceitos, fluxos e hipóteses de solução</div>
-          <div class="stage-bar-track"><div class="stage-bar-fill" style="width:0%"></div></div>
+          <div class="stage-sub">Como a solução toma forma — modelos mentais, fluxos e primeiras apostas.</div>
         </div>
-        <div class="stage-divider"></div>
         <div class="stage-files">
-          <div class="stage-empty">Nenhum artefato ainda</div>
+          <a class="stage-file" href="definicoes.html" target="_blank">
+            <div class="sf-icon">◈</div>
+            <div class="sf-body">
+              <div class="sf-name">Definições do Produto</div>
+              <div class="sf-fname">definicoes.html</div>
+            </div>
+            <span class="sf-arrow">→</span>
+          </a>
+          <a class="stage-file" href="personas.html" target="_blank">
+            <div class="sf-icon">◉</div>
+            <div class="sf-body">
+              <div class="sf-name">Personas</div>
+              <div class="sf-fname">personas.html</div>
+            </div>
+            <span class="sf-arrow">→</span>
+          </a>
+          <a class="stage-file" href="jtbd.html" target="_blank">
+            <div class="sf-icon">◈</div>
+            <div class="sf-body">
+              <div class="sf-name">JTBD, Jornada &amp; Pain Points</div>
+              <div class="sf-fname">jtbd.html</div>
+            </div>
+            <span class="sf-arrow">→</span>
+          </a>
         </div>
       </div>
     </div>
@@ -388,17 +419,16 @@ body {
     <div class="col-3">
       <div class="stage-card">
         <div class="stage-header">
-          <div class="stage-top">
-            <span class="stage-num">03</span>
-            <span class="stage-pct">–</span>
-          </div>
+          <div class="stage-status status-next">A seguir</div>
+          <div class="stage-num">03</div>
           <div class="stage-name">Prototipação</div>
-          <div class="stage-sub">Wireframes, protótipos e testes de usabilidade</div>
-          <div class="stage-bar-track"><div class="stage-bar-fill" style="width:0%"></div></div>
+          <div class="stage-sub">Do esqueleto ao tangível — cada tela justificada por decisão, não por convenção.</div>
         </div>
-        <div class="stage-divider"></div>
         <div class="stage-files">
-          <div class="stage-empty">Nenhum artefato ainda</div>
+          <div class="stage-empty">
+            <div class="stage-empty-icon">○</div>
+            <div class="stage-empty-text">Nenhum artefato ainda</div>
+          </div>
         </div>
       </div>
     </div>
@@ -407,17 +437,16 @@ body {
     <div class="col-4">
       <div class="stage-card">
         <div class="stage-header">
-          <div class="stage-top">
-            <span class="stage-num">04</span>
-            <span class="stage-pct">–</span>
-          </div>
+          <div class="stage-status status-next">A seguir</div>
+          <div class="stage-num">04</div>
           <div class="stage-name">Entrega</div>
-          <div class="stage-sub">Design final, handoff e documentação</div>
-          <div class="stage-bar-track"><div class="stage-bar-fill" style="width:0%"></div></div>
+          <div class="stage-sub">O que vai para o produto — especificações, tokens e o designer sendo substituído por código.</div>
         </div>
-        <div class="stage-divider"></div>
         <div class="stage-files">
-          <div class="stage-empty">Nenhum artefato ainda</div>
+          <div class="stage-empty">
+            <div class="stage-empty-icon">○</div>
+            <div class="stage-empty-text">Nenhum artefato ainda</div>
+          </div>
         </div>
       </div>
     </div>
@@ -428,18 +457,46 @@ body {
   <div class="section-label">Artefatos</div>
 
   <div class="artefatos">
-    <div class="pres-grid">
+    <div class="artefatos-grid">
 
-      <a class="file-card featured-blue" href="cronograma.html" target="_blank">
-        <div class="file-body">
-          <div class="file-name">Cronograma de Design</div>
-          <div class="file-desc">Escopo de telas, fases de entrega, valores e timeline de pagamento — desktop e mobile, dois fluxos de usuário.</div>
-          <div class="file-fname">cronograma.html</div>
-        </div>
-        <div class="file-right">
-          <span class="file-badge badge-blue">Descoberta</span>
-          <span class="file-arrow">→</span>
-        </div>
+      <a class="artifact-row" href="cronograma.html" target="_blank">
+        <span class="artifact-stage as-descoberta">Descoberta</span>
+        <div class="artifact-title">Cronograma de Design</div>
+        <div class="artifact-desc">Escopo de telas por fase, valores e timeline de pagamento — desktop e mobile, dois fluxos.</div>
+        <div class="artifact-fname">cronograma.html</div>
+        <span class="artifact-arrow">→</span>
+      </a>
+
+      <a class="artifact-row" href="definicoes.html" target="_blank">
+        <span class="artifact-stage as-ideacao">Ideação</span>
+        <div class="artifact-title">Definições do Produto</div>
+        <div class="artifact-desc">Modelo de negócio, fluxo de pagamento, aula diagnóstica e Programa Professor Fundador.</div>
+        <div class="artifact-fname">definicoes.html</div>
+        <span class="artifact-arrow">→</span>
+      </a>
+
+      <a class="artifact-row" href="personas.html" target="_blank">
+        <span class="artifact-stage as-ideacao">Ideação</span>
+        <div class="artifact-title">Personas</div>
+        <div class="artifact-desc">Três perfis comportamentais — a professora experiente, o aluno em urgência e o professor iniciante.</div>
+        <div class="artifact-fname">personas.html</div>
+        <span class="artifact-arrow">→</span>
+      </a>
+
+      <a class="artifact-row" href="jtbd.html" target="_blank">
+        <span class="artifact-stage as-ideacao">Ideação</span>
+        <div class="artifact-title">JTBD, Jornada &amp; Pain Points</div>
+        <div class="artifact-desc">Jobs funcionais, emocionais e sociais — com evidências reais de mercado e o que a Insynea resolve.</div>
+        <div class="artifact-fname">jtbd.html</div>
+        <span class="artifact-arrow">→</span>
+      </a>
+
+      <a class="artifact-row" href="sitemap-flowchart.html" target="_blank">
+        <span class="artifact-stage as-descoberta">Descoberta</span>
+        <div class="artifact-title">Sitemap &amp; User Flows</div>
+        <div class="artifact-desc">Fluxo do aluno e do professor — do login ao ciclo contínuo de aulas.</div>
+        <div class="artifact-fname">sitemap-flowchart.html</div>
+        <span class="artifact-arrow">→</span>
       </a>
 
     </div>

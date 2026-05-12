@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insynea — JTBD, Jornada &amp; Pain Points</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #F4F3EE;
+  --s:         #ECEAE4;
+  --s2:        #E3E0D8;
+  --line:      #D6D3CA;
+  --line2:     #C6C3B8;
+  --ink:       #1A1916;
+  --ink2:      #38352D;
+  --label:     #6A6760;
+  --muted:     #9A9790;
+
+  --blue:      #0051FF;
+  --blue-bg:   #EEF3FF;
+  --blue-t:    rgba(0,81,255,0.15);
+
+  --green:     #059669;
+  --green-bg:  #ECFDF5;
+  --green-t:   rgba(5,150,105,0.15);
+
+  --purple:    #7C3AED;
+  --purple-bg: #F5F3FF;
+  --purple-t:  rgba(124,58,237,0.15);
+
+  --amber:     #D97706;
+  --amber-bg:  #FFFBEB;
+  --amber-t:   rgba(217,119,6,0.15);
+
+  --red:       #DC2626;
+  --red-bg:    #FEF2F2;
+  --red-t:     rgba(220,38,38,0.15);
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding-bottom: 100px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV — dark ─────────────────── */
+.nav {
+  padding: 0 48px;
+  height: 52px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: var(--ink);
+  position: sticky; top: 0; z-index: 10;
+}
+.nav-back {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  text-decoration: none; display: flex; align-items: center; gap: 4px;
+  transition: color 0.1s;
+}
+.nav-back:hover { color: rgba(255,255,255,0.7); }
+.nav-sep { font-size: 12px; color: rgba(255,255,255,0.15); }
+.nav-current { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); }
+
+/* ── HERO — dark ────────────────── */
+.hero {
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 44px 48px 48px;
+}
+.hero-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: rgba(255,255,255,0.3); margin-bottom: 14px;
+}
+.hero-title {
+  font-size: 36px; font-weight: 900;
+  color: #FFFFFF; letter-spacing: -1.2px;
+  line-height: 1.05; margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: 14px; color: rgba(255,255,255,0.45);
+  line-height: 1.6; max-width: 520px; font-weight: 400;
+}
+
+/* ── PAGE ─────────────────────────── */
+.page { padding: 40px 48px 0; display: flex; flex-direction: column; gap: 64px; }
+
+.section-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.4px; color: var(--muted); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+/* ── PERSONA HEADER TABS ─────────── */
+.persona-tabs {
+  display: flex; gap: 8px; margin-bottom: 20px;
+}
+.ptab {
+  display: flex; align-items: center; gap: 7px;
+  padding: 6px 14px; border-radius: 100px;
+  font-size: 11px; font-weight: 700;
+}
+.ptab-aluno  { background: var(--blue-bg);  color: var(--blue);  border: 1px solid var(--blue-t); }
+.ptab-prof   { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-t); }
+.ptab-dot { width: 7px; height: 7px; border-radius: 50%; }
+.ptab-aluno .ptab-dot  { background: var(--blue); }
+.ptab-prof  .ptab-dot  { background: var(--green); }
+
+/* ── JTBD GRID ───────────────────── */
+.jtbd-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.jtbd-col {
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.jtbd-type-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.jtbd-type-header {
+  padding: 14px 20px 12px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+}
+
+.jtbd-type-icon {
+  width: 30px; height: 30px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+
+.jtbd-type-name {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.jtbd-type-desc {
+  font-size: 10px; color: var(--muted); margin-top: 1px;
+}
+
+/* type colors — aluno */
+.tc-func-a .jtbd-type-icon  { background: var(--blue-bg); }
+.tc-func-a .jtbd-type-name  { color: var(--blue); }
+.tc-emo-a  .jtbd-type-icon  { background: var(--purple-bg); }
+.tc-emo-a  .jtbd-type-name  { color: var(--purple); }
+.tc-soc-a  .jtbd-type-icon  { background: var(--amber-bg); }
+.tc-soc-a  .jtbd-type-name  { color: var(--amber); }
+
+/* type colors — professor */
+.tc-func-p .jtbd-type-icon  { background: var(--green-bg); }
+.tc-func-p .jtbd-type-name  { color: var(--green); }
+.tc-emo-p  .jtbd-type-icon  { background: var(--purple-bg); }
+.tc-emo-p  .jtbd-type-name  { color: var(--purple); }
+.tc-soc-p  .jtbd-type-icon  { background: var(--amber-bg); }
+.tc-soc-p  .jtbd-type-name  { color: var(--amber); }
+
+.jtbd-jobs {
+  padding: 16px 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+.jtbd-job {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.jtbd-job:last-child { border-bottom: none; padding-bottom: 0; }
+
+.jtbd-trigger {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--muted); margin-bottom: 4px;
+}
+
+.jtbd-statement {
+  font-size: 12px; color: var(--ink2); line-height: 1.55;
+}
+.jtbd-statement strong { color: var(--ink); font-weight: 600; }
+
+.jtbd-insight {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 5px;
+  font-size: 10px; color: var(--label);
+  font-style: italic;
+}
+
+/* ── JORNADA ─────────────────────── */
+.jornada-wrap {
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.jornada-row {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.jornada-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+}
+
+.jornada-persona-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.jornada-aluno .jornada-persona-dot  { background: var(--blue); }
+.jornada-prof  .jornada-persona-dot  { background: var(--green); }
+
+.jornada-persona-name {
+  font-size: 12px; font-weight: 800; color: var(--ink);
+}
+
+.jornada-stages {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+
+.jornada-stage {
+  padding: 20px 20px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.jornada-stage:last-child { border-right: none; }
+
+.stage-num {
+  font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.2px; margin-bottom: 8px;
+}
+.jornada-aluno .stage-num { color: var(--blue); }
+.jornada-prof  .stage-num { color: var(--green); }
+
+.stage-name {
+  font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.stage-desc {
+  font-size: 11px; color: var(--label); line-height: 1.5; margin-bottom: 10px;
+}
+
+.stage-moment {
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 10px; line-height: 1.4;
+}
+
+.stage-moment.risk {
+  background: var(--red-bg); color: var(--red);
+  border: 1px solid var(--red-t);
+}
+.stage-moment.opportunity {
+  background: var(--green-bg); color: var(--green);
+  border: 1px solid var(--green-t);
+}
+.stage-moment.neutral {
+  background: var(--s2); color: var(--label);
+  border: 1px solid var(--line);
+}
+
+.moment-label {
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.6px; font-size: 9px; margin-bottom: 2px;
+}
+
+/* ── PAIN POINTS ─────────────────── */
+.pain-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pain-col { display: flex; flex-direction: column; gap: 10px; }
+
+.pain-col-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 0 6px;
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+}
+.pain-col-header .dot { width: 8px; height: 8px; border-radius: 50%; }
+.pain-aluno .dot  { background: var(--blue); }
+.pain-aluno       { color: var(--blue); }
+.pain-prof  .dot  { background: var(--green); }
+.pain-prof        { color: var(--green); }
+
+.pain-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.pain-body { padding: 18px 20px; }
+
+.pain-title {
+  font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+}
+
+.pain-desc {
+  font-size: 12px; color: var(--ink2); line-height: 1.55; margin-bottom: 12px;
+}
+
+.pain-evidence {
+  background: var(--s);
+  border-left: 3px solid var(--red);
+  border-radius: 0 6px 6px 0;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+
+.pain-evidence-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--red); margin-bottom: 3px;
+}
+
+.pain-evidence-text {
+  font-size: 11px; color: var(--ink2); line-height: 1.5; font-style: italic;
+}
+
+.pain-evidence-source {
+  font-size: 9px; color: var(--muted); margin-top: 3px;
+}
+
+.pain-insynea {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 8px 12px;
+  background: var(--green-bg);
+  border: 1px solid var(--green-t);
+  border-radius: 8px;
+}
+
+.pain-insynea-label {
+  font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--green); white-space: nowrap; margin-top: 1px;
+}
+
+.pain-insynea-text {
+  font-size: 11px; color: var(--green); line-height: 1.45;
+}
+
+/* ── INSIGHT FOOTER ──────────────── */
+.insight-banner {
+  background: var(--bg);
+  border: 1px solid var(--amber-t);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+
+.insight-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+.insight-title { font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 4px; }
+.insight-text  { font-size: 12px; color: var(--ink2); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-back" href="index.html">← Início</a>
+  <span class="nav-sep">/</span>
+  <span class="nav-current">JTBD, Jornada &amp; Pain Points</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Insynea · Ideação</div>
+  <div class="hero-title">JTBD, Jornada &amp; Pain Points</div>
+  <div class="hero-sub">O que professores e alunos realmente estão tentando resolver — com base em comportamentos reais do mercado de tutoria online no Brasil e no mundo.</div>
+</div>
+
+<div class="page">
+
+  <!-- ═══ JOBS TO BE DONE ═══ -->
+  <div class="block">
+    <div class="section-label">Jobs to Be Done</div>
+
+    <div class="jtbd-grid">
+
+      <!-- ─── ALUNO ─── -->
+      <div class="jtbd-col">
+        <div class="persona-tabs"><div class="ptab ptab-aluno"><div class="ptab-dot"></div>Aluno</div></div>
+
+        <div class="jtbd-type-card tc-func-a">
+          <div class="jtbd-type-header">
+            <div class="jtbd-type-icon">⚙</div>
+            <div>
+              <div class="jtbd-type-name">Funcional</div>
+              <div class="jtbd-type-desc">O que ele precisa concretamente resolver</div>
+            </div>
+          </div>
+          <div class="jtbd-jobs">
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Tenho prova em dias e não entendo o conteúdo, quero <strong>encontrar e agendar um professor qualificado em menos de 10 minutos</strong> — não preencher formulário.</div>
+              <div class="jtbd-insight">↳ Urgência é o gatilho, não o desejo abstrato de aprender</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Preciso aprender algo com prazo real (entrevista, concurso, ENEM), quero <strong>um professor que adapte o ritmo ao meu objetivo</strong> — não um currículo genérico.</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">O professor da escola não me explica de um jeito que funciona pra mim, quero <strong>alguém que ensine do meu jeito</strong> — o sistema escolar falhou, preciso de uma segunda chance.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="jtbd-type-card tc-emo-a">
+          <div class="jtbd-type-header">
+            <div class="jtbd-type-icon">♥</div>
+            <div>
+              <div class="jtbd-type-name">Emocional</div>
+              <div class="jtbd-type-desc">Como ele quer se sentir no processo</div>
+            </div>
+          </div>
+          <div class="jtbd-jobs">
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Sinto que estou ficando para trás, quero <strong>reduzir a ansiedade de não saber</strong> — a vergonha de não entender é um motor mais forte que a ambição de avançar.</div>
+              <div class="jtbd-insight">↳ A dor de "estar ficando pra trás" supera o desejo de crescer</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Vou contratar um professor, quero <strong>sentir que tenho controle</strong> — escolher, cancelar, recomeçar — sem me prender a pacotes ou mensalidades.</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Sempre me disseram que sou ruim em matemática, quero <strong>provar para mim mesmo que consigo</strong> — o JTBD real não é aprender, é recuperar autoconfiança.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="jtbd-type-card tc-soc-a">
+          <div class="jtbd-type-header">
+            <div class="jtbd-type-icon">◎</div>
+            <div>
+              <div class="jtbd-type-name">Social</div>
+              <div class="jtbd-type-desc">Como ele quer ser visto pelos outros</div>
+            </div>
+          </div>
+          <div class="jtbd-jobs">
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Busco um professor particular, quero <strong>fazer isso de forma discreta</strong> — não revelar a dificuldade para colegas ou família antes de ter resultado.</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Meus pais estão pagando e cobrando resultado, quero <strong>demonstrar progresso mensurável</strong> para justificar o investimento — não apenas dizer que "está melhorando".</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── PROFESSOR ─── -->
+      <div class="jtbd-col">
+        <div class="persona-tabs"><div class="ptab ptab-prof"><div class="ptab-dot"></div>Professor</div></div>
+
+        <div class="jtbd-type-card tc-func-p">
+          <div class="jtbd-type-header">
+            <div class="jtbd-type-icon">⚙</div>
+            <div>
+              <div class="jtbd-type-name">Funcional</div>
+              <div class="jtbd-type-desc">O que ele precisa concretamente resolver</div>
+            </div>
+          </div>
+          <div class="jtbd-jobs">
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Dependo de indicação boca a boca para conseguir alunos, quero <strong>uma fonte previsível de demanda</strong> que não dependa de quem me conhece pessoalmente.</div>
+              <div class="jtbd-insight">↳ Previsibilidade de renda é mais importante que volume</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Ainda tenho emprego fixo e quero testar o ensino online, quero <strong>validar se consigo alunos e renda antes de me comprometer</strong> — sem arriscar o emprego principal.</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Termino uma aula, quero <strong>ver o valor no meu saldo e sacar quando quiser</strong> — sem esperar ciclo de repasse ou abrir chamado de suporte.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="jtbd-type-card tc-emo-p">
+          <div class="jtbd-type-header">
+            <div class="jtbd-type-icon">♥</div>
+            <div>
+              <div class="jtbd-type-name">Emocional</div>
+              <div class="jtbd-type-desc">Como ele quer se sentir no processo</div>
+            </div>
+          </div>
+          <div class="jtbd-jobs">
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Ensino em uma plataforma, quero <strong>ser tratado como profissional</strong> — não como vendedor anônimo de conteúdo. Autonomia de precificação é questão de identidade.</div>
+              <div class="jtbd-insight">↳ Plataforma que define preço fere a identidade profissional do professor</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Vou começar uma aula com aluno novo, quero <strong>ter certeza de que serei pago</strong> independente do que aconteça — o medo de inadimplência paralisa professores iniciantes.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="jtbd-type-card tc-soc-p">
+          <div class="jtbd-type-header">
+            <div class="jtbd-type-icon">◎</div>
+            <div>
+              <div class="jtbd-type-name">Social</div>
+              <div class="jtbd-type-desc">Como ele quer ser visto pelos outros</div>
+            </div>
+          </div>
+          <div class="jtbd-jobs">
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Acumulo avaliações e aulas, quero <strong>uma reputação que seja minha</strong> — não presa a uma plataforma. Se sair, meu histórico não pode desaparecer.</div>
+            </div>
+            <div class="jtbd-job">
+              <div class="jtbd-trigger">Quando</div>
+              <div class="jtbd-statement">Entro em uma plataforma nova, quero <strong>pertencer a uma comunidade de educadores</strong> — não ser mais um número em uma lista de fornecedores.</div>
+              <div class="jtbd-insight">↳ Senso de pertencimento aumenta retenção e tolerância a fricções</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ JORNADA DO USUÁRIO ═══ -->
+  <div class="block">
+    <div class="section-label">Jornada do Usuário</div>
+    <div class="jornada-wrap">
+
+      <!-- ALUNO -->
+      <div class="jornada-row jornada-aluno">
+        <div class="jornada-header">
+          <div class="jornada-persona-dot"></div>
+          <div class="jornada-persona-name">Aluno — da dúvida ao aluno recorrente</div>
+        </div>
+        <div class="jornada-stages">
+
+          <div class="jornada-stage">
+            <div class="stage-num">01 · Gatilho</div>
+            <div class="stage-name">Percebe a urgência</div>
+            <div class="stage-desc">Nota vermelha, prova em dias, ENEM chegando, entrevista de emprego. O gatilho é sempre um prazo, nunca o desejo abstrato de aprender.</div>
+            <div class="stage-moment neutral">
+              <div class="moment-label">Insight</div>
+              Quem entra urgente converte mais rápido — mas abandona igualmente rápido se o processo travar.
+            </div>
+          </div>
+
+          <div class="jornada-stage">
+            <div class="stage-num">02 · Busca</div>
+            <div class="stage-name">Pesquisa e compara</div>
+            <div class="stage-desc">Google + indicação. As primeiras barreiras: quanto custa, como saber se o professor é bom, se vai cair em assinatura.</div>
+            <div class="stage-moment risk">
+              <div class="moment-label">Risco</div>
+              Preço escondido ou assinatura obrigatória = abandono imediato antes de ver qualquer professor.
+            </div>
+          </div>
+
+          <div class="jornada-stage">
+            <div class="stage-num">03 · Primeiro contato</div>
+            <div class="stage-name">Tenta agendar</div>
+            <div class="stage-desc">Maior ponto de abandono. Se o processo de agendamento travar ou o professor demorar para responder, o aluno desiste e vai para o próximo.</div>
+            <div class="stage-moment risk">
+              <div class="moment-label">Risco</div>
+              Responsividade é o filtro decisivo. Lentidão aqui mata a conversão.
+            </div>
+          </div>
+
+          <div class="jornada-stage">
+            <div class="stage-num">04 · Primeira aula</div>
+            <div class="stage-name">Avalia se vale</div>
+            <div class="stage-desc">Decisão de continuar acontece aqui. Se o professor não explicar melhor do que a escola, o aluno não volta — mesmo que a aula tenha "dado certo".</div>
+            <div class="stage-moment opportunity">
+              <div class="moment-label">Oportunidade</div>
+              Aula diagnóstica (25 min) reduz o risco de apostas erradas de ambos os lados.
+            </div>
+          </div>
+
+          <div class="jornada-stage">
+            <div class="stage-num">05 · Recorrência</div>
+            <div class="stage-name">Vira aluno ativo</div>
+            <div class="stage-desc">Só acontece quando o aluno associa progresso mensurável à plataforma. Sem feedback de evolução, a relação some após a necessidade pontual.</div>
+            <div class="stage-moment opportunity">
+              <div class="moment-label">Oportunidade</div>
+              Histórico de aulas e notas de evolução visíveis no ambiente da disciplina.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PROFESSOR -->
+      <div class="jornada-row jornada-prof">
+        <div class="jornada-header">
+          <div class="jornada-persona-dot"></div>
+          <div class="jornada-persona-name">Professor — do cadastro à fidelização</div>
+        </div>
+        <div class="jornada-stages">
+
+          <div class="jornada-stage">
+            <div class="stage-num">01 · Decisão</div>
+            <div class="stage-name">Decide entrar</div>
+            <div class="stage-desc">Motivado por renda extra ou validação da carreira. A barreira é o tempo de setup e a incerteza de quando vai chegar o primeiro aluno.</div>
+            <div class="stage-moment opportunity">
+              <div class="moment-label">Oportunidade</div>
+              Programa Fundador oferece vantagem concreta desde o cadastro — 0% de comissão nas primeiras 20 aulas.
+            </div>
+          </div>
+
+          <div class="jornada-stage">
+            <div class="stage-num">02 · Vale da morte</div>
+            <div class="stage-name">Espera o primeiro aluno</div>
+            <div class="stage-desc">Sem alunos, sem receita. A maioria abandona a plataforma aqui, antes de ganhar tração. É o maior ponto de churn de professores em plataformas novas.</div>
+            <div class="stage-moment risk">
+              <div class="moment-label">Risco crítico</div>
+              Se a plataforma não facilitar a primeira aula, o professor sai e não volta.
+            </div>
+          </div>
+
+          <div class="jornada-stage">
+            <div class="stage-num">03 · Virada</div>
+            <div class="stage-name">Primeiro aluno recorrente</div>
+            <div class="stage-desc">Ponto de virada emocional. O professor deixa de enxougar como "tentativa" e começa a tratar como negócio. Investe mais no perfil, responde mais rápido.</div>
+            <div class="stage-moment opportunity">
+              <div class="moment-label">Oportunidade</div>
+              Ambiente da disciplina e histórico de aulas reforçam a relação professor-aluno dentro da plataforma.
+            </div>
+          </div>
+
+          <div class="jornada-stage">
+            <div class="stage-num">04 · Tensão</div>
+            <div class="stage-name">Tenta sair da plataforma</div>
+            <div class="stage-desc">Quando sente que a comissão não justifica o valor entregue, tenta combinar pagamento direto com o aluno. Plataformas sem valor percebido perdem professores aqui.</div>
+            <div class="stage-moment risk">
+              <div class="moment-label">Risco</div>
+              O professor só fica se a plataforma resolver algo que ele não consegue sozinho: pagamento garantido e proteção.
+            </div>
+          </div>
+
+          <div class="jornada-stage">
+            <div class="stage-num">05 · Fidelização</div>
+            <div class="stage-name">Vira professor ativo</div>
+            <div class="stage-desc">Acontece quando pagamento garantido, proteção contra calote e visibilidade para novos alunos funcionam de verdade. O professor para de questionar a comissão.</div>
+            <div class="stage-moment opportunity">
+              <div class="moment-label">Oportunidade</div>
+              Selo Professor Fundador vitalício aumenta o custo de sair — perder o selo é perder diferenciação visível.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ PAIN POINTS ═══ -->
+  <div class="block">
+    <div class="section-label">Pain Points — Com Evidência de Mercado</div>
+    <div class="pain-cols">
+
+      <!-- ALUNO -->
+      <div class="pain-col">
+        <div class="pain-col-header pain-aluno"><div class="dot"></div>Aluno</div>
+
+        <div class="pain-card">
+          <div class="pain-body">
+            <div class="pain-title">Pagar antes de ver valor</div>
+            <div class="pain-desc">Plataformas exigem assinatura ou taxa antecipada antes de mostrar professores ou garantir agendamento. O aluno paga e não recebe nada.</div>
+            <div class="pain-evidence">
+              <div class="pain-evidence-label">Evidência real</div>
+              <div class="pain-evidence-text">"Paguei R$69 do Passe Aluno e não consegui marcar nenhuma aula."</div>
+              <div class="pain-evidence-source">— Reclame Aqui · Superprof Brasil</div>
+            </div>
+            <div class="pain-insynea">
+              <div class="pain-insynea-label">Insynea</div>
+              <div class="pain-insynea-text">Sem assinatura. Sem taxa antecipada. Pagamento só na hora de agendar uma aula específica.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-body">
+            <div class="pain-title">Preço escondido no checkout</div>
+            <div class="pain-desc">Taxas da plataforma aparecem só na última etapa do pagamento. O aluno só descobre o custo real segundos antes de confirmar.</div>
+            <div class="pain-evidence">
+              <div class="pain-evidence-label">Evidência real</div>
+              <div class="pain-evidence-text">"Cobrança não informada" — categoria com maior volume de reclamações no Reclame Aqui entre plataformas de tutoria.</div>
+              <div class="pain-evidence-source">— Reclame Aqui · múltiplas plataformas</div>
+            </div>
+            <div class="pain-insynea">
+              <div class="pain-insynea-label">Insynea</div>
+              <div class="pain-insynea-text">Preço visível no perfil do professor. O aluno vê o total antes de qualquer clique de confirmação.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-body">
+            <div class="pain-title">Não conhecer o professor antes de pagar</div>
+            <div class="pain-desc">A primeira aula custa o valor inteiro. O aluno aposta sem informação suficiente — e muitos desistem antes de tentar.</div>
+            <div class="pain-evidence">
+              <div class="pain-evidence-label">Evidência real</div>
+              <div class="pain-evidence-text">Wyzant e Superprof registram altas taxas de abandono após a primeira busca — alunos olham perfis mas não agendam.</div>
+              <div class="pain-evidence-source">— Trustpilot · Wyzant Reviews</div>
+            </div>
+            <div class="pain-insynea">
+              <div class="pain-insynea-label">Insynea</div>
+              <div class="pain-insynea-text">Aula diagnóstica (25 min, metade do preço) — o aluno conhece a metodologia antes de se comprometer com aulas completas.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-body">
+            <div class="pain-title">Mudança de preço sem aviso</div>
+            <div class="pain-desc">Plataformas alteram planos e valores abruptamente. Alunos que criaram vínculo com professores são forçados a pagar mais para continuar.</div>
+            <div class="pain-evidence">
+              <div class="pain-evidence-label">Evidência real</div>
+              <div class="pain-evidence-text">"Mudam de uma hora para outra o preço em nível abusivo."</div>
+              <div class="pain-evidence-source">— Reclame Aqui · TutorMundi</div>
+            </div>
+            <div class="pain-insynea">
+              <div class="pain-insynea-label">Insynea</div>
+              <div class="pain-insynea-text">Modelo por aula. Sem planos, sem assinatura — o aluno paga o que o professor cobra, ponto.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PROFESSOR -->
+      <div class="pain-col">
+        <div class="pain-col-header pain-prof"><div class="dot"></div>Professor</div>
+
+        <div class="pain-card">
+          <div class="pain-body">
+            <div class="pain-title">Invisibilidade algorítmica</div>
+            <div class="pain-desc">Professores novos ficam enterrados pelo algoritmo que favorece quem tem 100+ avaliações. Sem alunos para avaliar, nunca aparece. Sem aparecer, nunca tem alunos.</div>
+            <div class="pain-evidence">
+              <div class="pain-evidence-label">Evidência real</div>
+              <div class="pain-evidence-text">"Paguei para anunciar e meu perfil não tem visibilidade. Propaganda enganosa."</div>
+              <div class="pain-evidence-source">— Reclame Aqui · Superprof Brasil</div>
+            </div>
+            <div class="pain-insynea">
+              <div class="pain-insynea-label">Insynea</div>
+              <div class="pain-insynea-text">Programa Fundador garante visibilidade curada para os primeiros 30 professores — selecionados, não enterrados.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-body">
+            <div class="pain-title">Calote e inadimplência</div>
+            <div class="pain-desc">Sem retenção de pagamento, professores dão a aula e ficam à mercê do aluno pagar. O medo de calote é um dos maiores bloqueadores para professores iniciantes.</div>
+            <div class="pain-evidence">
+              <div class="pain-evidence-label">Evidência real</div>
+              <div class="pain-evidence-text">Múltiplos relatos de professores em fóruns brasileiros descrevendo alunos que somem após a aula quando o pagamento é combinado fora da plataforma.</div>
+              <div class="pain-evidence-source">— Reddit br · fóruns de professores autônomos</div>
+            </div>
+            <div class="pain-insynea">
+              <div class="pain-insynea-label">Insynea</div>
+              <div class="pain-insynea-text">Pagamento retido desde o agendamento. Professor não dá aula sem o valor já garantido na plataforma.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-body">
+            <div class="pain-title">Comissão alta sem retorno claro</div>
+            <div class="pain-desc">Plataformas cobram 25–33% de comissão mas não entregam volume de alunos qualificados que justifique. O professor sente que está pagando para existir, não para crescer.</div>
+            <div class="pain-evidence">
+              <div class="pain-evidence-label">Evidência real</div>
+              <div class="pain-evidence-text">Preply cobra comissão decrescente (33% → 18%) conforme horas ensinadas — mas professores novos pagam o máximo quando mais precisam de alunos.</div>
+              <div class="pain-evidence-source">— Preply Commission Model · help.preply.com</div>
+            </div>
+            <div class="pain-insynea">
+              <div class="pain-insynea-label">Insynea</div>
+              <div class="pain-insynea-text">25% fixo para todos + 0% nas primeiras 20 aulas para Professores Fundadores. Sem punição para quem está começando.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pain-card">
+          <div class="pain-body">
+            <div class="pain-title">Conta desativada sem aviso</div>
+            <div class="pain-desc">Professores perdem acesso a alunos, histórico financeiro e avaliações de uma hora para outra — sem explicação, sem recurso. Confiança destruída.</div>
+            <div class="pain-evidence">
+              <div class="pain-evidence-label">Evidência real</div>
+              <div class="pain-evidence-text">"My account was deactivated without warning. Lost all students and payment history."</div>
+              <div class="pain-evidence-source">— Trustpilot · Wyzant · múltiplos relatos</div>
+            </div>
+            <div class="pain-insynea">
+              <div class="pain-insynea-label">Insynea</div>
+              <div class="pain-insynea-text">Transparência no processo de moderação — o professor tem rastreabilidade do saldo e histórico independente de status da conta.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- INSIGHT -->
+  <div class="insight-banner">
+    <div class="insight-icon">⚠</div>
+    <div>
+      <div class="insight-title">Risco não mitigado — ponto de atenção para o design</div>
+      <div class="insight-text">Como o professor garante que o aluno vai confirmar a aula? O mecanismo de confirmação precisa ter um prazo claro e automático — caso contrário, a confirmação vira uma nova fonte de atrito para o professor. Se o aluno não confirmar em X horas, o sistema deve confirmar automaticamente e liberar o saldo. Esse fluxo precisa ser desenhado com cuidado.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

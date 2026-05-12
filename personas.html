@@ -10,59 +10,75 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:        #FFFFFF;
-  --s:         #F9FAFB;
-  --s2:        #F3F4F6;
-  --line:      #E5E7EB;
-  --line2:     #D1D5DB;
-  --ink:       #111827;
-  --ink2:      #374151;
-  --label:     #6B7280;
-  --muted:     #9CA3AF;
+  --bg:        #F4F3EE;
+  --s:         #ECEAE4;
+  --s2:        #E3E0D8;
+  --line:      #D6D3CA;
+  --line2:     #C6C3B8;
+  --ink:       #1A1916;
+  --ink2:      #38352D;
+  --label:     #6A6760;
+  --muted:     #9A9790;
 
   --blue:      #0051FF;
   --blue-bg:   #EEF3FF;
-  --blue-t:    rgba(0,81,255,0.15);
+  --blue-t:    rgba(0,81,255,0.12);
 
   --purple:    #7C3AED;
   --purple-bg: #F5F3FF;
-  --purple-t:  rgba(124,58,237,0.15);
+  --purple-t:  rgba(124,58,237,0.12);
 
   --green:     #059669;
   --green-bg:  #ECFDF5;
-  --green-t:   rgba(5,150,105,0.15);
+  --green-t:   rgba(5,150,105,0.12);
 }
 
 body {
   font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--s);
+  background: var(--bg);
   color: var(--ink);
   min-height: 100vh;
   padding-bottom: 80px;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ── NAV ─────────────────────────── */
+/* ── NAV — dark ─────────────────── */
 .nav {
-  padding: 16px 48px;
+  padding: 0 48px;
+  height: 52px;
   display: flex; align-items: center; gap: 8px;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: var(--ink);
   position: sticky; top: 0; z-index: 10;
 }
-.nav-back { font-size: 12px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color 0.1s; }
-.nav-back:hover { color: var(--label); }
-.nav-sep { font-size: 12px; color: var(--line2); }
-.nav-current { font-size: 12px; font-weight: 600; color: var(--ink2); }
-
-/* ── HERO ─────────────────────────── */
-.hero {
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  padding: 48px 48px 40px;
+.nav-back {
+  font-size: 12px; color: rgba(255,255,255,0.4);
+  text-decoration: none; display: flex; align-items: center; gap: 4px;
+  transition: color 0.1s;
 }
-.hero-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--muted); margin-bottom: 12px; }
-.hero-title { font-size: 28px; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 8px; }
-.hero-sub { font-size: 15px; color: var(--label); line-height: 1.5; max-width: 560px; }
+.nav-back:hover { color: rgba(255,255,255,0.7); }
+.nav-sep { font-size: 12px; color: rgba(255,255,255,0.15); }
+.nav-current { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); }
+
+/* ── HERO — dark ────────────────── */
+.hero {
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 44px 48px 48px;
+}
+.hero-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: rgba(255,255,255,0.3); margin-bottom: 14px;
+}
+.hero-title {
+  font-size: 36px; font-weight: 900;
+  color: #FFFFFF; letter-spacing: -1.2px;
+  line-height: 1.05; margin-bottom: 10px;
+}
+.hero-sub {
+  font-size: 14px; color: rgba(255,255,255,0.45);
+  line-height: 1.6; max-width: 520px; font-weight: 400;
+}
 
 /* ── PAGE ─────────────────────────── */
 .page { padding: 40px 48px 0; }
@@ -78,11 +94,11 @@ body {
 .personas { display: flex; flex-direction: column; gap: 24px; margin-bottom: 60px; }
 
 .persona-card {
-  background: var(--bg);
+  background: #FFFFFF;
   border: 1px solid var(--line);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
 .persona-header {
@@ -193,37 +209,6 @@ body {
   padding: 4px 10px; border-radius: 6px;
 }
 
-/* ── JTBD ─────────────────────────── */
-.jtbd-section { margin-bottom: 60px; }
-
-.jtbd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-
-.jtbd-card {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-
-.jtbd-persona {
-  font-size: 10px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; margin-bottom: 14px;
-  display: flex; align-items: center; gap: 6px;
-}
-.jtbd-dot { width: 8px; height: 8px; border-radius: 50%; }
-.jtbd-p1 .jtbd-dot { background: var(--blue); }
-.jtbd-p2 .jtbd-dot { background: var(--purple); }
-.jtbd-p3 .jtbd-dot { background: var(--green); }
-.jtbd-p1 .jtbd-persona { color: var(--blue); }
-.jtbd-p2 .jtbd-persona { color: var(--purple); }
-.jtbd-p3 .jtbd-persona { color: var(--green); }
-
-.jtbd-item { margin-bottom: 12px; }
-.jtbd-item:last-child { margin-bottom: 0; }
-.jtbd-when { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px; }
-.jtbd-job { font-size: 12px; color: var(--ink2); line-height: 1.5; }
-.jtbd-job strong { color: var(--ink); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -309,17 +294,18 @@ body {
             <li>Receber de forma segura, sem risco de calote</li>
             <li>Construir reputação profissional com histórico de avaliações reais</li>
             <li>Ter controle total sobre preço e disponibilidade</li>
-            <li>Escalar para 15+ alunos sem aumentar a carga operacional</li>
+            <li>Usar aula diagnóstica para filtrar alunos sérios — sem dar aula de graça</li>
+            <li>Acessar o saldo e sacar quando quiser, sem esperar repasse mensal</li>
           </ul>
         </div>
 
         <div class="persona-section">
           <div class="ps-label">Frustrações</div>
           <ul class="ps-list pain">
-            <li>Comissão de 25–33% corrói o ganho em plataformas grandes</li>
+            <li>Comissão de 30–33% em outras plataformas corrói o ganho real</li>
             <li>Plataformas cobram para aparecer, mas não entregam alunos reais</li>
             <li>Aluno some após combinar horário — sem consequência</li>
-            <li>Usa 4 apps diferentes para gerir uma única aula</li>
+            <li>Repasse só acontece em datas fixas — sem visibilidade do saldo em tempo real</li>
             <li>Não tem portabilidade: se sair da plataforma, perde tudo</li>
             <li>Suporte inexistente quando há conflito com aluno</li>
           </ul>
@@ -341,6 +327,7 @@ body {
               <span class="persona-tag">Aluno</span>
               <span class="persona-tag">1ª vez buscando professor</span>
               <span class="persona-tag">Alta urgência</span>
+              <span class="persona-tag">Aula diagnóstica</span>
             </div>
           </div>
         </div>
@@ -389,20 +376,20 @@ body {
           <div class="ps-label">Objetivos</div>
           <ul class="ps-list goal">
             <li>Encontrar professor qualificado em menos de 10 minutos</li>
-            <li>Ter segurança de que o professor vai aparecer na aula</li>
-            <li>Pagar só depois que a aula acontecer — sem risco</li>
+            <li>Fazer uma aula diagnóstica de 25 min antes de se comprometer com um professor</li>
+            <li>Ter segurança de que o dinheiro só sai após a aula acontecer</li>
             <li>Ler avaliações reais antes de contratar</li>
-            <li>Poder trocar de professor sem perder dinheiro se não encaixar</li>
+            <li>Pagar por aula, sem assinar nada — só quando precisar</li>
           </ul>
         </div>
 
         <div class="persona-section">
           <div class="ps-label">Frustrações</div>
           <ul class="ps-list pain">
-            <li>Plataformas cobram assinatura mensal antes de mostrar valor</li>
+            <li>Plataformas cobram assinatura mensal antes de mostrar qualquer valor</li>
             <li>Perfis de professores parecem falsos ou desatualizados</li>
             <li>Professor cancela no último minuto sem reembolso garantido</li>
-            <li>Não sabe se o professor é realmente bom antes de pagar</li>
+            <li>Não tem como conhecer o professor antes de pagar uma aula inteira</li>
             <li>Suporte demora dias para resolver problemas simples</li>
             <li>Preço escondido — descobre a taxa real só na hora do pagamento</li>
           </ul>
@@ -424,6 +411,7 @@ body {
               <span class="persona-tag">Professor</span>
               <span class="persona-tag">Iniciante</span>
               <span class="persona-tag">Sem alunos ainda</span>
+              <span class="persona-tag">Fundador em potencial</span>
             </div>
           </div>
         </div>
@@ -471,11 +459,11 @@ body {
         <div class="persona-section">
           <div class="ps-label">Objetivos</div>
           <ul class="ps-list goal">
-            <li>Conseguir os primeiros 5 alunos para validar a carreira</li>
-            <li>Ter um perfil profissional que transmita credibilidade</li>
-            <li>Receber de forma segura desde a primeira aula</li>
-            <li>Entender o que está funcionando — quantas visitas, contatos, aulas</li>
-            <li>Construir reputação com avaliações reais dos primeiros alunos</li>
+            <li>Entrar no Programa Professor Fundador — 0% de comissão nas primeiras 20 aulas</li>
+            <li>Usar a aula diagnóstica para baixar a barreira de entrada do primeiro aluno</li>
+            <li>Ter um perfil profissional com vídeo e bio que transmita credibilidade</li>
+            <li>Receber de forma segura desde a primeira aula — sem risco de calote</li>
+            <li>Construir reputação com avaliações reais e conquistar o selo Fundador vitalício</li>
           </ul>
         </div>
 
@@ -484,7 +472,7 @@ body {
           <ul class="ps-list pain">
             <li>Plataformas prometem alunos mas entregam visibilidade zero</li>
             <li>Algoritmo favorece professores com 100+ avaliações — novo nunca aparece</li>
-            <li>Cobra comissão mas não oferece ferramenta alguma de suporte</li>
+            <li>Cobra comissão desde a primeira aula, sem período de carência</li>
             <li>Sem dados: não sabe quantas pessoas viram seu perfil</li>
             <li>Processo de cadastro longo, burocrático e sem retorno</li>
             <li>Medo de calote — não sabe como cobrar de forma profissional</li>
@@ -496,61 +484,6 @@ body {
 
   </div>
 
-  <!-- ── JOBS TO BE DONE ── -->
-  <div class="section-label">Jobs to Be Done</div>
-  <div class="jtbd-section">
-    <div class="jtbd-grid">
-
-      <div class="jtbd-card jtbd-p1">
-        <div class="jtbd-persona"><div class="jtbd-dot"></div>Sofia — Professora experiente</div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando um aluno some após combinar horário, quero <strong>um mecanismo que garanta meu pagamento</strong> para não trabalhar no prejuízo.</div>
-        </div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando termino uma aula, quero <strong>receber o valor imediatamente no Pix</strong> sem esperar repasse de plataforma.</div>
-        </div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando alguém busca professor de matemática, quero <strong>aparecer nas primeiras posições</strong> pelo meu histórico — não pelo quanto pago à plataforma.</div>
-        </div>
-      </div>
-
-      <div class="jtbd-card jtbd-p2">
-        <div class="jtbd-persona"><div class="jtbd-dot"></div>Lucas — Aluno em urgência</div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando tenho prova em 3 dias, quero <strong>encontrar e agendar um professor em menos de 5 minutos</strong> sem precisar me cadastrar antes de ver os professores.</div>
-        </div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando vou pagar, quero <strong>ter certeza que o dinheiro só sai se a aula acontecer</strong> — não antes.</div>
-        </div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando a aula acabar, quero <strong>poder avaliar o professor e decidir se contrato de novo</strong> sem pressão.</div>
-        </div>
-      </div>
-
-      <div class="jtbd-card jtbd-p3">
-        <div class="jtbd-persona"><div class="jtbd-dot"></div>Rafael — Professor iniciante</div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando me cadastro numa plataforma nova, quero <strong>ter visibilidade real desde o primeiro dia</strong>, não ficar enterrado por professores com 500 avaliações.</div>
-        </div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando um aluno me contata, quero <strong>um processo de confirmação e pagamento simples</strong> para parecer profissional sem ter sistema próprio.</div>
-        </div>
-        <div class="jtbd-item">
-          <div class="jtbd-when">Quando</div>
-          <div class="jtbd-job">Quando termino o mês, quero <strong>ver quantas aulas dei, quanto recebi e o que meus alunos acharam</strong> para evoluir meu trabalho.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
 </div>
 </body>
