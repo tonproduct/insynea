@@ -112,19 +112,30 @@ Professor experiente que quer construir dentro da plataforma. Perfil "Professor 
 
 ## Design System
 
-**Stack:** HTML puro + CSS inline. Fonte: Inter (Google Fonts). Sem frameworks.
+**Stack:** HTML puro + CSS inline. Para protótipos mobile no Figma.
 
-**Paleta de marca:**
-```
---bg:     #F5F0E4  /* Fundo cream */
---ink:    #1C1A12  /* Texto escuro-quente */
-Header/Nav:  #2D4A1E  /* Verde floresta escuro */
+### Tipografia (decisão final)
 
-Aluno (ouro):     #9E7A14 / bg #F5E8C0
-Professor (verde): #3A5E1C / bg #D4E8C0
-Fundador (âmbar): #B89018 / bg #F5E8A8
-Ideação (marrom): #5C3C14 / bg #F0D8BC
-```
+| Uso | Família | Peso |
+|---|---|---|
+| Títulos / headings | DM Serif Display | Regular (serifado elegante, quente) |
+| Corpo / UI / botões / labels | DM Sans | 400 / 500 / 600 |
+
+Combinação escolhida pela tensão entre autoridade (serif em headings) e clareza (sans em UI). Alinha com o tom da marca: humana, profissional, brasileira — sem frieza de tech puro, sem formalidade excessiva.
+
+Registrada no Figma como variáveis na coleção "Insynea — Design Tokens".
+
+### Paleta de marca (tokens Figma — coleção "Insynea — Design Tokens", modo "Light")
+
+Primitivos: Verde 900=#2D4A1E · 700=#3A5E1C · 500=#5A7E2E · 100=#D4E8C0 | Cream 50=#F5F0E4 · 100=#EDE5D5 · 200=#D8C8AC · 400=#C4A87A | Ouro 700=#B89018 · 600=#C8A820 · 500=#9E7A14 · 400=#D4A800 | Marrom 900=#3B1A06 · 700=#6B3C14 · 500=#8C6848 · 100=#E8D5B8
+
+Semânticos principais:
+- `marca/primary` → Verde/700 (#3A5E1C)
+- `marca/accent` → Ouro/700 (#B89018)
+- `fundo/default` → Cream/50 (#F5F0E4)
+- `fundo/invert` → Verde/900 (#2D4A1E)
+- `texto/primary` → Texto Principal/900 (#1C1A12)
+- `ui/header-bg` → Verde/900
 
 **Padrões visuais:**
 - Nav + hero com `background: #2D4A1E`, texto branco
