@@ -2,6 +2,9 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Insynea",
   "theme": "luma",
+  "colors": {
+    "primary": "#3A5E1C"
+  },
   "navigation": {
     "tabs": [
       {
