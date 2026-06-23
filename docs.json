@@ -1,0 +1,19 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Insynea",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Regras de Negócio",
+        "groups": [
+          {
+            "group": "Aulas",
+            "pages": [
+              "regras/encerramento-cancelamento-reagendamento"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

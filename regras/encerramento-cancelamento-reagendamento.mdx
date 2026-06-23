@@ -1,0 +1,88 @@
+---
+title: "Encerramento, Cancelamento e Reagendamento"
+description: "Regras de negócio que governam o ciclo de vida de uma aula na plataforma."
+---
+
+## Encerramento de Aula
+
+Ao final de cada aula, professor e aluno encerram de forma independente pela plataforma.
+
+### Fluxo do Professor — "Encerrar aula"
+
+Após clicar em **Encerrar aula**, o professor responde: **"A aula aconteceu?"**
+
+- **Sim** → preenche resumo da aula, adiciona notas e pode criar uma página no caderno
+- **Não** → informa o motivo → abre reporte de problema
+
+### Fluxo do Aluno — "Sair da aula"
+
+Após clicar em **Sair da aula**, o aluno responde: **"A aula aconteceu?"**
+
+- **Sim** → confirma a aula
+- **Não** → informa o motivo → abre reporte de problema
+
+---
+
+## Liberação de Pagamento
+
+> O pagamento fica retido até que a aula seja confirmada por ambas as partes ou o prazo automático expire.
+
+| Situação | O que acontece |
+|---|---|
+| Os dois confirmam "Sim" | Pagamento liberado imediatamente |
+| Apenas um confirmou | Aguarda **48 horas** → confirmação automática |
+| Um ou os dois dizem "Não" | Abre reporte de problema → análise pendente |
+
+---
+
+## Cancelamento
+
+| Janela | Ação permitida |
+|---|---|
+| Mais de 24h antes da aula | Cancelamento permitido |
+| Menos de 12h antes da aula | Bloqueado — cancelamento e reagendamento indisponíveis |
+| Entre 12h e 24h | A definir |
+
+> **Atenção:** A política de reembolso para cancelamentos ainda será definida.
+
+---
+
+## Reagendamento
+
+> O aluno sempre define o novo horário, independentemente de quem iniciou o pedido.
+
+### Fluxo — Aluno solicita reagendamento
+
+1. Aluno solicita reagendamento na aula
+2. Visualiza os horários disponíveis do professor
+3. Escolhe um novo horário → confirmação automática para os dois
+4. Se não quiser nenhum horário → aula cancelada sem custo
+
+### Fluxo — Professor solicita reagendamento
+
+1. Professor solicita reagendamento (sem definir novo horário)
+2. Aluno recebe notificação
+3. Aluno visualiza os horários disponíveis do professor
+4. Escolhe um novo horário → confirmação automática para os dois
+5. Se não quiser nenhum horário → aula cancelada sem custo
+
+### Regras
+
+| Regra | Definição |
+|---|---|
+| Quem pode solicitar | Professor ou aluno |
+| Quem define o novo horário | Sempre o aluno |
+| Limite por aula | 1 reagendamento |
+| Prazo mínimo | 24h antes da aula |
+| Recusa do aluno | Cancelamento sem custo para ambos |
+| Notificações | Automáticas para professor e aluno |
+
+---
+
+## Pendências
+
+> **Itens abaixo precisam de validação antes da implementação.**
+
+- O que acontece com o pagamento quando a aula não acontece por culpa do aluno, do professor ou por consenso mútuo?
+- Política de reembolso para cancelamentos com mais de 24h de antecedência
+- O que é permitido na janela entre 12h e 24h antes da aula?
