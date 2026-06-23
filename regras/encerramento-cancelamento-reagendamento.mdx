@@ -31,19 +31,27 @@ Após clicar em **Sair da aula**, o aluno responde: **"A aula aconteceu?"**
 |---|---|
 | Os dois confirmam "Sim" | Pagamento liberado imediatamente |
 | Apenas um confirmou | Aguarda **48 horas** → confirmação automática |
-| Um ou os dois dizem "Não" | Abre reporte de problema → análise pendente |
+| Um ou os dois dizem "Não" | Abre reporte de problema |
+
+---
+
+## Aula Não Aconteceu — Política de Pagamento
+
+| Motivo | O que acontece |
+|---|---|
+| Culpa do aluno (no-show) | Professor recebe **100%** do valor |
+| Culpa do professor (no-show) | Aluno não paga nada — reembolso total |
+| Consenso mútuo | Aluno não paga nada — reembolso total |
 
 ---
 
 ## Cancelamento
 
-| Janela | Ação permitida |
-|---|---|
-| Mais de 24h antes da aula | Cancelamento permitido |
-| Menos de 12h antes da aula | Bloqueado — cancelamento e reagendamento indisponíveis |
-| Entre 12h e 24h | A definir |
-
-> **Atenção:** A política de reembolso para cancelamentos ainda será definida.
+| Janela | Ação permitida | O que acontece com o pagamento |
+|---|---|---|
+| Mais de 24h antes da aula | Cancelamento permitido | Saldo devolvido ao aluno para uso na plataforma |
+| Entre 12h e 24h antes da aula | Apenas **reagendamento** permitido | Sem reembolso — aula deve ser reagendada |
+| Menos de 12h antes da aula | Bloqueado — nenhuma ação permitida | — |
 
 ---
 
@@ -73,16 +81,7 @@ Após clicar em **Sair da aula**, o aluno responde: **"A aula aconteceu?"**
 | Quem pode solicitar | Professor ou aluno |
 | Quem define o novo horário | Sempre o aluno |
 | Limite por aula | 1 reagendamento |
-| Prazo mínimo | 24h antes da aula |
+| Prazo mínimo para reagendar | 12h antes da aula |
+| Prazo mínimo para cancelar | 24h antes da aula |
 | Recusa do aluno | Cancelamento sem custo para ambos |
 | Notificações | Automáticas para professor e aluno |
-
----
-
-## Pendências
-
-> **Itens abaixo precisam de validação antes da implementação.**
-
-- O que acontece com o pagamento quando a aula não acontece por culpa do aluno, do professor ou por consenso mútuo?
-- Política de reembolso para cancelamentos com mais de 24h de antecedência
-- O que é permitido na janela entre 12h e 24h antes da aula?
