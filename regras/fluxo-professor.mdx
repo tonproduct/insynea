@@ -1,0 +1,160 @@
+---
+title: "Fluxo do Professor"
+description: "Jornada completa do professor na plataforma — do acesso ao encerramento da aula."
+---
+
+## Visão Geral
+
+O professor é o ator central da plataforma. Ele define preço, disponibilidade e metodologia. A plataforma garante o pagamento, a agenda e o histórico.
+
+---
+
+## 1. Acesso e Dashboard
+
+Professor faz login e acessa o **Dashboard**, que exibe:
+
+- Próximas aulas agendadas
+- Solicitações pendentes de novos alunos
+- Saldo disponível para saque
+- Resumo de alunos ativos
+
+---
+
+## 2. Agenda
+
+A agenda é o centro de controle de tempo do professor.
+
+| Cor | Significado |
+|---|---|
+| Verde | Aula confirmada |
+| Amarelo | Solicitação pendente |
+
+**Ações disponíveis:**
+
+- Aceitar solicitação de agendamento
+- Cancelar aula (respeitando prazo de 24h)
+- Bloquear horários (sem aula disponível)
+- Solicitar reagendamento (aluno escolhe novo horário)
+
+**Regras de tempo:**
+
+| Janela | Ação permitida |
+|---|---|
+| Mais de 24h | Cancelamento permitido |
+| Entre 12h e 24h | Apenas reagendamento |
+| Menos de 12h | Bloqueado |
+
+---
+
+## 3. Durante a Aula
+
+Enquanto a aula acontece, o professor tem acesso a:
+
+- Chat com o aluno
+- Materiais enviados e recebidos
+- Lista de participantes
+
+---
+
+## 4. Encerramento da Aula
+
+Ao clicar em **"Encerrar aula"**, o professor responde: **"A aula aconteceu?"**
+
+```
+"A aula aconteceu?"
+  ├─ Sim
+  │    └─ Preenche resumo da aula
+  │    └─ Adiciona notas sobre o aluno
+  │    └─ Cria página no caderno (opcional)
+  │    └─ Aguarda confirmação do aluno (48h para confirmação automática)
+  │
+  └─ Não
+       └─ Informa o motivo
+       └─ Abre reporte de problema
+```
+
+**O que acontece com o pagamento:**
+
+| Motivo | Resultado |
+|---|---|
+| Culpa do aluno (no-show) | Professor recebe 100% |
+| Culpa do professor (no-show) | Aluno não paga nada |
+| Consenso mútuo | Aluno não paga nada |
+
+---
+
+## 5. Meus Alunos
+
+Lista de alunos com quem o professor já teve ou tem aulas ativas.
+
+- Filtro por **matéria** (Matemática, Português, Inglês, etc.)
+- Acesso ao **perfil do aluno**: histórico de aulas, materiais compartilhados, notas
+
+> O mesmo aluno pode aparecer em matérias diferentes — o filtro separa os contextos sem duplicar cards.
+
+---
+
+## 6. Perfil do Aluno (visão do professor)
+
+Ao acessar o perfil de um aluno, o professor vê:
+
+- Histórico de todas as aulas realizadas
+- Últimos materiais compartilhados
+- Notas feitas sobre o aluno
+- Botão para enviar novo material
+
+---
+
+## 7. Caderno
+
+Espaço estilo Notion para o professor organizar o conteúdo por aluno.
+
+- Páginas criadas manualmente ou via modal de encerramento
+- Cada página é livre — o professor adiciona o que considerar relevante
+
+---
+
+## 8. Reagendamento
+
+O professor pode **solicitar** um reagendamento, mas **não define o novo horário** — essa escolha é sempre do aluno.
+
+```
+Professor solicita reagendamento
+  └─ Aluno recebe notificação
+       └─ Aluno escolhe novo horário na agenda do professor
+            ├─ Escolheu → confirmado automaticamente
+            └─ Recusou → aula cancelada sem custo
+```
+
+**Regras:**
+
+- Prazo mínimo para reagendar: **12h antes da aula**
+- Limite: **1 reagendamento por aula**
+
+---
+
+## 9. Financeiro
+
+O professor acompanha sua situação financeira em tempo real:
+
+| Item | Descrição |
+|---|---|
+| Saldo disponível | Repasses de aulas confirmadas, prontos para saque |
+| A receber | Aulas encerradas aguardando confirmação (prazo 48h) |
+| Extrato | Histórico de todas as transações |
+| Histórico de saques | Retiradas realizadas via Pix |
+
+> O saque está disponível a qualquer momento — sem datas fixas.
+
+---
+
+## 10. Perfil
+
+Configurações do professor visíveis para os alunos:
+
+- Dados pessoais e foto
+- Materiais de apresentação
+- Preço por hora (mínimo R$30)
+- Disponibilidade de agenda
+- Chave Pix para recebimento
+- Ativação da **Aula Diagnóstica** (opcional)

@@ -18,6 +18,7 @@
           {
             "group": "Aulas",
             "pages": [
+              "regras/fluxo-professor",
               "regras/encerramento-cancelamento-reagendamento"
             ]
           }
