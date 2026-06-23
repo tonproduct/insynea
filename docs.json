@@ -3,7 +3,12 @@
   "name": "Insynea",
   "theme": "luma",
   "colors": {
-    "primary": "#3A5E1C"
+    "primary": "#3A5E1C",
+    "light": "#5A7E2E",
+    "dark": "#2D4A1E"
+  },
+  "appearance": {
+    "default": "light"
   },
   "navigation": {
     "tabs": [
