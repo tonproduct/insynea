@@ -141,77 +141,86 @@ body {
   <span class="header-tag">Registro de Horas</span>
 </header>
 
-<div class="page">
+<div class="page" style="max-width:960px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px;">
-    <div>
+  <!-- COLUNA ESQUERDA: horas + atividades -->
+  <div>
+    <div class="total-block">
       <div class="total-label">Total de horas</div>
       <div class="total-value">15<span class="unit">h</span></div>
     </div>
-    <div>
+
+    <div class="divider"></div>
+
+    <div class="list-label">Atividades</div>
+
+    <div class="entry-list">
+      <div class="entry">
+        <div class="entry-date">22 Jun 2026</div>
+        <div class="entry-desc">Interação com o dev — alinhamento de handoff e dúvidas técnicas</div>
+        <div class="entry-hrs">1h</div>
+      </div>
+      <div class="entry">
+        <div class="entry-date">22 Jun 2026</div>
+        <div class="entry-desc">Validação de Dashboard professor e Perfil do aluno — revisão de fluxos e modal Laço</div>
+        <div class="entry-hrs">2h</div>
+      </div>
+      <div class="entry">
+        <div class="entry-date">22 Jun 2026</div>
+        <div class="entry-desc">Revisão de Cards no board — atualização de RNs, tradução e ajustes de US-05 a US-09</div>
+        <div class="entry-hrs">2h</div>
+      </div>
+      <div class="entry">
+        <div class="entry-date">18 Jun 2026</div>
+        <div class="entry-desc">Revisão das US — fluxo do professor no board</div>
+        <div class="entry-hrs">2h</div>
+      </div>
+      <div class="entry">
+        <div class="entry-date">17 Jun 2026</div>
+        <div class="entry-desc">Criação de US fluxo do professor no board</div>
+        <div class="entry-hrs">6h</div>
+      </div>
+      <div class="entry">
+        <div class="entry-date">17 Jun 2026</div>
+        <div class="entry-desc">Setup — Criação de email e criação de conta no ClickUp e organização do board</div>
+        <div class="entry-hrs">1h</div>
+      </div>
+      <div class="entry">
+        <div class="entry-date">17 Jun 2026</div>
+        <div class="entry-desc">Validação Mobile e Desktop do fluxo foundation rodada final</div>
+        <div class="entry-hrs">1h</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUNA DIREITA: valor + faixas -->
+  <div>
+    <div class="total-block">
       <div class="total-label">Valor do pacote</div>
-      <div class="total-value" style="color:#B89018;font-size:56px;letter-spacing:-2px;">R$1.350</div>
-      <div style="margin-top:6px;font-size:12px;color:#988860;">15h × R$90 — faixa 11–20h</div>
+      <div class="total-value" style="color:#B89018;font-size:72px;">R$1.350</div>
+      <div style="margin-top:8px;font-size:12px;color:#988860;">15h × R$90 — faixa 11–20h</div>
     </div>
-  </div>
 
-  <div style="border:1px solid #C8B898;border-radius:12px;overflow:hidden;background:#fff;margin-bottom:40px;">
-    <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:10px 20px;border-bottom:1px solid #EDE5D5;font-size:11px;font-weight:700;color:#988860;text-transform:uppercase;letter-spacing:1px;">
-      <span>Faixa</span><span style="text-align:right;">Taxa</span><span style="text-align:right;">Pacote</span>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;color:#C8B898;">
-      <span>1–10h</span><span style="text-align:right;">R$100/h</span><span style="text-align:right;">R$1.000</span>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;background:#E3F0DE;">
-      <span style="color:#3A5E1C;font-weight:700;">11–20h ◀ agora</span><span style="text-align:right;color:#3A5E1C;font-weight:600;">R$90/h</span><span style="text-align:right;font-weight:700;color:#3A5E1C;">R$1.350</span>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;color:#C8B898;">
-      <span>21–40h</span><span style="text-align:right;">R$80/h</span><span style="text-align:right;">—</span>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;font-size:14px;color:#C8B898;">
-      <span>41h+</span><span style="text-align:right;">R$70/h</span><span style="text-align:right;">—</span>
-    </div>
-  </div>
+    <div class="divider"></div>
 
-  <div class="divider"></div>
+    <div class="list-label">Faixas</div>
 
-  <div class="list-label">Atividades</div>
-
-  <div class="entry-list">
-    <div class="entry">
-      <div class="entry-date">22 Jun 2026</div>
-      <div class="entry-desc">Interação com o dev — alinhamento de handoff e dúvidas técnicas</div>
-      <div class="entry-hrs">1h</div>
-    </div>
-    <div class="entry">
-      <div class="entry-date">22 Jun 2026</div>
-      <div class="entry-desc">Validação de Dashboard professor e Perfil do aluno — revisão de fluxos e modal Laço</div>
-      <div class="entry-hrs">2h</div>
-    </div>
-    <div class="entry">
-      <div class="entry-date">22 Jun 2026</div>
-      <div class="entry-desc">Revisão de Cards no board — atualização de RNs, tradução e ajustes de US-05 a US-09</div>
-      <div class="entry-hrs">2h</div>
-    </div>
-    <div class="entry">
-      <div class="entry-date">18 Jun 2026</div>
-      <div class="entry-desc">Revisão das US — fluxo do professor no board</div>
-      <div class="entry-hrs">2h</div>
-    </div>
-    <div class="entry">
-      <div class="entry-date">17 Jun 2026</div>
-      <div class="entry-desc">Criação de US fluxo do professor no board</div>
-      <div class="entry-hrs">6h</div>
-    </div>
-    <div class="entry">
-      <div class="entry-date">17 Jun 2026</div>
-      <div class="entry-desc">Setup — Criação de email e criação de conta no ClickUp e organização do board</div>
-      <div class="entry-hrs">1h</div>
-    </div>
-    <div class="entry">
-      <div class="entry-date">17 Jun 2026</div>
-      <div class="entry-desc">Validação Mobile e Desktop do fluxo foundation rodada final</div>
-      <div class="entry-hrs">1h</div>
+    <div style="border:1px solid #C8B898;border-radius:12px;overflow:hidden;background:#fff;">
+      <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:10px 20px;border-bottom:1px solid #EDE5D5;font-size:11px;font-weight:700;color:#988860;text-transform:uppercase;letter-spacing:1px;">
+        <span>Faixa</span><span style="text-align:right;">Taxa</span><span style="text-align:right;">Pacote</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;color:#C8B898;">
+        <span>1–10h</span><span style="text-align:right;">R$100/h</span><span style="text-align:right;">R$1.000</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;background:#E3F0DE;">
+        <span style="color:#3A5E1C;font-weight:700;">11–20h ◀ agora</span><span style="text-align:right;color:#3A5E1C;font-weight:600;">R$90/h</span><span style="text-align:right;font-weight:700;color:#3A5E1C;">R$1.350</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;color:#C8B898;">
+        <span>21–40h</span><span style="text-align:right;">R$80/h</span><span style="text-align:right;">—</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;font-size:14px;color:#C8B898;">
+        <span>41h+</span><span style="text-align:right;">R$70/h</span><span style="text-align:right;">—</span>
+      </div>
     </div>
   </div>
 
