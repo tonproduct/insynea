@@ -179,16 +179,53 @@ body {
 
   <!-- ── CHIPS NAV ── -->
   <div class="month-nav">
-    <button class="chip active" onclick="show('jul26')" id="chip-jul26">
-      Jul 2026 <span class="chip-tag">atual</span>
+    <button class="chip active" onclick="show('ago26')" id="chip-ago26">
+      Ago 2026 <span class="chip-tag">atual</span>
     </button>
+    <button class="chip" onclick="show('jul26')" id="chip-jul26">Jul 2026</button>
     <button class="chip" onclick="show('jun26')" id="chip-jun26">Jun 2026</button>
     <button class="chip" onclick="show('mai26')" id="chip-mai26">Mai 2026</button>
     <button class="chip total" onclick="show('total')" id="chip-total">Total</button>
   </div>
 
+  <!-- ── AGO 2026 ── -->
+  <div class="period visible" id="period-ago26">
+    <div>
+      <div class="total-block">
+        <div class="total-label">Total de horas</div>
+        <div class="total-value">6<span class="unit">h</span></div>
+      </div>
+      <div class="divider"></div>
+      <div class="list-label">Atividades</div>
+      <div class="entry-list">
+        <div class="entry"><div class="entry-date">15 Ago 2026</div><div class="entry-desc">Validação do fluxo do aluno — pt.1: destino do botão "Confirmar" e bloco de login inline na página</div><div class="entry-hrs">1h</div></div>
+        <div class="entry"><div class="entry-date">15 Ago 2026</div><div class="entry-desc">Validação do fluxo do aluno — pt.2: mudança de header pós-login, navegação de "Acessar minha área" e estrutura de menu/submenu</div><div class="entry-hrs">1h</div></div>
+        <div class="entry"><div class="entry-date">15 Ago 2026</div><div class="entry-desc">Adaptação da jornada do aluno por viabilidade técnica</div><div class="entry-hrs">1h</div></div>
+        <div class="entry"><div class="entry-date">15 Ago 2026</div><div class="entry-desc">Pesquisa sobre Pix no Stripe — arquitetura de pagamento (Stripe Connect) e resposta ao questionário de integração</div><div class="entry-hrs">1h</div></div>
+        <div class="entry"><div class="entry-date">15 Ago 2026</div><div class="entry-desc">Alinhamento assíncrono com o Xiao — dúvidas de fluxo e validação de telas</div><div class="entry-hrs">1h</div></div>
+        <div class="entry"><div class="entry-date">15 Ago 2026</div><div class="entry-desc">Correção de UX no fluxo de cadastro/checkout — contradição entre "Cadastro" e "Entrar" no header, com mockup ilustrativo</div><div class="entry-hrs">1h</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="total-block">
+        <div class="total-label">Valor do pacote</div>
+        <div class="total-value" style="color:#B89018;font-size:72px;">R$600</div>
+        <div style="margin-top:8px;font-size:12px;color:#988860;">6h × R$100 — faixa 1–10h</div>
+      </div>
+      <div class="divider"></div>
+      <div class="list-label">Faixas</div>
+      <div style="border:1px solid #C8B898;border-radius:12px;overflow:hidden;background:#fff;">
+        <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:10px 20px;border-bottom:1px solid #EDE5D5;font-size:11px;font-weight:700;color:#988860;text-transform:uppercase;letter-spacing:1px;"><span>Faixa</span><span style="text-align:right;">Taxa</span><span style="text-align:right;">Pacote</span></div>
+        <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;background:#E3F0DE;"><span style="color:#3A5E1C;font-weight:700;">1–10h ◀ agora</span><span style="text-align:right;color:#3A5E1C;font-weight:600;">R$100/h</span><span style="text-align:right;font-weight:700;color:#3A5E1C;">R$600</span></div>
+        <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;color:#C8B898;"><span>11–20h</span><span style="text-align:right;">R$90/h</span><span style="text-align:right;">—</span></div>
+        <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;color:#C8B898;"><span>21–40h</span><span style="text-align:right;">R$80/h</span><span style="text-align:right;">—</span></div>
+        <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;font-size:14px;color:#C8B898;"><span>41h+</span><span style="text-align:right;">R$70/h</span><span style="text-align:right;">—</span></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── JUL 2026 ── -->
-  <div class="period visible" id="period-jul26">
+  <div class="period" id="period-jul26">
     <div>
       <div class="total-block">
         <div class="total-label">Total de horas</div>
@@ -214,7 +251,7 @@ body {
       <div class="list-label">Faixas</div>
       <div style="border:1px solid #C8B898;border-radius:12px;overflow:hidden;background:#fff;">
         <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:10px 20px;border-bottom:1px solid #EDE5D5;font-size:11px;font-weight:700;color:#988860;text-transform:uppercase;letter-spacing:1px;"><span>Faixa</span><span style="text-align:right;">Taxa</span><span style="text-align:right;">Pacote</span></div>
-        <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;background:#E3F0DE;"><span style="color:#3A5E1C;font-weight:700;">1–10h ◀ agora</span><span style="text-align:right;color:#3A5E1C;font-weight:600;">R$100/h</span><span style="text-align:right;font-weight:700;color:#3A5E1C;">R$700</span></div>
+        <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;background:#E3F0DE;"><span style="color:#3A5E1C;font-weight:700;">1–10h ◀ encerrado</span><span style="text-align:right;color:#3A5E1C;font-weight:600;">R$100/h</span><span style="text-align:right;font-weight:700;color:#3A5E1C;">R$700</span></div>
         <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;color:#C8B898;"><span>11–20h</span><span style="text-align:right;">R$90/h</span><span style="text-align:right;">—</span></div>
         <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;border-bottom:1px solid #EDE5D5;font-size:14px;color:#C8B898;"><span>21–40h</span><span style="text-align:right;">R$80/h</span><span style="text-align:right;">—</span></div>
         <div style="display:grid;grid-template-columns:1fr 60px 80px;padding:12px 20px;font-size:14px;color:#C8B898;"><span>41h+</span><span style="text-align:right;">R$70/h</span><span style="text-align:right;">—</span></div>
@@ -295,12 +332,13 @@ body {
     <div>
       <div class="total-block">
         <div class="total-label">Total de horas (todos os ciclos)</div>
-        <div class="total-value">22<span class="unit">h</span></div>
+        <div class="total-value">28<span class="unit">h</span></div>
       </div>
       <div class="divider"></div>
       <div class="list-label">Resumo por ciclo</div>
       <div class="entry-list">
-        <div class="entry"><div class="entry-date">Jul 2026</div><div class="entry-desc">07 jul – em andamento</div><div class="entry-hrs">7h</div></div>
+        <div class="entry"><div class="entry-date">Ago 2026</div><div class="entry-desc">15 ago – em andamento</div><div class="entry-hrs">6h</div></div>
+        <div class="entry"><div class="entry-date">Jul 2026</div><div class="entry-desc">07 jul – 14 ago · encerrado</div><div class="entry-hrs">7h</div></div>
         <div class="entry"><div class="entry-date">Jun 2026</div><div class="entry-desc">17 jun – 06 jul · encerrado</div><div class="entry-hrs">15h</div></div>
         <div class="entry" style="color:#C8B898;"><div class="entry-date">Mai 2026</div><div class="entry-desc" style="color:#C8B898;">17 mai – 16 jun · sem atividades</div><div class="entry-hrs" style="color:#C8B898;">0h</div></div>
       </div>
@@ -308,12 +346,13 @@ body {
     <div>
       <div class="total-block">
         <div class="total-label">Valor total acumulado</div>
-        <div class="total-value" style="color:#B89018;font-size:72px;">R$2.050</div>
+        <div class="total-value" style="color:#B89018;font-size:72px;">R$2.650</div>
         <div style="margin-top:8px;font-size:12px;color:#988860;">soma dos pacotes por ciclo</div>
       </div>
       <div class="divider"></div>
       <div class="list-label">Por ciclo</div>
       <div class="entry-list">
+        <div class="entry"><div class="entry-date">Ago 2026</div><div class="entry-desc">6h × R$100 — faixa 1–10h</div><div class="entry-hrs" style="color:#B89018;">R$600</div></div>
         <div class="entry"><div class="entry-date">Jul 2026</div><div class="entry-desc">7h × R$100 — faixa 1–10h</div><div class="entry-hrs" style="color:#B89018;">R$700</div></div>
         <div class="entry"><div class="entry-date">Jun 2026</div><div class="entry-desc">15h × R$90 — faixa 11–20h</div><div class="entry-hrs" style="color:#B89018;">R$1.350</div></div>
         <div class="entry" style="color:#C8B898;"><div class="entry-date">Mai 2026</div><div class="entry-desc" style="color:#C8B898;">sem atividades</div><div class="entry-hrs" style="color:#C8B898;">—</div></div>
